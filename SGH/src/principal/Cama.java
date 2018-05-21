@@ -67,15 +67,22 @@ public class Cama
     //---------------------------------------------------------------------------------------------------------------------//
     public void ocuparCama(String rutPaciente)//ocupa una cama
     {
-       this.rutPaciente=rutPaciente;//se le asigna un paciente a la cama
-       this.camaDisponible=false;//la cama deja de estar disponible
-            
+    	if(this.camaDisponible == true)
+    	{
+    		this.rutPaciente=rutPaciente;//se le asigna un paciente a la cama
+    	    this.camaDisponible=false;//la cama deja de estar disponible        		
+    	}
+           
     }
     //---------------------------------------------------------------------------------------------------------------------//
     public void vaciarCama()//desocupar cama
     {
-        this.rutPaciente=null;//se elimina el paciente
-        this.camaDisponible=true;//cama queda disponible
+    	if(this.camaDisponible == false)
+    	{
+    		this.rutPaciente=null;//se elimina el paciente
+            this.camaDisponible=true;//cama queda disponible
+    		
+    	}
     }
     //---------------------------------------------------------------------------------------------------------------------//   
 }

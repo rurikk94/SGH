@@ -135,7 +135,7 @@ public class ListaCama
         {
         	for(int i=0; i<arrayCama.size();i++)
         	{
-        		if(arrayCama.get(i).getNumeroCama()==numeroCama)
+        		if(arrayCama.get(i).getNumeroCama()==numeroCama && arrayCama.get(i).getCamaDisponible()==true) //Se encuentra la cama buscada y está vacía
         		{
         			arrayCama.remove(i);
         			return true;
@@ -156,7 +156,7 @@ public class ListaCama
         {
         	for(int i=0; i<arrayCama.size();i++)
         	{
-        		if(arrayCama.get(i).getNumeroCama()==numeroCama)
+        		if(arrayCama.get(i).getNumeroCama()==numeroCama && arrayCama.get(i).getCamaDisponible()==true) //Se encuentra la cama y está vacía
         		{
         			camaEliminada = (Cama)arrayCama.get(i);
         			arrayCama.remove(i);
