@@ -5,23 +5,21 @@ public class Cama
 {
     private int numeroCama;
     private boolean camaDisponible;
-    private String codigoCama;
     private String especialidad;
     private String rutPaciente;
     
     public Cama()
     {
         numeroCama=0;
-        codigoCama=null;
         camaDisponible=true;
         rutPaciente=null;
         especialidad=null;
     }
     
-    public Cama(int numeroCama, String codigoCama, String rutPaciente, String especialidad)
+    public Cama(int numeroCama, boolean camaDisponible, String rutPaciente, String especialidad)
     {
         this.numeroCama=numeroCama;
-        this.codigoCama=codigoCama;
+        this.camaDisponible=camaDisponible;
         this.especialidad=especialidad;
         this.rutPaciente=rutPaciente;
         
@@ -32,14 +30,14 @@ public class Cama
         this.numeroCama=numeroCama;
     }
     
+    public void setCamaDisponible(boolean camaDisponible)
+    {
+    	this.camaDisponible=camaDisponible;
+    }
+    
     public void setEspecialidad(String especialidad)
     {
         this.especialidad=especialidad;
-    }
-    
-    public void setCodigoCama(String codigoCama)
-    {
-        this.codigoCama=codigoCama;
     }
     
     public void setRutPaciente(String rutPaciente)
@@ -62,32 +60,22 @@ public class Cama
         return rutPaciente;
     }
     
-    public String getCodigoCama()
-    {
-        return codigoCama;
-    }
-    
     public boolean getCamaDisponible()
     {
-        return getRutPaciente() == null;//retorna true si esta disponible, de lo contrario false
+        return camaDisponible;//retorna true si esta disponible, de lo contrario false
     }
     //---------------------------------------------------------------------------------------------------------------------//
-    public String ocuparCama(String rutPaciente)//ocupa una cama
+    public void ocuparCama(String rutPaciente)//ocupa una cama
     {
-        if(getCamaDisponible()==true)//si la cama esta disponible
-        {
-            this.rutPaciente=rutPaciente;//se le asigna un paciente
-            camaDisponible=false;//la cama deja de estar disponible
-            return getCodigoCama();//retorna verdadero
-        }
-        return null;//la cama ya esta ocupada
+       this.rutPaciente=rutPaciente;//se le asigna un paciente a la cama
+       this.camaDisponible=false;//la cama deja de estar disponible
+            
     }
     //---------------------------------------------------------------------------------------------------------------------//
-    public boolean vaciarCama()//desopucar cama
+    public void vaciarCama()//desocupar cama
     {
-        rutPaciente=null;//se elimina el paciente
-        camaDisponible=true;//cama queda disponible
-        return true;
+        this.rutPaciente=null;//se elimina el paciente
+        this.camaDisponible=true;//cama queda disponible
     }
     //---------------------------------------------------------------------------------------------------------------------//   
 }

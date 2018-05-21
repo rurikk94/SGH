@@ -1,9 +1,7 @@
 
 package principal;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class ListaCama 
 {    
@@ -20,85 +18,98 @@ public class ListaCama
         return arrayCama.size();
     }
     //---------------------------------------------------------------------------------------------------------------------//
-    public boolean buscarCamaRepetida(String codigo)//busca la cama por codigo y retorna un booleano
+    public boolean existeCama(int numero)//busca la cama por el numero de esta y retorna un booleano 
     {
-        if(codigo==null) return false;//codigo null
         for(int i=0;i<arrayCama.size();i++)
         {
             if(arrayCama.get(i)!=null) //si existe
             {
-                if(codigo.equals(arrayCama.get(i).getCodigoCama())==true) //si los codigos son iguales
+                if(numero == arrayCama.get(i).getNumeroCama() ) //si los numeros son iguales
                     return true;
             }
         }
-        return false;//no existe cama con ese codigo
+        return false;//no existe cama con ese numero
     }
     //---------------------------------------------------------------------------------------------------------------------//
-    public boolean agregarCama(int numeroCama,String codigoVerificador,String rutPaciente,String especialidad)
+    public boolean agregarCama(int numeroCama,String rutPaciente,String especialidad)
     {
-        Cama nuevaCama = new Cama();//se crea el objeto cama
-        nuevaCama.setCodigoCama(codigoVerificador);
-        nuevaCama.setEspecialidad(especialidad);
-        nuevaCama.setNumeroCama(numeroCama);
-        nuevaCama.setRutPaciente(rutPaciente);
-        if(nuevaCama.getCodigoCama()!=null && buscarCamaRepetida(nuevaCama.getCodigoCama())==false)//no se encontro la cama
+        if(existeCama(numeroCama)==false)//no se encontro la cama
         {
+        	Cama nuevaCama = new Cama();//se crea el objeto cama
+            nuevaCama.setEspecialidad(especialidad);
+            nuevaCama.setNumeroCama(numeroCama);
+            nuevaCama.setRutPaciente(rutPaciente);
             arrayCama.add(nuevaCama);//se agrega la cama
             return true;//se agrego
         }
         return false;//no se agrego
     }
     //---------------------------------------------------------------------------------------------------------------------//
-    public Cama buscarCamaEspecifica(String codigo)//busca la cama por codigo y retorna su indice
+    public Cama buscarCamaEspecifica(int numeroCama)//busca la cama por codigo y retorna su indice
     {
-        if(codigo==null) return null;//codigo no valido
-        for(int i=0;i<arrayCama.size();i++)
+        if(existeCama(numeroCama)==true) 
         {
-            if(arrayCama.get(i)!=null)//si existe
-            { 
-                Cama seleccionada = arrayCama.get(i);//se asigna la sala
-                if(codigo.equals(seleccionada.getCodigoCama())==true) //si los codigos son iguales
-                    return seleccionada;//retorna la cama
+        	for(int i=0;i<arrayCama.size();i++)
+            {
+                if(arrayCama.get(i)!=null)//si existe
+                { 
+                    if(arrayCama.get(i).getNumeroCama()==numeroCama) 
+                        return (Cama)arrayCama.get(i);//retorna la cama
+                }
             }
         }
-        return null;//no existe con ese codigo
+        
+        return null;//no existe cama con ese numero
     }
     //---------------------------------------------------------------------------------------------------------------------//
-    public boolean vaciarCama(String codigoCama)//vacia la cama
+    public boolean vaciarCama(int numeroCama)//vacia la cama
     {
-        if(codigoCama==null) return false;//codigo no valido
-        Cama seleccionada=buscarCamaEspecifica(codigoCama);//recive la cama
-        if(seleccionada==null) return false;//no existe la cama
-        return seleccionada.vaciarCama();//retorna el resultado de la funcion (true/false)
+        if(existeCama(numeroCama)==true)
+        {
+        	for(int i=0; i<arrayCama.size();i++)
+        	{
+        		if(arrayCama.get(i) != null && arrayCama.get(i).getNumeroCama() == numeroCama)
+        		{
+        			arrayCama.get(i).vaciarCama();
+        			return true;
+        		}
+        	}
+        }
+        
+        return false;
     }
     //---------------------------------------------------------------------------------------------------------------------//
-    public String ocuparCama(String codigoCama, String rutPaciente)//ocupa la cama
+    public boolean ocuparCama(int numeroCama, String rutPaciente)//ocupa la cama
     {
-        if(codigoCama==null) return null;//codigo no valido
-        Cama seleccionada=buscarCamaEspecifica(codigoCama);//recive el indice
-        if(seleccionada==null) return null;//no existe la cama
-        return seleccionada.ocuparCama(rutPaciente);//retorna el resultado de la funcion (true/false)
+        if(existeCama(numeroCama)==true)
+        {
+        	for(int i=0; i<arrayCama.size(); i++)
+        	{
+        		if(arrayCama.get(i) != null && arrayCama.get(i).getNumeroCama() == numeroCama)
+        		{
+        			arrayCama.get(i).ocuparCama(rutPaciente);
+        			return true;
+        		}
+        	}
+        }
+        
+        return false;
     }
     //---------------------------------------------------------------------------------------------------------------------//
     public Cama buscarCamaDisponible()//retorna la primera cama disponible
     {
-        for(int i=0;i<arrayCama.size();i++)
+        if(arrayCama.isEmpty())
+        	return null;
+        
+    	for(int i=0;i<arrayCama.size();i++)
         {
             if(arrayCama.get(i)!=null)//si es distinto de null
             {
-                Cama seleccionada = arrayCama.get(i); //se asigna
-                if(seleccionada.getCamaDisponible()==true)//si la disponibilidad de la cama es true
-                    return seleccionada;//retorna la cama
+                if(arrayCama.get(i).getCamaDisponible()==true)//si la disponibilidad de la cama es true
+                    return (Cama)arrayCama.get(i);//retorna la cama
             }
         }
         return null;//no existen camas disponibles
-    }
-    //---------------------------------------------------------------------------------------------------------------------//
-    public String agregarPacienteACama(String rutPaciente)//retorna true/false dependiendo si el paciente se agrego o no a la cama
-    {
-        Cama seleccionada = buscarCamaDisponible(); //busca la primera cama disponible
-        if(seleccionada==null)return null;//si no encontro retorna false
-        return seleccionada.ocuparCama(rutPaciente);//llama al metodo ocupar el cual retorna true/false dependiendo si se ocupo la cama
     }
     //---------------------------------------------------------------------------------------------------------------------//
     public int getNumeroCamasDisponibles()//retorna la cantidad de camas disponibles para ser ocupadas
@@ -108,41 +119,53 @@ public class ListaCama
         {
             if(arrayCama.get(i)!=null)//si el iterador es distinto de null 
             {
-                Cama seleccionada = arrayCama.get(i);//se asigna
-                if(seleccionada.getCamaDisponible()==true)//si la cama esta disponible
+                if(arrayCama.get(i).getCamaDisponible()==true)//si la cama esta disponible
                     cont++;//contador aumenta en 1
             }
         }
         return cont;//retorna la cantidad de camas disponibles
     }
     //---------------------------------------------------------------------------------------------------------------------//
-    public boolean eliminarCama(String codigoCama)//elimina una cama
+    public boolean eliminarCama(int numeroCama)//elimina una cama
     {
-        Cama seleccionada = buscarCamaEspecifica(codigoCama);//busca una cama especifica
-        if(seleccionada==null)return false;//si la cama no existe, retorna false
-        if(seleccionada.getRutPaciente()==null)//si la cama existe y no tiene un paciente
+        if(arrayCama.isEmpty())
+        	return false;
+        
+        if(existeCama(numeroCama) == true)
         {
-            return eliminar(codigoCama);//retorna verdadero ya que se pudo eliminar
+        	for(int i=0; i<arrayCama.size();i++)
+        	{
+        		if(arrayCama.get(i).getNumeroCama()==numeroCama)
+        		{
+        			arrayCama.remove(i);
+        			return true;
+        		}
+        	}
         }
-        if(agregarPacienteACama(seleccionada.getRutPaciente())!=null)//si la cama existe y tiene un paciente, agregara al paciente a alguna cama disponible
-        {
-            return eliminar(codigoCama);//retorna true ya que se 
-        }else //si no se pudo agregar al paciente a otra cama
-            return false;//retornara falso ya que si tiene un paciente, no puede ser eliminada
-    }
-    public boolean eliminar(String codigoCama)
-    {
-        for(int i=0;i<arrayCama.size();i++)//comiensa a iterar las camas
-        {
-            if(arrayCama.get(i)!=null)//si existe
-            {
-                if(arrayCama.get(i).getCodigoCama()!=null && arrayCama.get(i).getCodigoCama().equals(codigoCama)==true)//valida que los datos no sean null y comprueba si son iguales
-                {
-                    arrayCama.remove(i);//remueve el objeto posicionado en i
-                    return true;
-                }
-            }
-        }
+        
         return false;
     }
+    
+    public Cama eliminarObjetoCama(int numeroCama)
+    {
+    	Cama camaEliminada = new Cama();
+    	if(arrayCama.isEmpty())
+        	return null;
+        
+        if(existeCama(numeroCama) == true)
+        {
+        	for(int i=0; i<arrayCama.size();i++)
+        	{
+        		if(arrayCama.get(i).getNumeroCama()==numeroCama)
+        		{
+        			camaEliminada = (Cama)arrayCama.get(i);
+        			arrayCama.remove(i);
+        			return camaEliminada;
+        		}
+        	}
+        }
+        
+        return null;
+    }
+    
 }
