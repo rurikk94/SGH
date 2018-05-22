@@ -1,47 +1,39 @@
 
 package principal;
 
-public abstract class Funcionario {
+public class Funcionario extends Persona 
+{
+	
+    private String email;
+    private String especialidad;
     
-    private String nombre;
-    private String rut;
-    private String sexo;
+    public Funcionario(String nombres, String apellidos, String rut, String fechaNac, String telefono, String email, String especialidad)
+    {
+    	super(nombres, apellidos, rut, fechaNac, telefono);
+        this.email = email;
+        this.especialidad = especialidad;
+    }
+
+    public String getEmail() 
+    {
+        return email;
+    }
+
+    public void setEmail(String email) 
+    {
+        this.email = email;
+    }
     
-    public Funcionario (String nombre, String rut, String sexo)
+    public String getEspecialidad() 
     {
-        this.nombre = nombre;
-        this.rut = rut;
-        this.sexo = sexo;
+        return especialidad;
     }
 
-    public String getNombre() 
+    public void setEspecialidad(String especialidad) 
     {
-        return nombre;
+        this.especialidad = especialidad;
     }
-
-    public void setNombre(String nombre) 
-    {
-        this.nombre = nombre;
-    }
-
-    public String getRut() 
-    {
-        return rut;
-    }
-
-    public void setRut(String rut) 
-    {
-        this.rut = rut;
-    }
-
-    public String getSexo() 
-    {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) 
-    {
-        this.sexo = sexo;
-    }
+    
+    
     
 }
