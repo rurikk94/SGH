@@ -4,6 +4,8 @@ package principal;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ListaPaciente 
 {        
@@ -41,7 +43,10 @@ public class ListaPaciente
         nuevo.setEdad(edad);
         nuevo.setCodigoCama(codigoCama);
         nuevo.setFechaIngreso(fecha);
-        nuevo.setNombreCompleto(nombre);
+        if (validaString(nombre, "[^A-Za-z ]"))
+            nuevo.setNombreCompleto(nombre);
+        else
+            return false; //nombre invalido        
         nuevo.setNombrePilaMadre(nombreMadre);
         nuevo.setNombrePilaPadre(nombrePadre);
         nuevo.setRut(rut);
@@ -121,5 +126,18 @@ public class ListaPaciente
         Paciente seleccionado = buscarPaciente(rutPaciente);
         seleccionado.setCodigoCama(codigoCama);
         return true;
+    }
+    
+    private boolean validaString(String entrada, String expRegular){
+    
+        //String entrada = " No para mi que triste yeah";
+        //Pattern patron = Pattern.compile("[^A-Za-z ]");
+        Pattern patron = Pattern.compile(expRegular);
+        Matcher encaja = patron.matcher(entrada);
+        
+        if(!encaja.find())
+            return true;
+        else
+            return false;
     }
 }// fin clase ListaPaciente
