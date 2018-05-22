@@ -17,16 +17,19 @@
 
 package principal;
 
-import Ventanas.VentanaPrincipal;
+import Ventanas.LoginFrame;
+//import Ventanas.VentanaPrincipal;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 
 public class Principal 
 {
-    public static void main(String[] args) throws IOException, ParseException
+    public static void main(String[] args) throws IOException, ParseException, SQLException
     {
         Hospital  hospi = new Hospital();// invoca a la clase hospital que contiene todos los metodos de las listas
-        VentanaPrincipal v1 = new VentanaPrincipal(hospi); 
+        //VentanaPrincipal v1 = new VentanaPrincipal(hospi); 
+        LoginFrame v1 = new LoginFrame(hospi);
         v1.setVisible(true);//se invoca a metodo setVisible para conectar con interfaz grafica
         v1.setLocationRelativeTo(null);
     }

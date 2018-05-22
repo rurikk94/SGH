@@ -19,6 +19,10 @@ public class VentanaMenuOpciones extends javax.swing.JFrame {
         initComponents();
         setHospital(hospi);
     }
+    public VentanaMenuOpciones(Hospital hospi) {
+        initComponents();
+        setHospital(hospi);
+    }
     
     public void setHospital(Hospital hospi){
         this.hospi = hospi;
