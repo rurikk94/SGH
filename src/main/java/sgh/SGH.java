@@ -32,7 +32,7 @@ import java.text.ParseException;
 import main.java.gui.LoginFrame;
 
 /**
- *
+ * Sistem Gestion Hospital
  * @author Rurikk
  */
 public class SGH {
