@@ -31,10 +31,10 @@ public class CargandoFrame extends javax.swing.JFrame {
 
     /** Creates new form CargandoFrame */
     Hospital hospi;
-    public CargandoFrame(Hospital hospi) throws SQLException {
+    public CargandoFrame(Hospital hospi,String tipoBD, String url, String bd, String user, String pass) throws SQLException {
         initComponents();
         this.hospi = hospi;
-        hospi.cargarDatos();        //carga los datos desde BD
+        hospi.cargarDatos(tipoBD, url, bd, user, pass);        //carga los datos desde BD
         MenuPrincipalFrame vm = new MenuPrincipalFrame(hospi);        //abre ventanaPrincipal
         vm.setVisible(true);
     }
@@ -106,7 +106,7 @@ public class CargandoFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(final Hospital hospi) {
+    public static void main(final Hospital hospi,String tipoBD, String url, String bd, String user, String pass) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -137,7 +137,7 @@ public class CargandoFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new CargandoFrame(hospi).setVisible(true);                   
+                    new CargandoFrame(hospi,tipoBD, url, bd, user, pass).setVisible(true);                   
                     
                 } catch (SQLException ex) {
                     Logger.getLogger(CargandoFrame.class.getName()).log(Level.SEVERE, null, ex);

@@ -26,7 +26,23 @@ import main.java.utiles.Rut;
 public class Enfermero extends Funcionario {
 
     //contructores 
-    public Enfermero(String nombres, String apellidos, Rut rut, Date fechaNac, String telefono, String email, String especialidad) {
-        super(nombres, apellidos, rut, fechaNac, telefono, email, especialidad);
+    public Enfermero(String nombres, String apellidos, Rut rut, Date fechaNac, String telefono, String email) {
+        super(nombres, apellidos, rut, fechaNac, telefono, email);
+    }
+    @Override
+    /**
+     * Retorna datos como String
+     * @author Rurikk
+     * @return String
+     */
+    public String toString() {
+        return "Paciente{" 
+                + "nombres=" + this.getNombres()
+                + ",apellidos=" + this.getApellidos()
+                + ", rut=" + this.getRut()
+                + ",fechaNac=" + this.getFechaNac()
+                + ", telefono=" + this.getTelefono()
+                + ", email=" + this.getEmail()
+                + '}';
     }
 }

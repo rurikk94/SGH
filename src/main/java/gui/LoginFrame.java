@@ -50,18 +50,18 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        txt_email = new javax.swing.JTextField();
+        txt_url = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        txt_email1 = new javax.swing.JTextField();
+        txt_bd = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        txt_email2 = new javax.swing.JTextField();
+        txt_user = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txt_pwd = new javax.swing.JPasswordField();
+        txt_pass = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -97,36 +97,36 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        txt_email.setForeground(new java.awt.Color(102, 102, 102));
-        txt_email.setText("Host Ip");
-        txt_email.setBorder(null);
-        txt_email.addFocusListener(new java.awt.event.FocusAdapter() {
+        txt_url.setForeground(new java.awt.Color(102, 102, 102));
+        txt_url.setText("Host Ip");
+        txt_url.setBorder(null);
+        txt_url.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_emailFocusGained(evt);
+                txt_urlFocusGained(evt);
             }
         });
 
         jSeparator1.setBackground(new java.awt.Color(41, 168, 73));
         jSeparator1.setForeground(new java.awt.Color(41, 168, 73));
 
-        txt_email1.setForeground(new java.awt.Color(102, 102, 102));
-        txt_email1.setText("Datebase");
-        txt_email1.setBorder(null);
-        txt_email1.addFocusListener(new java.awt.event.FocusAdapter() {
+        txt_bd.setForeground(new java.awt.Color(102, 102, 102));
+        txt_bd.setText("Datebase");
+        txt_bd.setBorder(null);
+        txt_bd.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_email1FocusGained(evt);
+                txt_bdFocusGained(evt);
             }
         });
 
         jSeparator2.setBackground(new java.awt.Color(41, 168, 73));
         jSeparator2.setForeground(new java.awt.Color(41, 168, 73));
 
-        txt_email2.setForeground(new java.awt.Color(102, 102, 102));
-        txt_email2.setText("Usuario");
-        txt_email2.setBorder(null);
-        txt_email2.addFocusListener(new java.awt.event.FocusAdapter() {
+        txt_user.setForeground(new java.awt.Color(102, 102, 102));
+        txt_user.setText("Usuario");
+        txt_user.setBorder(null);
+        txt_user.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_email2FocusGained(evt);
+                txt_userFocusGained(evt);
             }
         });
 
@@ -146,12 +146,12 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/resources/sgh/gui/images/DatabaseIcon.png"))); // NOI18N
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        txt_pwd.setForeground(new java.awt.Color(102, 102, 102));
-        txt_pwd.setText("jPasswordField1");
-        txt_pwd.setBorder(null);
-        txt_pwd.addFocusListener(new java.awt.event.FocusAdapter() {
+        txt_pass.setForeground(new java.awt.Color(102, 102, 102));
+        txt_pass.setText("jPasswordField1");
+        txt_pass.setBorder(null);
+        txt_pass.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_pwdFocusGained(evt);
+                txt_passFocusGained(evt);
             }
         });
 
@@ -190,15 +190,15 @@ public class LoginFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txt_email1)
+                                .addComponent(txt_bd)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txt_email)
+                                .addComponent(txt_url)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txt_email2)
+                                .addComponent(txt_user)
                                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txt_pwd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_pass, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -215,11 +215,11 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_url, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_email1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_bd, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -229,7 +229,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txt_email2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_user, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -237,7 +237,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(txt_pwd, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,7 +356,7 @@ int xy, xx;
             // TODO add your handling code here:
             //jPanel4.show();
             //jPanel1.hide();
-            CargandoFrame cargando = new CargandoFrame(hospi);
+            CargandoFrame cargando = new CargandoFrame(hospi,"com.mysql.jdbc.Driver", txt_url.getText(),  txt_bd.getText(), txt_user.getText(), txt_pass.getText());
             //muestra la ventana de carga
             cargando.setVisible(true);
             this.dispose();
@@ -371,23 +371,25 @@ int xy, xx;
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void txt_emailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_emailFocusGained
+    private void txt_urlFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_urlFocusGained
         // TODO add your handling code here:
-        txt_email.setText("");
-    }//GEN-LAST:event_txt_emailFocusGained
+        txt_url.setText("209.222.103.210");
+    }//GEN-LAST:event_txt_urlFocusGained
 
-    private void txt_email1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_email1FocusGained
+    private void txt_bdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bdFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_email1FocusGained
+        txt_bd.setText("rurikkcl_SGH");
+    }//GEN-LAST:event_txt_bdFocusGained
 
-    private void txt_email2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_email2FocusGained
+    private void txt_userFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_userFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_email2FocusGained
+        txt_user.setText("rurikkcl_user");
+    }//GEN-LAST:event_txt_userFocusGained
 
-    private void txt_pwdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_pwdFocusGained
+    private void txt_passFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_passFocusGained
         // TODO add your handling code here:
-        txt_pwd.setText("");
-    }//GEN-LAST:event_txt_pwdFocusGained
+        txt_pass.setText("rurikkUser");
+    }//GEN-LAST:event_txt_passFocusGained
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -456,9 +458,9 @@ int xy, xx;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel lbl_loader;
-    private javax.swing.JTextField txt_email;
-    private javax.swing.JTextField txt_email1;
-    private javax.swing.JTextField txt_email2;
-    private javax.swing.JPasswordField txt_pwd;
+    private javax.swing.JTextField txt_bd;
+    private javax.swing.JPasswordField txt_pass;
+    private javax.swing.JTextField txt_url;
+    private javax.swing.JTextField txt_user;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,12 +26,10 @@ import main.java.utiles.Rut;
 public class Funcionario extends Persona {
 
     private String email;
-    private String especialidad;
 
-    public Funcionario(String nombres, String apellidos, Rut rut, Date fechaNac, String telefono, String email, String especialidad) {
+    public Funcionario(String nombres, String apellidos, Rut rut, Date fechaNac, String telefono, String email) {
         super(nombres, apellidos, rut, fechaNac, telefono);
         this.email = email;
-        this.especialidad = especialidad;
     }
 //<editor-fold defaultstate="collapsed" desc="getter-setter">
 
@@ -41,14 +39,6 @@ public class Funcionario extends Persona {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getEspecialidad() {
-        return this.especialidad;
-    }
-
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
     }
 
 //</editor-fold>

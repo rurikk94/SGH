@@ -129,18 +129,18 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txt_email1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txt_bd" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jSeparator2" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txt_email" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txt_url" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jSeparator1" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txt_email2" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txt_user" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jSeparator3" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="txt_pwd" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
+                                  <Component id="txt_pass" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
                                   <Component id="jSeparator4" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -163,11 +163,11 @@
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="txt_email" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="txt_url" min="-2" pref="23" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txt_email1" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="txt_bd" min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel4" min="-2" pref="31" max="-2" attributes="0"/>
@@ -180,7 +180,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="txt_email2" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="txt_user" min="-2" pref="23" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
                           </Group>
@@ -190,7 +190,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                              <Component id="txt_pwd" min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="txt_pass" min="-2" pref="19" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel2" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
@@ -230,7 +230,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txt_email">
+            <Component class="javax.swing.JTextField" name="txt_url">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
@@ -241,7 +241,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_emailFocusGained"/>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_urlFocusGained"/>
               </Events>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator1">
@@ -254,7 +254,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txt_email1">
+            <Component class="javax.swing.JTextField" name="txt_bd">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
@@ -265,7 +265,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_email1FocusGained"/>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_bdFocusGained"/>
               </Events>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator2">
@@ -278,7 +278,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txt_email2">
+            <Component class="javax.swing.JTextField" name="txt_user">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
@@ -289,7 +289,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_email2FocusGained"/>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_userFocusGained"/>
               </Events>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator3">
@@ -342,7 +342,7 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="txt_pwd">
+            <Component class="javax.swing.JPasswordField" name="txt_pass">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
@@ -353,7 +353,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_pwdFocusGained"/>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_passFocusGained"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton2">

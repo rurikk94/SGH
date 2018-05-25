@@ -27,11 +27,45 @@ import main.java.utiles.Rut;
 public class Medico extends Funcionario
 {    
     private ListaPaciente listapacientes;
+    String especialidad;
     
     public Medico(String nombres, String apellidos, Rut rut, Date fechaNac, String telefono, String email, String especialidad)
     {
-        super(nombres, apellidos, rut, fechaNac, telefono, email, especialidad);
+        super(nombres, apellidos, rut, fechaNac, telefono, email);
         listapacientes = new ListaPaciente();
-      
+        this.especialidad = especialidad;      
+    }
+    
+//<editor-fold defaultstate="collapsed" desc="getter-setter">
+
+    public String getEspecialidad() {
+        return this.especialidad;
+    }
+
+    public void setEspecialidad(String email) {
+        this.especialidad = email;
+    }
+
+//</editor-fold>
+    @Override
+    /**
+     * Retorna datos como String
+     * @author Rurikk
+     * @return String
+     */
+    public String toString() {
+        return "Paciente{" 
+                + "nombres=" + this.getNombres()
+                + ",apellidos=" + this.getApellidos()
+                + ", rut=" + this.getRut()
+                + ",fechaNac=" + this.getFechaNac()
+                + ", telefono=" + this.getTelefono()
+                + ", email=" + this.getEmail()
+                + ", especialidad=" + this.getEspecialidad()
+                + '}';
+    }
+
+    public boolean agregarAListaPacientes(Paciente paciente) {
+        return listapacientes.agregarPaciente(paciente);
     }
 }

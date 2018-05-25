@@ -27,9 +27,9 @@ public class Paciente extends Persona {
 
     private String nombreContacto;
     private Integer telefonoContacto;
-    private String sexo;
+    private char sexo;
 
-    public Paciente(String nombres, String apellidos, Rut rut, Date fechaNac, String telefono, String nombreContacto, Integer telefonoContacto, String sexo) {
+    public Paciente(String nombres, String apellidos, Rut rut, Date fechaNac, String telefono, String nombreContacto, Integer telefonoContacto, char sexo) {
         super(nombres, apellidos, rut, fechaNac, telefono);
         this.nombreContacto = nombreContacto;
         this.telefonoContacto = telefonoContacto;
@@ -52,12 +52,31 @@ public class Paciente extends Persona {
         this.telefonoContacto = telefonoContacto;
     }
 
-    public String getSexo() {
+    public char getSexo() {
         return this.sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(char sexo) {
         this.sexo = sexo;
     }
 // </editor-fold>
+    
+    @Override
+    /**
+     * Retorna datos como String
+     * @author Rurikk
+     * @return String
+     */
+    public String toString() {
+        return "Paciente{" 
+                + "nombres=" + this.getNombres()
+                + ",apellidos=" + this.getApellidos()
+                + ", rut=" + this.getRut()
+                + ",fechaNac=" + this.getFechaNac()
+                + ", telefono=" + this.getTelefono()
+                + ", nombreContacto=" + this.getNombreContacto()
+                + ", telefonoContacto=" +  this.getTelefonoContacto()
+                + ", sexo=" +  this.getSexo()
+                + '}';
+    }
 }

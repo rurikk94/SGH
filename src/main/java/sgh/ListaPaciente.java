@@ -29,5 +29,20 @@ public class ListaPaciente {
     public ListaPaciente() {
         this.listaPacientes = new ArrayList<Paciente>();
     }
+
+    public boolean agregarPaciente(Paciente paciente) {
+        if (listaPacientes.isEmpty()) {
+            listaPacientes.add(paciente);
+            return true;
+        } else {
+            for (int i = 0; i < listaPacientes.size(); i++) {
+                if (listaPacientes.get(i).getRut().equals(paciente.getRut())) {
+                    return false;
+                }
+            }
+            listaPacientes.add(paciente);
+            return true;
+        }
+    }
     
 }
