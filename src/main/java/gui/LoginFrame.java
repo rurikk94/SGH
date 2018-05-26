@@ -49,7 +49,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        javax.swing.JButton IniciarBtn = new javax.swing.JButton();
         txt_url = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         txt_bd = new javax.swing.JTextField();
@@ -85,15 +85,15 @@ public class LoginFrame extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(450, 362));
 
-        jButton1.setBackground(new java.awt.Color(41, 168, 73));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Iniciar");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        IniciarBtn.setBackground(new java.awt.Color(41, 168, 73));
+        IniciarBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        IniciarBtn.setForeground(new java.awt.Color(255, 255, 255));
+        IniciarBtn.setText("Iniciar");
+        IniciarBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        IniciarBtn.setBorderPainted(false);
+        IniciarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                IniciarBtnActionPerformed(evt);
             }
         });
 
@@ -202,7 +202,7 @@ public class LoginFrame extends javax.swing.JFrame {
                             .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(IniciarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(15, Short.MAX_VALUE))
@@ -243,7 +243,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IniciarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
@@ -351,7 +351,7 @@ int xy, xx;
         xy = evt.getY();
     }//GEN-LAST:event_formMousePressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void IniciarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarBtnActionPerformed
         try {
             // TODO add your handling code here:
             //jPanel4.show();
@@ -369,7 +369,7 @@ int xy, xx;
         jPanel1.show();
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_IniciarBtnActionPerformed
 
     private void txt_urlFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_urlFocusGained
         // TODO add your handling code here:
@@ -443,7 +443,6 @@ int xy, xx;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel img_loader;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

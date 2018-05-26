@@ -29,7 +29,7 @@ public class Paciente extends Persona {
     private Integer telefonoContacto;
     private char sexo;
 
-    public Paciente(String nombres, String apellidos, Rut rut, Date fechaNac, String telefono, String nombreContacto, Integer telefonoContacto, char sexo) {
+    public Paciente(String nombres, String apellidos, Rut rut, Date fechaNac, Integer telefono, String nombreContacto, Integer telefonoContacto, char sexo) {
         super(nombres, apellidos, rut, fechaNac, telefono);
         this.nombreContacto = nombreContacto;
         this.telefonoContacto = telefonoContacto;
@@ -40,24 +40,27 @@ public class Paciente extends Persona {
         return this.nombreContacto;
     }
 
-    public void setNombreContacto(String nombreContacto) {
+    public boolean setNombreContacto(String nombreContacto) {
         this.nombreContacto = nombreContacto;
+        return true;
     }
 
     public Integer getTelefonoContacto() {
         return this.telefonoContacto;
     }
 
-    public void setTelefonoContacto(Integer telefonoContacto) {
+    public boolean setTelefonoContacto(Integer telefonoContacto) {
         this.telefonoContacto = telefonoContacto;
+        return true;
     }
 
     public char getSexo() {
         return this.sexo;
     }
 
-    public void setSexo(char sexo) {
+    public boolean setSexo(char sexo) {
         this.sexo = sexo;
+        return true;
     }
 // </editor-fold>
     

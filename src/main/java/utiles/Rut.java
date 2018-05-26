@@ -42,12 +42,14 @@ public class Rut {
 //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="setter-getter">
 
-    public void setNum(int num) {
+    public boolean setNum(int num) {
         this.num = num;
+        return true;
     }
 
-    public void setDv(char dv) {
+    public boolean setDv(char dv) {
         this.dv = dv;
+        return true;
     }
 
     public int getNum() {
