@@ -98,5 +98,5 @@ public class ListaPaciente {
 		System.out.println("No se encontro el paciente con el Rut "+ rut +".\n");
 		return null;
 	}
-	//hola2
+	
 }
