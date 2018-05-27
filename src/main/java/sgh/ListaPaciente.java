@@ -16,7 +16,10 @@
  */
 package main.java.sgh;
 
+import java.sql.Date;
 import java.util.ArrayList;
+
+import main.java.utiles.Rut;
 
 /**
  *
@@ -30,19 +33,70 @@ public class ListaPaciente {
         this.listaPacientes = new ArrayList<Paciente>();
     }
 
-    public boolean agregarPaciente(Paciente paciente) {
-        if (listaPacientes.isEmpty()) {
+    public boolean agregarPaciente(Paciente paciente) 
+    {
+        if (listaPacientes.isEmpty())
+        {
             listaPacientes.add(paciente);
             return true;
-        } else {
-            for (int i = 0; i < listaPacientes.size(); i++) {
-                if (listaPacientes.get(i).getRut().equals(paciente.getRut())) {
+        } else 
+        	{
+            for (int i = 0; i < listaPacientes.size(); i++) 
+            {
+                if (listaPacientes.get(i).getRut().equals(paciente.getRut())) 
+                {
                     return false;
                 }
             }
             listaPacientes.add(paciente);
             return true;
-        }
+        	}
     }
+    public boolean eliminarPaciente(Rut rut)
+	{
+		for (int i = 0; i < listaPacientes.size(); i++)
+		{
+			if (listaPacientes.get(i) != null) 
+			{ 
+				if (listaPacientes.get(i).getRut().equals(rut.toString())) 
+				{
+					listaPacientes.remove(listaPacientes.get(i));
+					return true;
+				}
+			}
+		}
+		return false;
+	}
     
+    public void editarPaciente(Rut rut, String nombres, String apellidos, Date fechaNac, String telefono, String nombreContacto, Integer telefonoContacto, char sexo)
+	{
+		for (int i=0;i<listaPacientes.size();i++) 
+		{
+			if (listaPacientes.get(i).getRut().equals(rut.toString())) 
+			{
+				listaPacientes.get(i).setNombres(nombres);
+				listaPacientes.get(i).setApellidos(apellidos);
+				listaPacientes.get(i).setFechaNac(fechaNac);
+				listaPacientes.get(i).setTelefono(telefono);
+				listaPacientes.get(i).setNombreContacto(nombreContacto);
+				listaPacientes.get(i).setTelefonoContacto(telefonoContacto);
+				listaPacientes.get(i).setSexo(sexo);
+				
+			}
+		}
+	}
+
+    public String buscarPaciente(Rut rut)
+	{
+		for(int i=0; i<listaPacientes.size();i++) 
+		{
+			if (listaPacientes.get(i).getRut().equals(rut.toString()))
+			{
+				return listaPacientes.get(i).getRut();
+			}
+		}
+		System.out.println("No se encontro el paciente con el Rut "+ rut +".\n");
+		return null;
+	}
+	
 }
