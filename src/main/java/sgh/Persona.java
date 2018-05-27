@@ -31,9 +31,9 @@ public abstract class Persona {
     private String apellidos;
     private Rut rut;
     private Date fechaNac;
-    private String telefono;
+    private Integer telefono;
 
-    public Persona(String nombres, String apellidos, Rut rut, Date fechaNac, String telefono) {
+    public Persona(String nombres, String apellidos, Rut rut, Date fechaNac, Integer telefono) {
 
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -46,16 +46,18 @@ public abstract class Persona {
         return this.nombres;
     }
 
-    public void setNombres(String nombres) {
+    public boolean setNombres(String nombres) {
         this.nombres = nombres;
+        return true;
     }
 
     public String getApellidos() {
         return this.apellidos;
     }
 
-    public void setApellidos(String apellidos) {
+    public boolean setApellidos(String apellidos) {
         this.apellidos = apellidos;
+        return true;
     }
 
     public String getRut() {
@@ -66,24 +68,27 @@ public abstract class Persona {
         return this.rut.getNum();
     }
 
-    public void setRut(Rut rut) {
+    public boolean setRut(Rut rut) {
         this.rut = rut;
+        return true;
     }
 
     public Date getFechaNac() {
         return this.fechaNac;
     }
 
-    public void setFechaNac(Date fechaNac) {
+    public boolean setFechaNac(Date fechaNac) {
         this.fechaNac = fechaNac;
+        return true;
     }
 
-    public String getTelefono() {
+    public Integer getTelefono() {
         return this.telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public boolean setTelefono(Integer telefono) {
         this.telefono = telefono;
+        return true;
     }    
 //</editor-fold>
     
@@ -101,4 +106,8 @@ public abstract class Persona {
         else
             return false;
     }
-}
+
+    @Override
+    public String toString() {
+        return "Persona{" + "nombres=" + this.nombres + ", apellidos=" + this.apellidos + ", rut=" + this.rut.toString() + ", fechaNac=" + this.fechaNac + ", telefono=" + this.telefono + '}';
+    }}
