@@ -68,7 +68,7 @@ public class ListaPaciente {
 		return false;
 	}
     
-    public void editarPaciente(Rut rut, String nombres, String apellidos, Date fechaNac, String telefono, String nombreContacto, Integer telefonoContacto, char sexo)
+    public void editarPaciente(Rut rut, String nombres, String apellidos, Date fechaNac, Integer telefono, String nombreContacto, Integer telefonoContacto, char sexo)
 	{
 		for (int i=0;i<listaPacientes.size();i++) 
 		{
