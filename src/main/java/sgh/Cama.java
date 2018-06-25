@@ -79,22 +79,24 @@ public class Cama {
     /**
      * ocupa una cama
      */
-    public void ocuparCama(String rutPaciente) {
+    public boolean ocuparCama(String rutPaciente) {
         if (this.camaDisponible == true) {
             this.rutPaciente = rutPaciente;//se le asigna un paciente a la cama
-            this.camaDisponible = false;//la cama deja de estar disponible        		
+            this.camaDisponible = false;//la cama deja de estar disponible
+            return true;
         }
-
+        return false;
     }
 
     /**
      * desocupar cama
      */
-    public void vaciarCama() {
+    public boolean vaciarCama() {
         if (this.camaDisponible == false) {
             this.rutPaciente = null;//se elimina el paciente
             this.camaDisponible = true;//cama queda disponible
-
+            return true;
         }
+        return false;
     }
 }

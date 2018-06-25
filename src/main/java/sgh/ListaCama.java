@@ -24,7 +24,7 @@ import java.util.ArrayList;
  */
 public class ListaCama {
 
-    private final ArrayList<Cama> arrayCama; //no puede ser heredada
+    private ArrayList<Cama> arrayCama; 
 
     public ListaCama() {
         arrayCama = new ArrayList<Cama>();
@@ -102,6 +102,22 @@ public class ListaCama {
         }
 
         return false;
+    }
+    
+    public boolean vaciarCama(String rutPaciente)
+    {
+    	if(!(arrayCama.isEmpty()))
+    	{
+    		for(int i=0; i<arrayCama.size();i++)
+    		{
+    			if((arrayCama.get(i) != null) && (arrayCama.get(i).getRutPaciente().equalsIgnoreCase(rutPaciente)))
+    			{
+    				arrayCama.get(i).vaciarCama();
+    				return true;
+    			}
+    		}
+    	}
+    	return false;
     }
 
     /**
