@@ -89,4 +89,46 @@ public class ListaHabitacion
     	return null;
     }
     
+    public int contarHabitacionesHospitalizados() //Cuenta de entre todas las habitaciones de la lista cuales de estas son de Hospitalizados
+    {
+    	int contador = 0;
+    	
+    	if(!(habitaciones.isEmpty()))
+    	{
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if(habitaciones.get(i) != null)
+    			{
+    				if(habitaciones.get(i) instanceof Hospitalizados)
+    				{
+    					contador ++;
+    				}
+    			}
+    		}
+    	}
+    	
+    	return contador;
+    }
+    
+    public int contarHabitacionesConsulta() //Cuenta de entre todas las habitaciones de la lista cuales de estas son de Consulta
+    {
+    	int contador = 0;
+    	
+    	if(!(habitaciones.isEmpty()))
+    	{
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if(habitaciones.get(i) != null)
+    			{
+    				if(habitaciones.get(i) instanceof Consulta)
+    				{
+    					contador ++;
+    				}
+    			}
+    		}
+    	}
+    	
+    	return contador;
+    }
+    
 }
