@@ -100,6 +100,11 @@ public class LoginFrame extends javax.swing.JFrame {
                 IniciarBtnActionPerformed(evt);
             }
         });
+        IniciarBtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                IniciarBtnKeyPressed(evt);
+            }
+        });
 
         txt_url.setForeground(new java.awt.Color(102, 102, 102));
         txt_url.setText("Host Ip");
@@ -395,6 +400,21 @@ int xy, xx;
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void IniciarBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IniciarBtnKeyPressed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            //jPanel4.show();
+            //jPanel1.hide();
+            CargandoFrame cargando = new CargandoFrame(hospi,txt_url.getText(), "3304", txt_bd.getText(), txt_user.getText(), txt_pass.getText());
+            //muestra la ventana de carga
+            cargando.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_IniciarBtnKeyPressed
 
     /**
      * @param hospi the command line arguments

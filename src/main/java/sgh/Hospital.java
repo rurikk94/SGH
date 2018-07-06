@@ -109,7 +109,7 @@ public class Hospital {
     private boolean agregarDatosAEstructura(ResultSet rs) throws SQLException {
         while (rs.next()) {
             //<editor-fold defaultstate="collapsed" desc="agregar Persona">
-            if ("medicos".equals(rs.getMetaData().getTableName(1).toLowerCase())) {
+            if ("medicos".equalsIgnoreCase(rs.getMetaData().getTableName(1))) {
                 Rut ru = new Rut(rs.getInt("rut"), rs.getString("dv").charAt(0));
                 Medico p = new Medico(
                         rs.getString("nombres"),
@@ -123,7 +123,7 @@ public class Hospital {
                 listaPersona.agregarPersona(p);
                 //System.out.println(p.toString());
             };
-            if ("enfermeros".equals(rs.getMetaData().getTableName(1).toLowerCase())) {
+            if ("enfermeros".equalsIgnoreCase(rs.getMetaData().getTableName(1))) {
                 Rut ru = new Rut(rs.getInt("rut"), rs.getString("dv").charAt(0));
                 Enfermero p = new Enfermero(
                         rs.getString("nombres"),
@@ -136,7 +136,7 @@ public class Hospital {
                 listaPersona.agregarPersona(p);
                 //System.out.println(p.toString());
             };
-            if ("pacientes".equals(rs.getMetaData().getTableName(1).toLowerCase())) {
+            if ("pacientes".equalsIgnoreCase(rs.getMetaData().getTableName(1))) {
                 Rut ru = new Rut(rs.getInt("rut"), rs.getString("dv").charAt(0));
 
                 Paciente p = new Paciente(
@@ -152,7 +152,7 @@ public class Hospital {
                 listaPersona.agregarPersona(p);
                 //System.out.println(p.toString());
             };
-            if ("listapacientes".equals(rs.getMetaData().getTableName(1).toLowerCase())) {
+            if ("listapacientes".equalsIgnoreCase(rs.getMetaData().getTableName(1))) {
                 //System.out.println(rs.getInt("RutPaciente")+"\t"+rs.getInt("RutMedico"));
                 listaPersona.agregarPacienteaMedico(rs.getInt("RutPaciente"), rs.getInt("RutMedico"));
             };
@@ -201,7 +201,7 @@ public class Hospital {
     }
 
     /**
-     * Agrega la Persona; Medico,Paciente o Enfermero
+     * Agrega la Persona; Medico,Paciente o Enfermero y realiza el cambio en la BD
      */
     public boolean agregarPersona(Persona p) throws SQLException {
         if (listaPersona.agregarPersona(p)) {
@@ -247,7 +247,7 @@ public class Hospital {
     }
 
     /**
-     * Modifica la Persona
+     * Modifica la Persona y realiza el cambio en la BD
      *
      * @param rutNum Integer parte numerica del rut de la persona a modificar
      * @param atributoAModificar Object, cualquier tipo de objeto que se debe
@@ -281,7 +281,7 @@ public class Hospital {
     }
 
     /**
-     * Elimina la Persona segun numero de Rut
+     * Elimina la Persona segun numero de Rut y realiza el cambio en la BD
      *
      * @author Rurikk
      * @param rutNum Integer, enviar parte Numerica del Rut
