@@ -38,6 +38,7 @@ import main.java.gui.LoginFrame;
 public class SGH {
 
     public static void main(String[] args) throws IOException, ParseException, SQLException {
+        //System.out.println(System.getProperty("user.language") + "_" + System.getProperty("user.country"));
         Hospital hospi = new Hospital();// invoca a la clase hospital que contiene todos los metodos de las listas
 
         LoginFrame v1 = new LoginFrame(hospi);

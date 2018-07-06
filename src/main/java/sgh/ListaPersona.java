@@ -187,6 +187,9 @@ public class ListaPersona {
                 string += arrayPersonas.get(i).toString() + "\n";                
             }
         }
+        else{
+            string+="No hay personas";
+        }
         return string;
     }
     

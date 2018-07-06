@@ -1,125 +1,80 @@
 package main.java.sgh;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Properties;
+import main.java.utiles.ResultS;
+
 /**
  *
+ * Contiene los metodos para poder trabajar con distintos tipos de base de datos Mysql o SQlite
  * @author Rurikk
  */
-class Conexion {
-    Connection conexion = null;
-    
-/**
- * Hace la conexion con la base de datos
- *
- * @author Rurikk
- * @return      conexion
- * @deprecated se actualiza a nuevo metodo de conexion @link
- */
-    public Connection hacerConexion() throws SQLException{
-        if (conexion == null) {
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-            } catch (ClassNotFoundException e) {
-                System.out.println("Importar / Instalar MySQL JDBC Driver");
-                return null;
-            }
+public class Conexion {
 
-            try {
-                conexion = DriverManager.getConnection("jdbc:mysql://209.222.103.210/rurikkcl_SGH","rurikkcl_user","rurikkUser");
-                
+    private Conectar conector;
 
-            } catch (SQLException ex) {
-                System.out.println("SQLException: " + ex.getMessage());
-                System.out.println("SQLState: " + ex.getSQLState());
-                System.out.println("VendorError: " + ex.getErrorCode());            
-            }
-               
-            if (conexion==null)
-            {
-                try {   
-                conexion = DriverManager.getConnection("jdbc:mysql://localhost/rurikkcl_zakaz","root","");
-                } catch (SQLException ex) {
-                System.out.println("SQLException: " + ex.getMessage());
-                System.out.println("SQLState: " + ex.getSQLState());
-                System.out.println("VendorError: " + ex.getErrorCode());
-                }
-            } 
-            
-        }
+    private Connection conexion;
+
+    public Conexion(Conectar conector) throws SQLException {
+        this.conector = conector;
+        this.conexion = conector.hacerConexion();
+    }
+
+    public Conectar getConector() {
+        return conector;
+    }
+
+    public Connection getConexion() {
         return conexion;
     }
     public void cerrarConexion() throws SQLException{
+        conector.cerrarConexion();
+    }
+
+    ResultSet ejecutarSelect(String query) throws SQLException {
+        //conexion = conector.hacerConexion();
+
         if (conexion != null) {
-         conexion.close();
-      }
-    }
-    public ResultSet consulta(String query) throws SQLException{
-        Statement s = (Statement) conexion.createStatement();
-        ResultSet rs = s.executeQuery (query);
-        return rs;
-    
-    }
-    int updating(String query) throws SQLException{
-        PreparedStatement consulta = conexion.prepareStatement(query);
-        return consulta.executeUpdate();
-    }
-    /** 
-     * executa la conexion, comprueba si existe driver y procede a hacer la conexion
- * @author Rurikk 
- * @version 1.0x.xxx 2018-05-25
- * 
- */
-    public Connection hacerConexion(String tipoBD, String url, String user, String pass) throws SQLException {
-//        if (!existeDriver(tipoBD)) { //no es necesario en version JDK
-//            return null;
-//        }
-        return conexion = intentarConexion(url, user, pass);
-    }
+            //cargarDatos
+            //System.out.println(querys.length);
+//            System.out.println("\n");
+//            System.out.println(query);
+//            System.out.println("\n");
 
-/** Hace la conxion con la base de datos indicada en parametros
- * @param url String
- * @param user String
- * @param url String
- * @author Rurikk 
- * @version 1.0x.xxx 2018-05-25
- * 
- */
-    private Connection intentarConexion(String url, String user, String pass) {
-        Connection conexion = null;
-        Properties conexionPropiedades = new Properties();
-            if (user!= null) conexionPropiedades.put("user", user);
-            if (pass!= null) conexionPropiedades.put("password", pass);
+                ResultSet rs = conector.consulta(query);
+                
+//                ResultS r = new ResultS(rs);
+//                System.out.println(r.toStringTitulo()); //muestra el ResultSet
+                
+                return rs;
+
+            }
+            conector.cerrarConexion();
+
         
-        try {
-            conexion = DriverManager.getConnection(url,conexionPropiedades);
-
-        } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
-        }
-        return conexion;
-    }
-
-/** 
- * @author Rurikk 
- * @version 1.0x.xxx 2018-05-25
- * @deprecated No usar en versiones nuevas de JSK
- */
-    private boolean existeDriver(String tipoBD) {
-        try {
-            Class.forName(tipoBD);
-            return true;
-        } catch (ClassNotFoundException e) {
-            System.out.println("Importar / Instalar " + tipoBD);
-            return false;
-        }
+        return null;
     }
     
+    Integer ejecutarUpdate(String query) throws SQLException {
+    if (conexion != null) {
+            //cargarDatos
+            //System.out.println(querys.length);
+//            System.out.println("\n");
+//            System.out.println(query);
+//            System.out.println("\n");
+
+                Integer rs = conector.actualizacion(query);
+                
+//                ResultS r = new ResultS(rs);
+//                System.out.println(r.toStringTitulo()); //muestra el ResultSet
+                return rs;
+
+            }
+            conector.cerrarConexion();
+
+        
+        return null;
+    }
+
 }

@@ -65,6 +65,11 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 
         botonSalir.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         botonSalir.setText("Salir");
+        botonSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonSalirMouseClicked(evt);
+            }
+        });
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonSalirActionPerformed(evt);
@@ -168,6 +173,11 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 //            }
 //        });
     }//GEN-LAST:event_botonSalaActionPerformed
+
+    private void botonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSalirMouseClicked
+        // TODO add your handling code here:
+                    System.exit(0);
+    }//GEN-LAST:event_botonSalirMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -55,7 +55,7 @@ public class Medico extends Funcionario
      * @return String
      */
     public String toString() {
-        return "Paciente{" 
+        return "Medico{" 
                 + "nombres=" + this.getNombres()
                 + ",apellidos=" + this.getApellidos()
                 + ", rut=" + this.getRut()

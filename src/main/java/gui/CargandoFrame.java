@@ -31,10 +31,13 @@ public class CargandoFrame extends javax.swing.JFrame {
 
     /** Creates new form CargandoFrame */
     Hospital hospi;
-    public CargandoFrame(Hospital hospi,String tipoBD, String url, String bd, String user, String pass) throws SQLException {
+    public CargandoFrame(Hospital hospi,String url,String puerto, String bd, String user, String pass) throws SQLException {
         initComponents();
         this.hospi = hospi;
-        hospi.cargarDatos(tipoBD, url, bd, user, pass);        //carga los datos desde BD
+        hospi.cargarDatosBD(url,puerto, bd, user, pass);        //carga los datos desde BD
+        
+        System.out.println(hospi.PersonasToString());   //muestra los datos por consola
+        
         MenuPrincipalFrame vm = new MenuPrincipalFrame(hospi);        //abre ventanaPrincipal
         vm.setVisible(true);
     }

@@ -67,6 +67,10 @@ public abstract class Persona {
     public Integer getRutNum() {
         return this.rut.getNum();
     }
+    
+    public char getDV(){
+        return this.rut.getDv();
+    }
 
     public boolean setRut(Rut rut) {
         this.rut = rut;

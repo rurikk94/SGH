@@ -35,7 +35,11 @@ public class LoginFrame extends javax.swing.JFrame {
     public LoginFrame(Hospital hospi) throws SQLException {
         initComponents();
         this.hospi = hospi;
-        jPanel4.hide();
+        jPanel4.hide();        
+        txt_url.setText("localhost");
+        txt_bd.setText("rurikkcl_SGH");
+        txt_user.setText("root");
+        txt_pass.setText("");
     }
 
     /**
@@ -356,7 +360,7 @@ int xy, xx;
             // TODO add your handling code here:
             //jPanel4.show();
             //jPanel1.hide();
-            CargandoFrame cargando = new CargandoFrame(hospi,"com.mysql.jdbc.Driver", txt_url.getText(),  txt_bd.getText(), txt_user.getText(), txt_pass.getText());
+            CargandoFrame cargando = new CargandoFrame(hospi,txt_url.getText(), "3304", txt_bd.getText(), txt_user.getText(), txt_pass.getText());
             //muestra la ventana de carga
             cargando.setVisible(true);
             this.dispose();
@@ -373,22 +377,18 @@ int xy, xx;
 
     private void txt_urlFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_urlFocusGained
         // TODO add your handling code here:
-        txt_url.setText("209.222.103.210");
     }//GEN-LAST:event_txt_urlFocusGained
 
     private void txt_bdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bdFocusGained
         // TODO add your handling code here:
-        txt_bd.setText("rurikkcl_SGH");
     }//GEN-LAST:event_txt_bdFocusGained
 
     private void txt_userFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_userFocusGained
         // TODO add your handling code here:
-        txt_user.setText("rurikkcl_user");
     }//GEN-LAST:event_txt_userFocusGained
 
     private void txt_passFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_passFocusGained
         // TODO add your handling code here:
-        txt_pass.setText("rurikkUser");
     }//GEN-LAST:event_txt_passFocusGained
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -397,7 +397,7 @@ int xy, xx;
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
-     * @param args the command line arguments
+     * @param hospi the command line arguments
      */
     public static void main(final Hospital hospi) {
         /* Set the Nimbus look and feel */
