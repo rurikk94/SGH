@@ -41,5 +41,12 @@ public class Consulta extends Habitacion
 		}
 		return false;
 	}
+	
+	public void modificarCamilla(int numeroCama, boolean disponibilidad, String especialidad)
+	{
+		camilla.setNumeroCama(numeroCama);
+		camilla.setCamaDisponible(disponibilidad);
+		camilla.setEspecialidad(especialidad);
+	}
 
 }

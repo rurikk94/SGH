@@ -131,4 +131,21 @@ public class ListaHabitacion
     	return contador;
     }
     
+    public boolean agregarCamaHospitalizados(String idHabitacion, int numeroCama, String especialidad, String rutPaciente)
+    {
+    	if(!(habitaciones.isEmpty()))
+    	{
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if(habitaciones.get(i) != null)
+    			{
+    				if((habitaciones.get(i).getId().equalsIgnoreCase(idHabitacion)) && (habitaciones.get(i) instanceof Hospitalizados))
+    				{
+    					
+    				}
+    			}
+    		}
+    	}
+    }
+    
 }

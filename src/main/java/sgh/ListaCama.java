@@ -122,9 +122,6 @@ public class ListaCama {
 
     /**
      * ocupa la cama
-     *
-     * @param numeroCama Integer
-     * @param rutPaciente String
      */
     public boolean ocuparCama(int numeroCama, String rutPaciente)//ocupa la cama
     {
