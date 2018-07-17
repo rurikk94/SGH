@@ -73,18 +73,6 @@ public class Hospitalizados extends Habitacion
 		return(camas.buscarCamaEspecifica(numeroCama));
 	}
 	
-	public boolean vaciarCamaPorNumero(int numeroCama)
-	{
-		camas.vaciarCama(numeroCama);
-		return (camas.vaciarCama(numeroCama));
-	}
-	
-	public boolean vaciarCamaPaciente(String rutPaciente)
-	{
-		camas.vaciarCama(rutPaciente);
-		return (camas.vaciarCama(rutPaciente));
-	}
-	
 	public boolean ocuparCama(int numeroCama, String rutPaciente)
 	{
 		camas.ocuparCama(numeroCama, rutPaciente);
