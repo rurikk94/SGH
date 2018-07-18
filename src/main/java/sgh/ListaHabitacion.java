@@ -207,13 +207,13 @@ public class ListaHabitacion
     	return null;
     }
     
-    public boolean ocuparCama(String idHabitacion, int numeroCama, String rutPaciente)
+    public boolean ocuparCama(int numeroCama, String rutPaciente)
     {
     	if(!(habitaciones.isEmpty()))
     	{
     		for(int i=0; i<habitaciones.size(); i++)
     		{
-    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Hospitalizados)&&(habitaciones.get(i).getId().equalsIgnoreCase(idHabitacion)))
+    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Hospitalizados))
     			{
     				((Hospitalizados)habitaciones.get(i)).ocuparCama(numeroCama, rutPaciente);
     				return(((Hospitalizados)habitaciones.get(i)).ocuparCama(numeroCama, rutPaciente));
@@ -241,13 +241,13 @@ public class ListaHabitacion
     
     }
     
-    public boolean eliminarCamaHospitalizados(String idHabitacion, int numeroCama)
+    public boolean eliminarCamaHospitalizados(int numeroCama)
     {
     	if(!(habitaciones.isEmpty()))
     	{
     		for(int i=0; i<habitaciones.size(); i++)
     		{
-    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Hospitalizados)&&(habitaciones.get(i).getId().equalsIgnoreCase(idHabitacion)))
+    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Hospitalizados))
     			{
     				((Hospitalizados)habitaciones.get(i)).eliminarCama(numeroCama);
     				return(((Hospitalizados)habitaciones.get(i)).eliminarCama(numeroCama));
@@ -258,13 +258,13 @@ public class ListaHabitacion
     	return false;
     }
     
-    public Cama eliminarObjetocamaHospitalizados(String idHabitacion, int numeroCama)
+    public Cama eliminarObjetocamaHospitalizados(int numeroCama)
     {
     	if(!(habitaciones.isEmpty()))
     	{
     		for(int i=0; i<habitaciones.size(); i++)
     		{
-    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Hospitalizados)&&(habitaciones.get(i).getId().equalsIgnoreCase(idHabitacion)))
+    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Hospitalizados))
     			{
     				return(((Hospitalizados)habitaciones.get(i)).eliminarObjetoCama(numeroCama));
     			}
@@ -272,6 +272,38 @@ public class ListaHabitacion
     	}
     	
     	return null;
+    }
+    
+    public void modificarCamillaConsulta(int numeroCama, boolean disponibilidad, String especialidad)
+    {
+    	if(!(habitaciones.isEmpty()))
+    	{
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Consulta))
+    			{
+    				((Consulta)habitaciones.get(i)).modificarCamilla(numeroCama, disponibilidad, especialidad);
+    			}
+    		}
+    	}
+    	
+    }
+    
+    public boolean ocuparCamillaConsulta(String idHabitacion, String rutPaciente)
+    {
+    	if(!(habitaciones.isEmpty()))
+    	{
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Consulta)&&(habitaciones.get(i).getId().equalsIgnoreCase(idHabitacion)))
+    			{
+    				((Consulta)habitaciones.get(i)).ocuparCamilla(rutPaciente);
+    				return(((Consulta)habitaciones.get(i)).ocuparCamilla(rutPaciente));
+    			}
+    		}
+    	}
+    	
+    	return false;
     }
         
 }
