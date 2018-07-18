@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import main.java.utiles.ResultS;
 import main.java.utiles.Rut;
+import java.util.*;
 
 /**
  *
@@ -312,4 +314,111 @@ public class Hospital {
     public String PersonasToString() {
         return listaPersona.toString();
     }
+    
+    /*
+     * Métodos que trabajan con la lista de habitaciones 
+     * 
+     */
+    
+    public boolean agregarHabitacionConsulta(String id, String especialidad, String rutMedico)
+    {
+    	listaHabitacion.agregarHabitacionConsulta(id, especialidad, rutMedico);
+    	return (listaHabitacion.agregarHabitacionConsulta(id, especialidad, rutMedico));
+    }
+    
+    public boolean agregarHabitacionHospitalizados(String id, String especialidad, String rutEnfermero, int capacidad)
+    {
+    	listaHabitacion.agregarHabitacionHospitalizados(id, especialidad, rutEnfermero, capacidad);
+    	return(listaHabitacion.agregarHabitacionHospitalizados(id, especialidad, rutEnfermero, capacidad));
+    }
+    
+    public boolean eliminarHabitacion(String id)
+    {
+    	listaHabitacion.eliminarHabitación(id);
+    	return(listaHabitacion.eliminarHabitación(id));
+    }
+    
+    public Habitacion mostrarHabitacionPorPosicion(int posicion) //Muestra una habitación en la posición de la lista deseada
+    {
+    	return listaHabitacion.mostrarHabitacion(posicion);
+    }
+    
+    public Habitacion mostrarHabitacionPorId(String idHabitacion) //Muestra una habitación por la id indicada
+    {
+    	return listaHabitacion.mostrarHabitacion(idHabitacion);
+    }
+    
+    public int cantidadHabitacionesHospitalizados()
+    {
+    	return listaHabitacion.contarHabitacionesHospitalizados();
+    }
+    
+    public int cantidadHabitacionesConsulta()
+    {
+    	return listaHabitacion.contarHabitacionesConsulta();
+    }
+    
+    public boolean darDeAltaPaciente(String rutPaciente)
+    {
+    	listaHabitacion.darDeAlta(rutPaciente);
+    	return (listaHabitacion.darDeAlta(rutPaciente));
+    }
+    
+    public boolean darDeAltaCama(int numeroCama)
+    {
+    	listaHabitacion.darDeAlta(numeroCama);
+    	return (listaHabitacion.darDeAlta(numeroCama));
+    }
+    
+    public boolean agregarCamaHospitalizados(String idHabitacion, int numeroCama, String especialidad, String rutPaciente)
+    {
+    	listaHabitacion.agregarCamaHospitalizados(idHabitacion, numeroCama, especialidad, rutPaciente);
+    	return(listaHabitacion.agregarCamaHospitalizados(idHabitacion, numeroCama, especialidad, rutPaciente));
+    }
+    
+    public Cama buscarCamaEspecifica(int numeroCama)
+    {
+    	return(listaHabitacion.buscarCamaEspecifica(numeroCama));
+    }
+    
+    public Cama buscarCamaDisponible()
+    {
+    	return(listaHabitacion.buscarCamaDisponible());
+    }
+    
+    public boolean ocuparCama(int numeroCama, String rutPaciente)
+    {
+    	listaHabitacion.ocuparCama(numeroCama, rutPaciente);
+    	return(listaHabitacion.ocuparCama(numeroCama, rutPaciente));
+    }
+    
+    public boolean eliminarCamaHospitalizados(int numeroCama)
+    {
+    	listaHabitacion.eliminarCamaHospitalizados(numeroCama);
+    	return(listaHabitacion.eliminarCamaHospitalizados(numeroCama));
+    }
+    
+    public Cama eliminarObjetoCamaHospitalizados(int numeroCama)
+    {
+    	listaHabitacion.eliminarObjetocamaHospitalizados(numeroCama);
+    	return(listaHabitacion.eliminarObjetocamaHospitalizados(numeroCama));
+    }
+    
+    public void modificarCamillaConsulta(int numeroCama, boolean disponibilidad, String especialidad)
+    {
+    	listaHabitacion.modificarCamillaConsulta(numeroCama, disponibilidad, especialidad);
+    }
+    
+    public boolean ocuparCamillaConsulta(String idHabitacion, String rutPaciente)
+    {
+    	listaHabitacion.ocuparCamillaConsulta(idHabitacion, rutPaciente);
+    	return(listaHabitacion.ocuparCamillaConsulta(idHabitacion, rutPaciente));
+    }
+    
+    
+    
+    
+    
+    
+    
 }

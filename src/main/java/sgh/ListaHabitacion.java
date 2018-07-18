@@ -131,6 +131,46 @@ public class ListaHabitacion
     	return contador;
     }
     
+    public boolean darDeAlta(String rutPaciente)
+    {
+    	if(!(habitaciones.isEmpty()))
+    	{
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if(habitaciones.get(i) != null)
+    			{
+    				if(habitaciones.get(i).darDeAlta(rutPaciente) == true)
+    				{
+    					habitaciones.get(i).darDeAlta(rutPaciente);
+    					return true;
+    				}
+    			}
+    		}
+    	}
+    	
+    	return false;
+    }
+    
+    public boolean darDeAlta(int numeroCama)
+    {
+    	if(!(habitaciones.isEmpty()))
+    	{
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if((habitaciones.get(i) != null) && (habitaciones.get(i) instanceof Hospitalizados))
+    			{
+    				if(((Hospitalizados)habitaciones.get(i)).darDeAlta(numeroCama) == true)
+    				{
+    					((Hospitalizados)habitaciones.get(i)).darDeAlta(numeroCama);
+    					return true;
+    				}
+    			}
+    		}
+    	}
+    	
+    	return false;
+    }
+    
     public boolean agregarCamaHospitalizados(String idHabitacion, int numeroCama, String especialidad, String rutPaciente)
     {
     	if(!(habitaciones.isEmpty()))
@@ -141,12 +181,129 @@ public class ListaHabitacion
     			{
     				if((habitaciones.get(i).getId().equalsIgnoreCase(idHabitacion)) && (habitaciones.get(i) instanceof Hospitalizados))
     				{
-    					
+    					((Hospitalizados)habitaciones.get(i)).agregarCama(numeroCama, especialidad, rutPaciente);
+    					return (((Hospitalizados)habitaciones.get(i)).agregarCama(numeroCama, especialidad, rutPaciente));
     				}
     			}
     		}
     	}
-        return false;
+    	
+    	return false;
     }
     
+    public Cama buscarCamaEspecifica(int numeroCama)
+    {
+    	if(!(habitaciones.isEmpty()))
+    	{
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Hospitalizados))
+    			{
+    				return (((Hospitalizados)habitaciones.get(i)).buscarCamaEspecifica(numeroCama));
+    			}
+    		}
+    	}
+    	
+    	return null;
+    }
+    
+    public boolean ocuparCama(int numeroCama, String rutPaciente)
+    {
+    	if(!(habitaciones.isEmpty()))
+    	{
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Hospitalizados))
+    			{
+    				((Hospitalizados)habitaciones.get(i)).ocuparCama(numeroCama, rutPaciente);
+    				return(((Hospitalizados)habitaciones.get(i)).ocuparCama(numeroCama, rutPaciente));
+    			}
+    		}
+    	}
+    	
+    	return false;
+    }
+    
+    public Cama buscarCamaDisponible()
+    {
+    	if(!(habitaciones.isEmpty()))
+    	{
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Hospitalizados))
+    			{
+    				return(((Hospitalizados)habitaciones.get(i)).buscarCamaDisponible());
+    			}
+    		}
+    	}
+    	
+    	return null;
+    
+    }
+    
+    public boolean eliminarCamaHospitalizados(int numeroCama)
+    {
+    	if(!(habitaciones.isEmpty()))
+    	{
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Hospitalizados))
+    			{
+    				((Hospitalizados)habitaciones.get(i)).eliminarCama(numeroCama);
+    				return(((Hospitalizados)habitaciones.get(i)).eliminarCama(numeroCama));
+    			}
+    		}
+    	}
+    	
+    	return false;
+    }
+    
+    public Cama eliminarObjetocamaHospitalizados(int numeroCama)
+    {
+    	if(!(habitaciones.isEmpty()))
+    	{
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Hospitalizados))
+    			{
+    				return(((Hospitalizados)habitaciones.get(i)).eliminarObjetoCama(numeroCama));
+    			}
+    		}
+    	}
+    	
+    	return null;
+    }
+    
+    public void modificarCamillaConsulta(int numeroCama, boolean disponibilidad, String especialidad)
+    {
+    	if(!(habitaciones.isEmpty()))
+    	{
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Consulta))
+    			{
+    				((Consulta)habitaciones.get(i)).modificarCamilla(numeroCama, disponibilidad, especialidad);
+    			}
+    		}
+    	}
+    	
+    }
+    
+    public boolean ocuparCamillaConsulta(String idHabitacion, String rutPaciente)
+    {
+    	if(!(habitaciones.isEmpty()))
+    	{
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Consulta)&&(habitaciones.get(i).getId().equalsIgnoreCase(idHabitacion)))
+    			{
+    				((Consulta)habitaciones.get(i)).ocuparCamilla(rutPaciente);
+    				return(((Consulta)habitaciones.get(i)).ocuparCamilla(rutPaciente));
+    			}
+    		}
+    	}
+    	
+    	return false;
+    }
+        
 }
