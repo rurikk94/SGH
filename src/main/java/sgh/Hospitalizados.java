@@ -61,8 +61,11 @@ public class Hospitalizados extends Habitacion
 	{
 		if(camas.getTotalCama() < capacidad)
 		{
-			camas.agregarCama(numeroCama, rutPaciente, especialidad);
-			return(camas.agregarCama(numeroCama, rutPaciente, especialidad));
+			if(camas.existeCama(numeroCama) == false)
+			{
+				camas.agregarCama(numeroCama, rutPaciente, especialidad);
+				return(camas.agregarCama(numeroCama, rutPaciente, especialidad));
+			}
 		}
 		
 		return false;
