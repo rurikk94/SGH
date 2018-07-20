@@ -22,26 +22,40 @@ public class ListaHabitacion
     public boolean agregarHabitacionConsulta(String id, String especialidad, String rutMedico)
     {
     	Habitacion nuevo = new Consulta(id, especialidad, rutMedico);
-    	if(!(habitaciones.contains(nuevo)))
+    	
+    	if(!(habitaciones.isEmpty()))
     	{
-    		habitaciones.add(nuevo);
-    		return true;
+    		for(int i=0; i<habitaciones.size();i++)
+    		{
+    			if((habitaciones.get(i) != null) && (habitaciones.get(i).getId().equalsIgnoreCase(id)))
+    			{
+    				return false;
+    			}
+    		}
     	}
     	
-    	return false;
+    	habitaciones.add(nuevo);
+    	return true;
+  
     }
     
     public boolean agregarHabitacionHospitalizados(String id, String especialidad, String rutEnfermero, int capacidad)
     {
     	Habitacion nuevo = new Hospitalizados(id, especialidad, rutEnfermero, capacidad);
     	
-    	if(!(habitaciones.contains(nuevo)))
+    	if(!(habitaciones.isEmpty()))
     	{
-    		habitaciones.add(nuevo);
-    		return true;
+    		for(int i=0; i<habitaciones.size(); i++)
+    		{
+    			if((habitaciones.get(i) != null)&&(habitaciones.get(i).getId().equalsIgnoreCase(id)))
+    			{
+    				return false;
+    			}
+    		}
     	}
-    	
-    	return false;
+    		
+    	habitaciones.add(nuevo);
+    	return true;	
     }
     
     public boolean eliminarHabitación(String id)

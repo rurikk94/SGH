@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import main.java.utiles.ResultS;
 import main.java.utiles.Rut;
 import java.util.*;
 

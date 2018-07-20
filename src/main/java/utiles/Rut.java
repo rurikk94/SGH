@@ -26,18 +26,42 @@ public class Rut {
     private char dv;
 
     //<editor-fold defaultstate="collapsed" desc="constructores">
+    /**
+     *
+     * @param num parte numerica
+     * @param dv Char digito verificador
+     *
+     */
     public Rut(int num, char dv) {
-        this.num = num;
-        this.dv = dv;
+        if (rutValido(num, dv)) {
+            this.num = num;
+            this.dv = dv;
+        }
     }
 
+    /**
+     * Solo ingresar parte numerica
+     *
+     * @param num parte numerica
+     *
+     */
     public Rut(int num) {
         this.num = num;
+        this.dv = generarDV(num);
     }
 
+    /**
+     * Ingresar un string con el Rut, ya sea con puntos o guion, o sin punto y
+     * guion
+     *
+     * @param rut string entero
+     *
+     */
     public Rut(String rut) {
-        this.num = 0;
-        this.dv = '0';
+        this.dv = rut.charAt(rut.length() - 1);
+        rut = rut.substring(0, rut.length() - 1);
+        rut = rut.replaceAll("[^0-9]", "");
+        this.num = Integer.parseInt(rut);
     }
 //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="setter-getter">
@@ -101,5 +125,4 @@ public class Rut {
     public String toString() {
         return num + "-" + dv;
     }
-
 }

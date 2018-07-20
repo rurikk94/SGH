@@ -3,7 +3,6 @@ package main.java.sgh;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import main.java.utiles.ResultS;
 
 /**
  *
@@ -44,8 +43,6 @@ public class Conexion {
 
                 ResultSet rs = conector.consulta(query);
                 
-//                ResultS r = new ResultS(rs);
-//                System.out.println(r.toStringTitulo()); //muestra el ResultSet
                 
                 return rs;
 
@@ -66,8 +63,6 @@ public class Conexion {
 
                 Integer rs = conector.actualizacion(query);
                 
-//                ResultS r = new ResultS(rs);
-//                System.out.println(r.toStringTitulo()); //muestra el ResultSet
                 return rs;
 
             }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-07-2018 a las 05:10:16
+-- Tiempo de generación: 17-07-2018 a las 04:56:24
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 
@@ -21,6 +21,46 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `rurikkcl_sgh`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cama`
+--
+
+CREATE TABLE `cama` (
+  `numeroCama` int(11) NOT NULL,
+  `camaDisponible` int(11) NOT NULL,
+  `especialidad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `rutPaciente` int(11) NOT NULL,
+  `dv` varchar(1) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `camahospitalizados`
+--
+
+CREATE TABLE `camahospitalizados` (
+  `numeroCama` int(11) NOT NULL,
+  `idHospitalizadoCama` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `consulta`
+--
+
+CREATE TABLE `consulta` (
+  `idConsulta` int(11) NOT NULL,
+  `disponibilidad` int(11) NOT NULL,
+  `especialidad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `numeroCama` int(11) NOT NULL,
+  `rutMedico` int(11) NOT NULL,
+  `dv` varchar(1) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -43,10 +83,25 @@ CREATE TABLE `enfermeros` (
 --
 
 INSERT INTO `enfermeros` (`rut`, `dv`, `nombres`, `apellidos`, `fechaNac`, `telefono`, `email`) VALUES
-(1000000, '9', 'Irena', 'Sendler', '1910-01-05', 0, 'irena@sendler.com'),
 (1000100, '5', 'Aribert', 'Heim', '1914-01-05', 0, 'd@c.muerte'),
-(12345678, '5', 'Ana', 'Mar', '1978-05-24', 45678912, 'email2@tuemail.com'),
-(78945612, '0', 'Juan Al', 'Perez', '1958-05-24', 12345678, 'email@user.cl');
+(9708357, '6', 'Juan Al', 'Perez', '1958-05-24', 12345678, 'email@user.cl'),
+(11451850, '6', 'Irena', 'Sendler', '1910-01-05', 0, 'irena@sendler.com'),
+(12345678, '5', 'Ana', 'Mar', '1978-05-24', 45678912, 'email2@tuemail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hospitalizados`
+--
+
+CREATE TABLE `hospitalizados` (
+  `idHospitalizados` int(11) NOT NULL,
+  `disponibilidad` int(11) NOT NULL,
+  `especialidad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `capacidad` int(11) NOT NULL,
+  `rutEnfermero` int(11) NOT NULL,
+  `dv` varchar(1) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -130,10 +185,34 @@ INSERT INTO `pacientes` (`rut`, `dv`, `nombres`, `apellidos`, `fechaNac`, `telef
 --
 
 --
+-- Indices de la tabla `cama`
+--
+ALTER TABLE `cama`
+  ADD PRIMARY KEY (`numeroCama`);
+
+--
+-- Indices de la tabla `camahospitalizados`
+--
+ALTER TABLE `camahospitalizados`
+  ADD PRIMARY KEY (`numeroCama`,`idHospitalizadoCama`);
+
+--
+-- Indices de la tabla `consulta`
+--
+ALTER TABLE `consulta`
+  ADD PRIMARY KEY (`idConsulta`);
+
+--
 -- Indices de la tabla `enfermeros`
 --
 ALTER TABLE `enfermeros`
   ADD PRIMARY KEY (`rut`);
+
+--
+-- Indices de la tabla `hospitalizados`
+--
+ALTER TABLE `hospitalizados`
+  ADD PRIMARY KEY (`idHospitalizados`);
 
 --
 -- Indices de la tabla `listapacientes`
