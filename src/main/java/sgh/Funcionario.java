@@ -27,7 +27,7 @@ public class Funcionario extends Persona {
 
     private String email;
 
-    public Funcionario(String nombres, String apellidos, Rut rut, Date fechaNac, Integer telefono, String email) {
+    public Funcionario(String nombres, String apellidos, Rut rut, Date fechaNac, int telefono, String email) {
         super(nombres, apellidos, rut, fechaNac, telefono);
         this.email = email;
     }

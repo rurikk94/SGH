@@ -26,10 +26,10 @@ import main.java.utiles.Rut;
 public class Paciente extends Persona {
 
     private String nombreContacto;
-    private Integer telefonoContacto;
+    private int telefonoContacto;
     private char sexo;
 
-    public Paciente(String nombres, String apellidos, Rut rut, Date fechaNac, Integer telefono, String nombreContacto, Integer telefonoContacto, char sexo) {
+    public Paciente(String nombres, String apellidos, Rut rut, Date fechaNac, int telefono, String nombreContacto, int telefonoContacto, char sexo) {
         super(nombres, apellidos, rut, fechaNac, telefono);
         this.nombreContacto = nombreContacto;
         this.telefonoContacto = telefonoContacto;
@@ -45,11 +45,11 @@ public class Paciente extends Persona {
         return true;
     }
 
-    public Integer getTelefonoContacto() {
+    public int getTelefonoContacto() {
         return this.telefonoContacto;
     }
 
-    public boolean setTelefonoContacto(Integer telefonoContacto) {
+    public boolean setTelefonoContacto(int telefonoContacto) {
         this.telefonoContacto = telefonoContacto;
         return true;
     }

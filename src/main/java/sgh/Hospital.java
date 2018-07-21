@@ -44,6 +44,22 @@ public class Hospital {
 //        eliminarPersona(16337396);
         //modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "","INSERT INTO `pacientes` (`rut`, `dv`, `nombres`, `apellidos`, `fechaNac`, `telefono`, `nombreContacto`, `telefonoContacto`, `sexo`) VALUES ('20958806', '4', 'Anastacia', 'Nyaa', '1975-06-14', '524587', 'Gato', '231221', 'M')");
 //        System.out.println(PersonasToString());
+//        cargarDatosBD("","", "", "", "");        //carga los datos desde BD
+//        
+//        //System.out.println(hospi.PersonasToString());   //muestra los datos por consola
+//        Rut r = new Rut("1234545");
+//        Rut r2 = new Rut("1000100");
+//        agregarHabitacionConsulta("consulta1", "especialidadUno", r);//String id, String especialidad, String rutMedico
+//        agregarHabitacionHospitalizados("hospitalizado1", "especialidadDos", r2, 3);//String id,  especialidad,  rutEnfermero, int capacidad
+//        
+//        System.out.println("cant Consultas: "+ cantidadHabitacionesConsulta());
+//        System.out.println("cant hospiatales: "+ cantidadHabitacionesHospitalizados());
+//        System.out.println(" hospiatales: "+ mostrarHabitacionPorId("consulta1").toString());
+//        agregarHabitacionConsulta("consulta1", "especialidadUno", r);//String id, String especialidad, String rutMedico
+//        System.out.println(" hospiatales: "+ mostrarHabitacionPorId("consulta1").toString());
+//        System.out.println("cant Consultas: "+ cantidadHabitacionesConsulta());
+//        System.out.println("cant hospiatales: "+ cantidadHabitacionesHospitalizados());
+
     }
 
     /**
@@ -192,7 +208,7 @@ public class Hospital {
         //conect.cerrarConexion();
 
         //intenta ejecutar la query
-        Integer rs = conect.ejecutarUpdate(query);
+        int rs = conect.ejecutarUpdate(query);
         if (rs > 0) {
             //Si tampoco resulta, retorna false
             return true;
@@ -249,7 +265,7 @@ public class Hospital {
     /**
      * Modifica la Persona y realiza el cambio en la BD
      *
-     * @param rutNum Integer parte numerica del rut de la persona a modificar
+     * @param rutNum int parte numerica del rut de la persona a modificar
      * @param atributoAModificar Object, cualquier tipo de objeto que se debe
      * modificar
      * @param nombreAtributo String, si se modifica Nombres o Apellidos, enviar
@@ -257,7 +273,7 @@ public class Hospital {
      * @return boolean
      *
      */
-    public boolean modificarPersona(Integer rutNum, Object atributoAModificar, String nombreAtributo) throws SQLException {
+    public boolean modificarPersona(int rutNum, Object atributoAModificar, String nombreAtributo) throws SQLException {
 
         if (listaPersona.modificarPersona(rutNum, atributoAModificar, nombreAtributo)) {
 
@@ -284,9 +300,9 @@ public class Hospital {
      * Elimina la Persona segun numero de Rut y realiza el cambio en la BD
      *
      * @author Rurikk
-     * @param rutNum Integer, enviar parte Numerica del Rut
+     * @param rutNum int, enviar parte Numerica del Rut
      */
-    public boolean eliminarPersona(Integer rutNum) throws SQLException {
+    public boolean eliminarPersona(int rutNum) throws SQLException {
         Persona n = listaPersona.buscarPersona(rutNum);
         if (listaPersona.eliminarPersona(rutNum)) {
 
@@ -319,13 +335,13 @@ public class Hospital {
      * 
      */
     
-    public boolean agregarHabitacionConsulta(String id, String especialidad, String rutMedico)
+    public boolean agregarHabitacionConsulta(String id, String especialidad, Rut rutMedico)
     {
     	listaHabitacion.agregarHabitacionConsulta(id, especialidad, rutMedico);
     	return (listaHabitacion.agregarHabitacionConsulta(id, especialidad, rutMedico));
     }
     
-    public boolean agregarHabitacionHospitalizados(String id, String especialidad, String rutEnfermero, int capacidad)
+    public boolean agregarHabitacionHospitalizados(String id, String especialidad, Rut rutEnfermero, int capacidad)
     {
     	listaHabitacion.agregarHabitacionHospitalizados(id, especialidad, rutEnfermero, capacidad);
     	return(listaHabitacion.agregarHabitacionHospitalizados(id, especialidad, rutEnfermero, capacidad));
@@ -357,7 +373,7 @@ public class Hospital {
     	return listaHabitacion.contarHabitacionesConsulta();
     }
     
-    public boolean darDeAltaPaciente(String rutPaciente)
+    public boolean darDeAltaPaciente(Rut rutPaciente)
     {
     	listaHabitacion.darDeAlta(rutPaciente);
     	return (listaHabitacion.darDeAlta(rutPaciente));
@@ -369,7 +385,7 @@ public class Hospital {
     	return (listaHabitacion.darDeAlta(numeroCama));
     }
     
-    public boolean agregarCamaHospitalizados(String idHabitacion, int numeroCama, String especialidad, String rutPaciente)
+    public boolean agregarCamaHospitalizados(String idHabitacion, int numeroCama, String especialidad, Rut rutPaciente)
     {
     	listaHabitacion.agregarCamaHospitalizados(idHabitacion, numeroCama, especialidad, rutPaciente);
     	return(listaHabitacion.agregarCamaHospitalizados(idHabitacion, numeroCama, especialidad, rutPaciente));
@@ -385,7 +401,7 @@ public class Hospital {
     	return(listaHabitacion.buscarCamaDisponible());
     }
     
-    public boolean ocuparCama(int numeroCama, String rutPaciente)
+    public boolean ocuparCama(int numeroCama, Rut rutPaciente)
     {
     	listaHabitacion.ocuparCama(numeroCama, rutPaciente);
     	return(listaHabitacion.ocuparCama(numeroCama, rutPaciente));
@@ -408,16 +424,9 @@ public class Hospital {
     	listaHabitacion.modificarCamillaConsulta(numeroCama, disponibilidad, especialidad);
     }
     
-    public boolean ocuparCamillaConsulta(String idHabitacion, String rutPaciente)
+    public boolean ocuparCamillaConsulta(String idHabitacion, Rut rutPaciente)
     {
     	listaHabitacion.ocuparCamillaConsulta(idHabitacion, rutPaciente);
     	return(listaHabitacion.ocuparCamillaConsulta(idHabitacion, rutPaciente));
     }
-    
-    
-    
-    
-    
-    
-    
 }

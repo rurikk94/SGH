@@ -35,7 +35,7 @@ public class Rut {
     public Rut(int num, char dv) {
         if (rutValido(num, dv)) {
             this.num = num;
-            this.dv = dv;
+            this.dv =  Character.toUpperCase(dv);
         }
     }
 
@@ -51,7 +51,7 @@ public class Rut {
     }
 
     /**
-     * Ingresar un string con el Rut, ya sea con puntos o guion, o sin punto y
+     * Ingresar un string con el Rut y DV, con puntos o guion, o sin punto o sin
      * guion
      *
      * @param rut string entero
@@ -82,6 +82,9 @@ public class Rut {
 
     public char getDv() {
         return dv;
+    }
+    public String getRut(){
+        return toString();
     }
 
 //</editor-fold>
@@ -125,4 +128,36 @@ public class Rut {
     public String toString() {
         return num + "-" + dv;
     }
+
+    public boolean esIgual(String rut) {
+        Rut r = new Rut(rut);
+        if (this.num == r.getNum()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean esIgual(int num) {
+        Rut r = new Rut(num);
+        if (this.num == r.getNum()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean esIgual(int num, char dv) {
+        Rut r = new Rut(num,dv);
+        if (this.num == r.getNum()) {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean esIgual(Rut r) {
+        if (this.num == r.getNum()) {
+            return true;
+        }
+        return false;
+    }
+
 }

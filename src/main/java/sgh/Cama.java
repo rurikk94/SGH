@@ -16,6 +16,8 @@
  */
 package main.java.sgh;
 
+import main.java.utiles.Rut;
+
 /**
  *
  * @author fernando
@@ -25,16 +27,16 @@ public class Cama {
     private int numeroCama;
     private boolean camaDisponible;
     private String especialidad;
-    private String rutPaciente;
+    private Rut rutPaciente;
 
     public Cama() {
         numeroCama = 0;
         camaDisponible = true;
         rutPaciente = null;
-        especialidad = null;
+        especialidad = "";
     }
 
-    public Cama(int numeroCama, boolean camaDisponible, String rutPaciente, String especialidad) {
+    public Cama(int numeroCama, boolean camaDisponible, Rut rutPaciente, String especialidad) {
         this.numeroCama = numeroCama;
         this.camaDisponible = camaDisponible;
         this.especialidad = especialidad;
@@ -55,7 +57,7 @@ public class Cama {
         this.especialidad = especialidad;
     }
 
-    public void setRutPaciente(String rutPaciente) {
+    public void setRutPaciente(Rut rutPaciente) {
         this.rutPaciente = rutPaciente;
     }
 
@@ -67,7 +69,7 @@ public class Cama {
         return especialidad;
     }
 
-    public String getRutPaciente() {
+    public Rut getRutPaciente() {
         return rutPaciente;
     }
 
@@ -79,7 +81,7 @@ public class Cama {
     /**
      * ocupa una cama
      */
-    public boolean ocuparCama(String rutPaciente) {
+    public boolean ocuparCama(Rut rutPaciente) {
         if (this.camaDisponible == true) {
             this.rutPaciente = rutPaciente;//se le asigna un paciente a la cama
             this.camaDisponible = false;//la cama deja de estar disponible
@@ -98,5 +100,14 @@ public class Cama {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        String r = " nºCama: " + numeroCama + " Especialidad: " + especialidad;
+        if (rutPaciente != null) {
+            r += " rutPaciente: " + rutPaciente.toString();
+        }
+        return r;
     }
 }

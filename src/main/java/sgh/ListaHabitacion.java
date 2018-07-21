@@ -5,6 +5,7 @@
  */
 package main.java.sgh;
 import java.util.*;
+import main.java.utiles.Rut;
 
 /**
  *
@@ -19,7 +20,7 @@ public class ListaHabitacion
     	habitaciones = new ArrayList<Habitacion>();
     }
     
-    public boolean agregarHabitacionConsulta(String id, String especialidad, String rutMedico)
+    public boolean agregarHabitacionConsulta(String id, String especialidad, Rut rutMedico)
     {
     	Habitacion nuevo = new Consulta(id, especialidad, rutMedico);
     	
@@ -39,7 +40,7 @@ public class ListaHabitacion
   
     }
     
-    public boolean agregarHabitacionHospitalizados(String id, String especialidad, String rutEnfermero, int capacidad)
+    public boolean agregarHabitacionHospitalizados(String id, String especialidad, Rut rutEnfermero, int capacidad)
     {
     	Habitacion nuevo = new Hospitalizados(id, especialidad, rutEnfermero, capacidad);
     	
@@ -145,7 +146,7 @@ public class ListaHabitacion
     	return contador;
     }
     
-    public boolean darDeAlta(String rutPaciente)
+    public boolean darDeAlta(Rut rutPaciente)
     {
     	if(!(habitaciones.isEmpty()))
     	{
@@ -185,7 +186,7 @@ public class ListaHabitacion
     	return false;
     }
     
-    public boolean agregarCamaHospitalizados(String idHabitacion, int numeroCama, String especialidad, String rutPaciente)
+    public boolean agregarCamaHospitalizados(String idHabitacion, int numeroCama, String especialidad, Rut rutPaciente)
     {
     	if(!(habitaciones.isEmpty()))
     	{
@@ -221,7 +222,7 @@ public class ListaHabitacion
     	return null;
     }
     
-    public boolean ocuparCama(int numeroCama, String rutPaciente)
+    public boolean ocuparCama(int numeroCama, Rut rutPaciente)
     {
     	if(!(habitaciones.isEmpty()))
     	{
@@ -303,7 +304,7 @@ public class ListaHabitacion
     	
     }
     
-    public boolean ocuparCamillaConsulta(String idHabitacion, String rutPaciente)
+    public boolean ocuparCamillaConsulta(String idHabitacion, Rut rutPaciente)
     {
     	if(!(habitaciones.isEmpty()))
     	{

@@ -17,6 +17,7 @@
 package main.java.sgh;
 
 import java.util.ArrayList;
+import main.java.utiles.Rut;
 
 /**
  *
@@ -37,7 +38,7 @@ public class ListaCama {
     /**
      * busca la cama por el numero de esta y retorna un booleano
      *
-     * @param numero Integer
+     * @param numero int
      * @return boolean
      */
     public boolean existeCama(int numero) {
@@ -53,7 +54,7 @@ public class ListaCama {
         return false;//no existe cama con ese numero
     }
 
-    public boolean agregarCama(int numeroCama, String rutPaciente, String especialidad) {
+    public boolean agregarCama(int numeroCama, Rut rutPaciente, String especialidad) {
         if (existeCama(numeroCama) == false)//no se encontro la cama
         {
             Cama nuevaCama = new Cama();//se crea el objeto cama
@@ -69,7 +70,7 @@ public class ListaCama {
     /**
      * busca la cama por codigo y retorna su indice
      *
-     * @param numeroCama Integer
+     * @param numeroCama int
      */
     public Cama buscarCamaEspecifica(int numeroCama) {
         if (existeCama(numeroCama) == true) {
@@ -104,13 +105,13 @@ public class ListaCama {
         return false;
     }
     
-    public boolean vaciarCama(String rutPaciente)
+    public boolean vaciarCama(Rut rutPaciente)
     {
     	if(!(arrayCama.isEmpty()))
     	{
     		for(int i=0; i<arrayCama.size();i++)
     		{
-    			if((arrayCama.get(i) != null) && (arrayCama.get(i).getRutPaciente().equalsIgnoreCase(rutPaciente)))
+    			if((arrayCama.get(i) != null) && (arrayCama.get(i).getRutPaciente().esIgual(rutPaciente)))
     			{
     				arrayCama.get(i).vaciarCama();
     				return true;
@@ -123,7 +124,7 @@ public class ListaCama {
     /**
      * ocupa la cama
      */
-    public boolean ocuparCama(int numeroCama, String rutPaciente)//ocupa la cama
+    public boolean ocuparCama(int numeroCama, Rut rutPaciente)//ocupa la cama
     {
         if (existeCama(numeroCama) == true) {
             for (int i = 0; i < arrayCama.size(); i++) {

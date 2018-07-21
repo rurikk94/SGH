@@ -1,13 +1,15 @@
 package main.java.sgh;
 
+import main.java.utiles.Rut;
+
 public class Consulta extends Habitacion 
 {
-	private String rutMedico; 
+	private Rut rutMedico; 
 	private Cama camilla;
 	
 	// Constructor
 
-	public Consulta(String id, String especialidad, String rutMedico) {
+	public Consulta(String id, String especialidad, Rut rutMedico) {
 		super(id, especialidad);
 		this.rutMedico = rutMedico;
 		this.camilla = new Cama();
@@ -15,25 +17,25 @@ public class Consulta extends Habitacion
 
 	// Getters y setters
 	
-	public String getRutMedico() {
+	public Rut getRutMedico() {
 		return rutMedico;
 	}
 
-	public void setRutMedico(String rutMedico) {
+	public void setRutMedico(Rut rutMedico) {
 		this.rutMedico = rutMedico;
 	}
 	
 	// Métodos
 	
-	public boolean ocuparCamilla(String rutPaciente)
+	public boolean ocuparCamilla(Rut rutPaciente)
 	{
 		camilla.ocuparCama(rutPaciente);
 		return (camilla.ocuparCama(rutPaciente));
 	}
 	
-	public boolean darDeAlta(String rutPaciente) //Sobreescritura de método abstracto
+	public boolean darDeAlta(Rut rutPaciente) //Sobreescritura de método abstracto
 	{
-		if(camilla.getRutPaciente().equalsIgnoreCase(rutPaciente))
+		if(camilla.getRutPaciente().esIgual(rutPaciente))
 		{
 			camilla.vaciarCama();
 			this.setDisponibilidad(true);
@@ -49,4 +51,8 @@ public class Consulta extends Habitacion
 		camilla.setEspecialidad(especialidad);
 	}
 
+        @Override
+        public String toString(){
+            return ("Medico: " + rutMedico.toString() + "Camilla: " + camilla.toString());
+        }
 }

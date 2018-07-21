@@ -29,7 +29,7 @@ public class Medico extends Funcionario
     private ListaPaciente listapacientes;
     String especialidad;
     
-    public Medico(String nombres, String apellidos, Rut rut, Date fechaNac, Integer telefono, String email, String especialidad)
+    public Medico(String nombres, String apellidos, Rut rut, Date fechaNac, int telefono, String email, String especialidad)
     {
         super(nombres, apellidos, rut, fechaNac, telefono, email);
         listapacientes = new ListaPaciente();

@@ -1,14 +1,16 @@
 package main.java.sgh;
 
+import main.java.utiles.Rut;
+
 public class Hospitalizados extends Habitacion 
 {
-	private String rutEnfermero;
+	private Rut rutEnfermero;
 	private int capacidad; //Numero que indica la cantidad de camas que caben en la habitacion de hospitalizdos
 	private ListaCama camas;
 
 	// Constructor
 	
-	public Hospitalizados(String id, String especialidad, String rutEnfermero, int capacidad) 
+	public Hospitalizados(String id, String especialidad, Rut rutEnfermero, int capacidad) 
 	{
 		super(id, especialidad);
 		this.rutEnfermero = rutEnfermero;
@@ -18,12 +20,12 @@ public class Hospitalizados extends Habitacion
 
 	// Getters y Setters
 	
-	public String getRutEnfermero() 
+	public Rut getRutEnfermero() 
 	{
 		return rutEnfermero;
 	}
 
-	public void setRutEnfermero(String rutEnfermero) 
+	public void setRutEnfermero(Rut rutEnfermero) 
 	{
 		this.rutEnfermero = rutEnfermero;
 	}
@@ -40,7 +42,7 @@ public class Hospitalizados extends Habitacion
 	
 	// Métodos
 	
-	public boolean darDeAlta(String rutPaciente) //Sobreescritura de método abstracto
+	public boolean darDeAlta(Rut rutPaciente) //Sobreescritura de método abstracto
 	{
 		camas.vaciarCama(rutPaciente);
 		return (camas.vaciarCama(rutPaciente));
@@ -57,7 +59,7 @@ public class Hospitalizados extends Habitacion
 		return false;
 	}
 	
-	public boolean agregarCama(int numeroCama, String especialidad, String rutPaciente)
+	public boolean agregarCama(int numeroCama, String especialidad, Rut rutPaciente)
 	{
 		if(camas.getTotalCama() < capacidad)
 		{
@@ -76,7 +78,7 @@ public class Hospitalizados extends Habitacion
 		return(camas.buscarCamaEspecifica(numeroCama));
 	}
 	
-	public boolean ocuparCama(int numeroCama, String rutPaciente)
+	public boolean ocuparCama(int numeroCama, Rut rutPaciente)
 	{
 		camas.ocuparCama(numeroCama, rutPaciente);
 		return (camas.ocuparCama(numeroCama, rutPaciente));

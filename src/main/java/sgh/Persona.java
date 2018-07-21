@@ -31,9 +31,9 @@ public abstract class Persona {
     private String apellidos;
     private Rut rut;
     private Date fechaNac;
-    private Integer telefono;
+    private int telefono;
 
-    public Persona(String nombres, String apellidos, Rut rut, Date fechaNac, Integer telefono) {
+    public Persona(String nombres, String apellidos, Rut rut, Date fechaNac, int telefono) {
 
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -64,7 +64,7 @@ public abstract class Persona {
         return this.rut.toString();
     }
     
-    public Integer getRutNum() {
+    public int getRutNum() {
         return this.rut.getNum();
     }
     
@@ -86,11 +86,11 @@ public abstract class Persona {
         return true;
     }
 
-    public Integer getTelefono() {
+    public int getTelefono() {
         return this.telefono;
     }
 
-    public boolean setTelefono(Integer telefono) {
+    public boolean setTelefono(int telefono) {
         this.telefono = telefono;
         return true;
     }    
@@ -114,4 +114,8 @@ public abstract class Persona {
     @Override
     public String toString() {
         return "Persona{" + "nombres=" + this.nombres + ", apellidos=" + this.apellidos + ", rut=" + this.rut.toString() + ", fechaNac=" + this.fechaNac + ", telefono=" + this.telefono + '}';
-    }}
+    }
+    public boolean esIgualRut(int rut){
+        return this.rut.esIgual(rut);
+    }
+}

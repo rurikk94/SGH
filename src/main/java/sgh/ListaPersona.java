@@ -36,14 +36,15 @@ public class ListaPersona {
      * Busca una Persona por el Rut
      * @author Rurikk
      * @version 1.0x.xxx 2018-05-26
-     * @param rutNum Integer, solo el numero sin puntos.
+     * @param rutNum int, solo el numero sin puntos.
      */
-    public Persona buscarPersona(Integer rutNum) {
+    public Persona buscarPersona(int rutNum) {
         if (arrayPersonas.isEmpty()) {  //Si el array está vacio: Null
             return null;
         } else {
             for (int i = 0; i < arrayPersonas.size(); i++) {    //Recorre Array
-                if (Objects.equals(arrayPersonas.get(i).getRutNum(), rutNum)) { //busca persona con mismo Rut
+                //if (arrayPersonas.get(i).getRutNum()==rutNum) { //busca persona con mismo Rut
+                if (arrayPersonas.get(i).esIgualRut(rutNum)) { //busca persona con mismo Rut
                     if (arrayPersonas.get(i) instanceof Paciente) { //sies Paciente, lo retorna
                         return (Paciente) arrayPersonas.get(i);
                     }
@@ -68,7 +69,7 @@ public class ListaPersona {
      * @version 1.0x.xxx 2018-05-25
      *
      */
-    public boolean agregarPacienteaMedico(Integer rutPaciente, Integer rutMedico) {
+    public boolean agregarPacienteaMedico(int rutPaciente, int rutMedico) {
         if (buscarPersona(rutPaciente) != null && buscarPersona(rutMedico) != null) //Si existe el Paciente, y tambien existe el Medico
         {
             return ((Medico) buscarPersona(rutMedico)).agregarAListaPacientes(((Paciente) buscarPersona(rutPaciente)));    //agregara el Paciente a la listaPacientes del Madico
@@ -100,7 +101,7 @@ public class ListaPersona {
      * @version 1.0x.xxx 2018-05-26
      *
      */
-    public boolean eliminarPersona(Integer rutNum) {
+    public boolean eliminarPersona(int rutNum) {
         if (buscarPersona(rutNum) != null) //Si existe la persona segun Rut
         {
             //if instanceof Paciente
@@ -119,7 +120,7 @@ public class ListaPersona {
     /**
      * Modifica la Persona
      * @author Rurikk
-     * @param rutNum Integer parte numerica del rut de la persona a modificar
+     * @param rutNum int parte numerica del rut de la persona a modificar
      * @param atributoModificar Object, cualquier tipo de objeto que se debe modificar
      * @param nombreAtributo String, si se modifica Nombres o Apellidos, enviar "Nombres" o "Apellidos"
      * @return boolean
@@ -127,7 +128,7 @@ public class ListaPersona {
      * 
      */
     @SuppressWarnings("nombreAtributo")
-    public boolean modificarPersona(Integer rutNum, Object atributoModificar, String nombreAtributo) {
+    public boolean modificarPersona(int rutNum, Object atributoModificar, String nombreAtributo) {
         int i = arrayPersonas.indexOf(buscarPersona(rutNum));   //indice de la Persona en el arrayList
         if (i != -1) //Si existe la persona segun Rut
         {
@@ -200,7 +201,7 @@ public class ListaPersona {
      * @return cantidadPersonas Int
      *
      */
-    public Integer cantidadPersonas(){
+    public int cantidadPersonas(){
         return arrayPersonas.size();
-    }    
+    }
 }

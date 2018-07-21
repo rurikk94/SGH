@@ -1,5 +1,7 @@
 package main.java.sgh;
 
+import main.java.utiles.Rut;
+
 public abstract class Habitacion 
 {
 	private String id;
@@ -48,6 +50,10 @@ public abstract class Habitacion
 	}
 	
 	// Métodos
+        public String toString() {
+        return id + " " + disponibilidad + " " + especialidad;
+    }
+
 	
-	public abstract boolean darDeAlta(String rut); //Método abstracto
+	public abstract boolean darDeAlta(Rut rut); //Método abstracto
 }
