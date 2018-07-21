@@ -42,7 +42,7 @@ INSERT INTO `ListaPacientes` VALUES (10101010,1461946);
 INSERT INTO `ListaPacientes` VALUES (10101010,4567852);
 DROP TABLE IF EXISTS `Hospitalizados`;
 CREATE TABLE IF NOT EXISTS `Hospitalizados` (
-	`idHospitalizados`	INTEGER,
+	`idHospitalizados`	TEXT,
 	`disponibilidad`	INTEGER,
 	`especialidad`	TEXT,
 	`capacidad`	INTEGER,
@@ -67,7 +67,7 @@ INSERT INTO `Enfermeros` VALUES (12345678,'5','Ana','Mar','1978-05-24',45678912,
 INSERT INTO `Enfermeros` VALUES (9708357,'6','Juan Al','Perez','1958-05-24',12345678,'email@user.cl');
 DROP TABLE IF EXISTS `Consulta`;
 CREATE TABLE IF NOT EXISTS `Consulta` (
-	`idConsulta`	INTEGER,
+	`idConsulta`	TEXT,
 	`disponibilidad`	INTEGER,
 	`especialidad`	TEXT,
 	`numeroCama`	INTEGER,
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `Consulta` (
 DROP TABLE IF EXISTS `CamaHospitalizados`;
 CREATE TABLE IF NOT EXISTS `CamaHospitalizados` (
 	`numeroCama`	INTEGER,
-	`idHospitalizadoCama`	INTEGER,
+	`idHospitalizadoCama`	TEXT,
 	PRIMARY KEY(`numeroCama`,`idHospitalizadoCama`)
 );
 DROP TABLE IF EXISTS `Cama`;

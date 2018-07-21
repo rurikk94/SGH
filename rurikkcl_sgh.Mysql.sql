@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-07-2018 a las 04:56:24
+-- Tiempo de generación: 21-07-2018 a las 21:43:50
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 
@@ -44,7 +44,7 @@ CREATE TABLE `cama` (
 
 CREATE TABLE `camahospitalizados` (
   `numeroCama` int(11) NOT NULL,
-  `idHospitalizadoCama` int(11) NOT NULL
+  `idHospitalizadoCama` varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -54,7 +54,7 @@ CREATE TABLE `camahospitalizados` (
 --
 
 CREATE TABLE `consulta` (
-  `idConsulta` int(11) NOT NULL,
+  `idConsulta` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `disponibilidad` int(11) NOT NULL,
   `especialidad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `numeroCama` int(11) NOT NULL,
@@ -95,7 +95,7 @@ INSERT INTO `enfermeros` (`rut`, `dv`, `nombres`, `apellidos`, `fechaNac`, `tele
 --
 
 CREATE TABLE `hospitalizados` (
-  `idHospitalizados` int(11) NOT NULL,
+  `idHospitalizados` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `disponibilidad` int(11) NOT NULL,
   `especialidad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `capacidad` int(11) NOT NULL,
