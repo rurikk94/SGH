@@ -423,7 +423,6 @@ public class Hospital {
     
     public boolean darDeAltaCama(int numeroCama)
     {
-    	listaHabitacion.darDeAlta(numeroCama);
     	return (listaHabitacion.darDeAlta(numeroCama));
     }
     
