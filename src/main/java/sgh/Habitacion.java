@@ -56,4 +56,5 @@ public abstract class Habitacion
 
 	
 	public abstract boolean darDeAlta(Rut rut); //Método abstracto
+	public abstract boolean existeCama(int numeroCama);
 }

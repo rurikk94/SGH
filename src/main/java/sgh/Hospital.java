@@ -429,7 +429,20 @@ public class Hospital {
     
     public boolean agregarCamaHospitalizados(String idHabitacion, int numeroCama, String especialidad, Rut rutPaciente)
     {
-    	return(listaHabitacion.agregarCamaHospitalizados(idHabitacion, numeroCama, especialidad, rutPaciente));
+    	if (listaHabitacion.existeCama(numeroCama) == false)
+    	{
+    		return(listaHabitacion.agregarCamaHospitalizados(idHabitacion, numeroCama, especialidad, rutPaciente));
+    	}
+    	
+    	return false;
+    }
+    
+    public void modificarCamaHospitalizados(String idHabitacion, int numeroCamaActual, int numeroCamaNuevo, boolean disponibilidad, String especialidad)
+    {
+    	if(listaHabitacion.existeCama(numeroCamaNuevo) == false)
+    	{
+    		listaHabitacion.modificarCamaHospitalizados(idHabitacion, numeroCamaActual, numeroCamaNuevo, disponibilidad, especialidad);
+    	}
     }
     
     public Cama buscarCamaEspecifica(int numeroCama)
@@ -459,7 +472,10 @@ public class Hospital {
     
     public void modificarCamillaConsulta(String idHabitacion,int numeroCama, boolean disponibilidad, String especialidad)
     {
-    	listaHabitacion.modificarCamillaConsulta(idHabitacion,numeroCama, disponibilidad, especialidad);
+    	if(listaHabitacion.existeCama(numeroCama) == false)
+    	{
+    		listaHabitacion.modificarCamillaConsulta(idHabitacion,numeroCama, disponibilidad, especialidad);
+    	}
     }
     
     public boolean ocuparCamillaConsulta(String idHabitacion, Rut rutPaciente)

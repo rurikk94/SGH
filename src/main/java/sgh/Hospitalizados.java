@@ -62,13 +62,23 @@ public class Hospitalizados extends Habitacion
 	{
 		if(camas.getTotalCama() < capacidad)
 		{
-			if(camas.existeCama(numeroCama) == false)
+			if(this.existeCama(numeroCama) == false)
 			{
 				return(camas.agregarCama(numeroCama, rutPaciente, especialidad));
 			}
 		}
 		
 		return false;
+	}
+	
+	public void modificarCama(int numeroCamaActual, int numeroCamaNuevo, boolean disponibilidad, String especialidad)
+	{
+		if(camas.getTotalCama() > 0)
+		{
+			camas.buscarCamaEspecifica(numeroCamaActual).setCamaDisponible(disponibilidad);
+			camas.buscarCamaEspecifica(numeroCamaActual).setEspecialidad(especialidad);
+			camas.buscarCamaEspecifica(numeroCamaActual).setNumeroCama(numeroCamaNuevo);
+		}
 	}
 	
 	public Cama buscarCamaEspecifica(int numeroCama)
@@ -99,6 +109,16 @@ public class Hospitalizados extends Habitacion
 	public Cama eliminarObjetoCama(int numeroCama)
 	{
 		return(camas.eliminarObjetoCama(numeroCama));
+	}
+	
+	public boolean existeCama(int numeroCama)
+	{
+		if(camas.getTotalCama() > 0)
+		{
+			return(camas.existeCama(numeroCama));
+		}
+		
+		return false;
 	}
         
         public String toString(){
