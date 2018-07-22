@@ -61,6 +61,8 @@ public class ListaCama {
             nuevaCama.setEspecialidad(especialidad);
             nuevaCama.setNumeroCama(numeroCama);
             nuevaCama.setRutPaciente(rutPaciente);
+            if (rutPaciente!=null)
+                nuevaCama.setCamaDisponible(false);
             arrayCama.add(nuevaCama);//se agrega la cama
             return true;//se agrego
         }
@@ -223,5 +225,12 @@ public class ListaCama {
 
         return null;
     }
-
+    
+    public String toString(){
+        String r = "totalCamas: "+ getTotalCama() + " ";
+         for (int i = 0; i < arrayCama.size(); i++) {
+             r+= "\n" + arrayCama.get(i).toString();
+         }
+         return r;
+    }
 }

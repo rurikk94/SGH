@@ -30,6 +30,7 @@ public class Consulta extends Habitacion
 	public boolean ocuparCamilla(Rut rutPaciente)
 	{
 		camilla.ocuparCama(rutPaciente);
+                this.setDisponibilidad(false);
 		return (camilla.ocuparCama(rutPaciente));
 	}
 	
@@ -53,6 +54,6 @@ public class Consulta extends Habitacion
 
         @Override
         public String toString(){
-            return ("Medico: " + rutMedico.toString() + "Camilla: " + camilla.toString());
+            return ("Consulta: " + getId() + " " + getDisponibilidad()+ " " + getEspecialidad() + "Medico: " + rutMedico.toString() + "Camilla: " + camilla.toString());
         }
 }

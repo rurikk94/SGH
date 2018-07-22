@@ -104,5 +104,9 @@ public class Hospitalizados extends Habitacion
 	{
 		return(camas.eliminarObjetoCama(numeroCama));
 	}
+        
+        public String toString(){
+            return "Hospitalizado: " + getId() + " " + getDisponibilidad()+ " " + getEspecialidad() + "Medico: " + rutEnfermero.toString() + "\n Camas: " + camas.toString();
+        }
 
 }

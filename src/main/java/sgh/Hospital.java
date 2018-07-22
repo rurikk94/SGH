@@ -42,8 +42,7 @@ public class Hospital {
 //        agregarPersona(p);
 //        modificarPersona(16337396, "Juanitopereza", "Nombres");
 //        eliminarPersona(16337396);
-        //modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "","INSERT INTO `pacientes` (`rut`, `dv`, `nombres`, `apellidos`, `fechaNac`, `telefono`, `nombreContacto`, `telefonoContacto`, `sexo`) VALUES ('20958806', '4', 'Anastacia', 'Nyaa', '1975-06-14', '524587', 'Gato', '231221', 'M')");
-//        System.out.println(PersonasToString());
+        //modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "","INSERT INTO `pacientes` (`rut`, `dv`, `nombres`, `apellidos`, `fechaNac`, `telefono`, `nombreContacto`, `telefonoContacto`, `sexo`) VALUES ('20958806', '4', 'Anastacia', 'Nyaa', '1975-06-14', '524587', 'Gato', '231221', 'M')");        
 //        cargarDatosBD("","", "", "", "");        //carga los datos desde BD
 //        
 //        //System.out.println(hospi.PersonasToString());   //muestra los datos por consola
@@ -56,8 +55,14 @@ public class Hospital {
 //        System.out.println("cant hospiatales: "+ cantidadHabitacionesHospitalizados());
 //        System.out.println(" hospiatales: "+ mostrarHabitacionPorId("consulta1").toString());
 //        agregarHabitacionConsulta("consulta1", "especialidadUno", r);//String id, String especialidad, String rutMedico
-//        System.out.println(" hospiatales: "+ mostrarHabitacionPorId("consulta1").toString());
+//
+//        System.out.println(PersonasToString());
 //        System.out.println("cant Consultas: "+ cantidadHabitacionesConsulta());
+//        System.out.println("cant Hospitalizados: "+ cantidadHabitacionesHospitalizados());
+//        System.out.println(mostrarHabitacionPorId("C1").toString());
+//        System.out.println(mostrarHabitacionPorId("C2").toString());
+//        String s = mostrarHabitacionPorId("H1").toString();
+//        System.out.println(s);
 //        System.out.println("cant hospiatales: "+ cantidadHabitacionesHospitalizados());
 
     }
@@ -78,7 +83,10 @@ public class Hospital {
             "select * from enfermeros;",
             "select * from medicos;",
             "select * from pacientes;",
-            "select * from listapacientes;"
+            "select * from listapacientes;",
+            "select * from consulta;",
+            "select * from hospitalizados;",
+            "select * from cama;"                
         };
 
         //Inicializa los objetos para conexion con los datos de los parametros
@@ -171,6 +179,44 @@ public class Hospital {
             if ("listapacientes".equalsIgnoreCase(rs.getMetaData().getTableName(1))) {
                 //System.out.println(rs.getInt("RutPaciente")+"\t"+rs.getInt("RutMedico"));
                 listaPersona.agregarPacienteaMedico(rs.getInt("RutPaciente"), rs.getInt("RutMedico"));
+            };
+            //</editor-fold>
+            //<editor-fold defaultstate="collapsed" desc="agregar Habitacion">
+            if ("consulta".equalsIgnoreCase(rs.getMetaData().getTableName(1))) {            
+                String id = rs.getString("idConsulta");
+                String especialidad = rs.getString("especialidad");
+                Rut rut = new Rut(rs.getInt("rutMedico"), rs.getString("dv").charAt(0));    
+                listaHabitacion.agregarHabitacionConsulta(id,especialidad,rut);
+                //System.out.println(p.toString());
+            };
+            if ("hospitalizados".equalsIgnoreCase(rs.getMetaData().getTableName(1))) {            
+                String id = rs.getString("idHospitalizados");
+                boolean disponibilidad = true;
+                if (rs.getInt("disponibilidad")!=1){
+                    disponibilidad = false;
+                }
+                String especialidad = rs.getString("especialidad");
+                int capacidad = rs.getInt("capacidad");
+                Rut rutEnfermero = new Rut(rs.getInt("rutEnfermero"), rs.getString("dv").charAt(0));    
+                listaHabitacion.agregarHabitacionHospitalizados(id, especialidad, rutEnfermero, capacidad);
+                //System.out.println(p.toString());
+            };
+            if ("cama".equalsIgnoreCase(rs.getMetaData().getTableName(1))) {
+                int numeroCama = (rs.getInt("numeroCama"));
+                String idHabitacion = (rs.getString("idHabitacion"));
+//                boolean disponibilidad = true;
+//                if (rs.getInt("camaDisponible")!=1){
+//                    disponibilidad = false;
+//                }
+                String especialidad = (rs.getString("especialidad"));
+                listaHabitacion.modificarCamillaConsulta(idHabitacion,numeroCama, true, especialidad);
+                Rut rut = null;
+                if ((rs.getString("rutPaciente"))!=null){
+                    rut = new Rut(rs.getInt("rutPaciente"), rs.getString("dv").charAt(0));
+                    listaHabitacion.ocuparCamillaConsulta(idHabitacion, rut);
+                }
+                listaHabitacion.agregarCamaHospitalizados(idHabitacion, numeroCama, especialidad, rut);
+                //System.out.println(p.toString());
             };
             //</editor-fold>
         }
@@ -419,9 +465,9 @@ public class Hospital {
     	return(listaHabitacion.eliminarObjetocamaHospitalizados(numeroCama));
     }
     
-    public void modificarCamillaConsulta(int numeroCama, boolean disponibilidad, String especialidad)
+    public void modificarCamillaConsulta(String idHabitacion,int numeroCama, boolean disponibilidad, String especialidad)
     {
-    	listaHabitacion.modificarCamillaConsulta(numeroCama, disponibilidad, especialidad);
+    	listaHabitacion.modificarCamillaConsulta(idHabitacion,numeroCama, disponibilidad, especialidad);
     }
     
     public boolean ocuparCamillaConsulta(String idHabitacion, Rut rutPaciente)

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-07-2018 a las 09:38:24
+-- Tiempo de generación: 22-07-2018 a las 09:46:03
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 
@@ -45,10 +45,10 @@ INSERT INTO `cama` (`numeroCama`, `idHabitacion`, `camaDisponible`, `especialida
 (100, 'C1', 0, 'Neuro', 4567852, '0'),
 (101, 'C2', 1, 'Algo', NULL, NULL),
 (300, 'H1', 1, 'General', NULL, NULL),
-(301, 'H1', 1, NULL, NULL, NULL),
-(302, 'H1', 1, NULL, NULL, NULL),
-(303, 'H1', 1, NULL, NULL, NULL),
-(304, 'H1', 1, NULL, NULL, NULL);
+(301, 'H1', 1, 'General', 16337396, '3'),
+(302, 'H1', 1, 'General', NULL, NULL),
+(303, 'H1', 1, 'General', NULL, NULL),
+(304, 'H1', 1, 'General', NULL, NULL);
 
 -- --------------------------------------------------------
 

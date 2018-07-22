@@ -289,13 +289,13 @@ public class ListaHabitacion
     	return null;
     }
     
-    public void modificarCamillaConsulta(int numeroCama, boolean disponibilidad, String especialidad)
+    public void modificarCamillaConsulta(String idHabitacion,int numeroCama, boolean disponibilidad, String especialidad)
     {
     	if(!(habitaciones.isEmpty()))
     	{
     		for(int i=0; i<habitaciones.size(); i++)
     		{
-    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Consulta))
+    			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Consulta)&&(habitaciones.get(i).getId().equalsIgnoreCase(idHabitacion)))
     			{
     				((Consulta)habitaciones.get(i)).modificarCamilla(numeroCama, disponibilidad, especialidad);
     			}
