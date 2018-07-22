@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-07-2018 a las 07:37:07
+-- Tiempo de generación: 22-07-2018 a las 09:38:24
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 
@@ -32,10 +32,23 @@ CREATE TABLE `cama` (
   `numeroCama` int(11) NOT NULL,
   `idHabitacion` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `camaDisponible` int(11) NOT NULL,
-  `especialidad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `rutPaciente` int(11) NOT NULL,
-  `dv` varchar(1) COLLATE utf8_spanish_ci NOT NULL
+  `especialidad` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `rutPaciente` int(11) DEFAULT NULL,
+  `dv` varchar(1) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `cama`
+--
+
+INSERT INTO `cama` (`numeroCama`, `idHabitacion`, `camaDisponible`, `especialidad`, `rutPaciente`, `dv`) VALUES
+(100, 'C1', 0, 'Neuro', 4567852, '0'),
+(101, 'C2', 1, 'Algo', NULL, NULL),
+(300, 'H1', 1, 'General', NULL, NULL),
+(301, 'H1', 1, NULL, NULL, NULL),
+(302, 'H1', 1, NULL, NULL, NULL),
+(303, 'H1', 1, NULL, NULL, NULL),
+(304, 'H1', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -57,11 +70,19 @@ CREATE TABLE `camahospitalizados` (
 CREATE TABLE `consulta` (
   `idConsulta` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `disponibilidad` int(11) NOT NULL,
-  `especialidad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `numeroCama` int(11) NOT NULL,
-  `rutMedico` int(11) NOT NULL,
-  `dv` varchar(1) COLLATE utf8_spanish_ci NOT NULL
+  `especialidad` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `numeroCama` int(11) DEFAULT NULL,
+  `rutMedico` int(11) DEFAULT NULL,
+  `dv` varchar(1) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `consulta`
+--
+
+INSERT INTO `consulta` (`idConsulta`, `disponibilidad`, `especialidad`, `numeroCama`, `rutMedico`, `dv`) VALUES
+('C1', 0, 'Neurocirujia', 100, 1234545, '3'),
+('C2', 1, 'EspecialidadAlgo', 101, 4567888, '1');
 
 -- --------------------------------------------------------
 
@@ -103,6 +124,13 @@ CREATE TABLE `hospitalizados` (
   `rutEnfermero` int(11) NOT NULL,
   `dv` varchar(1) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `hospitalizados`
+--
+
+INSERT INTO `hospitalizados` (`idHospitalizados`, `disponibilidad`, `especialidad`, `capacidad`, `rutEnfermero`, `dv`) VALUES
+('H1', 1, 'General', 5, 12345678, '5');
 
 -- --------------------------------------------------------
 

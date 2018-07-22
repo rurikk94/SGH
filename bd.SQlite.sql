@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `Pacientes` (
 	PRIMARY KEY(`rut`)
 );
 INSERT INTO `Pacientes` VALUES (4567852,'0','Carla','Peña','1988-05-24',64587598,'Papá',4585789,'F');
+INSERT INTO `Pacientes` VALUES (16337396,'3','Hombrecito','Gigante','1965-11-11',12312212,'Hermanita',44357343,'F');
 DROP TABLE IF EXISTS `Medicos`;
 CREATE TABLE IF NOT EXISTS `Medicos` (
 	`rut`	INT NOT NULL,
@@ -50,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `Hospitalizados` (
 	`dv`	TEXT,
 	PRIMARY KEY(`idHospitalizados`)
 );
+INSERT INTO `Hospitalizados` VALUES ('H1',1,'General',5,12345678,'5');
 DROP TABLE IF EXISTS `Enfermeros`;
 CREATE TABLE IF NOT EXISTS `Enfermeros` (
 	`rut`	INT NOT NULL,
@@ -75,6 +77,8 @@ CREATE TABLE IF NOT EXISTS `Consulta` (
 	`dv`	TEXT,
 	PRIMARY KEY(`idConsulta`)
 );
+INSERT INTO `Consulta` VALUES ('C1',0,'Neurocirujia',100,1234545,'3');
+INSERT INTO `Consulta` VALUES ('C2',1,'EspecialidadAlgo',101,4567888,'1');
 DROP TABLE IF EXISTS `CamaHospitalizados`;
 CREATE TABLE IF NOT EXISTS `CamaHospitalizados` (
 	`numeroCama`	INTEGER,
@@ -91,4 +95,11 @@ CREATE TABLE IF NOT EXISTS `Cama` (
 	`dv`	TEXT,
 	PRIMARY KEY(`numeroCama`)
 );
+INSERT INTO `Cama` VALUES (100,'C1',0,'Neuro',4567852,'0');
+INSERT INTO `Cama` VALUES (101,'C2',1,'Algo',NULL,NULL);
+INSERT INTO `Cama` VALUES (300,'H1',1,'General',16337396,'3');
+INSERT INTO `Cama` VALUES (301,'H1',1,'General',NULL,NULL);
+INSERT INTO `Cama` VALUES (302,'H1',1,'General',NULL,NULL);
+INSERT INTO `Cama` VALUES (303,'H1',1,'General',NULL,NULL);
+INSERT INTO `Cama` VALUES (304,'H1',1,'General',NULL,NULL);
 COMMIT;
