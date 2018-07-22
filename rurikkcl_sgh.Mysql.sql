@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-07-2018 a las 21:43:50
+-- Tiempo de generación: 22-07-2018 a las 07:37:07
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cama` (
   `numeroCama` int(11) NOT NULL,
+  `idHabitacion` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `camaDisponible` int(11) NOT NULL,
   `especialidad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `rutPaciente` int(11) NOT NULL,

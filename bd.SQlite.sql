@@ -84,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `CamaHospitalizados` (
 DROP TABLE IF EXISTS `Cama`;
 CREATE TABLE IF NOT EXISTS `Cama` (
 	`numeroCama`	INTEGER,
+	`idHabitacion`	TEXT,
 	`camaDisponible`	INTEGER DEFAULT 1,
 	`especialidad`	TEXT,
 	`rutPaciente`	INTEGER,
