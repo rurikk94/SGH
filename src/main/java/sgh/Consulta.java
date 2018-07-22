@@ -30,7 +30,7 @@ public class Consulta extends Habitacion
 	public boolean ocuparCamilla(Rut rutPaciente)
 	{
 		camilla.ocuparCama(rutPaciente);
-                this.setDisponibilidad(false);
+        this.setDisponibilidad(false);
 		return (camilla.ocuparCama(rutPaciente));
 	}
 	

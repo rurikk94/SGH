@@ -383,19 +383,16 @@ public class Hospital {
     
     public boolean agregarHabitacionConsulta(String id, String especialidad, Rut rutMedico)
     {
-    	listaHabitacion.agregarHabitacionConsulta(id, especialidad, rutMedico);
     	return (listaHabitacion.agregarHabitacionConsulta(id, especialidad, rutMedico));
     }
     
     public boolean agregarHabitacionHospitalizados(String id, String especialidad, Rut rutEnfermero, int capacidad)
     {
-    	listaHabitacion.agregarHabitacionHospitalizados(id, especialidad, rutEnfermero, capacidad);
     	return(listaHabitacion.agregarHabitacionHospitalizados(id, especialidad, rutEnfermero, capacidad));
     }
     
     public boolean eliminarHabitacion(String id)
     {
-    	listaHabitacion.eliminarHabitación(id);
     	return(listaHabitacion.eliminarHabitación(id));
     }
     
@@ -421,7 +418,6 @@ public class Hospital {
     
     public boolean darDeAltaPaciente(Rut rutPaciente)
     {
-    	listaHabitacion.darDeAlta(rutPaciente);
     	return (listaHabitacion.darDeAlta(rutPaciente));
     }
     
@@ -433,7 +429,6 @@ public class Hospital {
     
     public boolean agregarCamaHospitalizados(String idHabitacion, int numeroCama, String especialidad, Rut rutPaciente)
     {
-    	listaHabitacion.agregarCamaHospitalizados(idHabitacion, numeroCama, especialidad, rutPaciente);
     	return(listaHabitacion.agregarCamaHospitalizados(idHabitacion, numeroCama, especialidad, rutPaciente));
     }
     
@@ -449,19 +444,16 @@ public class Hospital {
     
     public boolean ocuparCama(int numeroCama, Rut rutPaciente)
     {
-    	listaHabitacion.ocuparCama(numeroCama, rutPaciente);
     	return(listaHabitacion.ocuparCama(numeroCama, rutPaciente));
     }
     
     public boolean eliminarCamaHospitalizados(int numeroCama)
     {
-    	listaHabitacion.eliminarCamaHospitalizados(numeroCama);
     	return(listaHabitacion.eliminarCamaHospitalizados(numeroCama));
     }
     
     public Cama eliminarObjetoCamaHospitalizados(int numeroCama)
     {
-    	listaHabitacion.eliminarObjetocamaHospitalizados(numeroCama);
     	return(listaHabitacion.eliminarObjetocamaHospitalizados(numeroCama));
     }
     
@@ -472,7 +464,6 @@ public class Hospital {
     
     public boolean ocuparCamillaConsulta(String idHabitacion, Rut rutPaciente)
     {
-    	listaHabitacion.ocuparCamillaConsulta(idHabitacion, rutPaciente);
     	return(listaHabitacion.ocuparCamillaConsulta(idHabitacion, rutPaciente));
     }
 }

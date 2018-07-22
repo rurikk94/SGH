@@ -196,7 +196,6 @@ public class ListaHabitacion
     			{
     				if((habitaciones.get(i).getId().equalsIgnoreCase(idHabitacion)) && (habitaciones.get(i) instanceof Hospitalizados))
     				{
-    					((Hospitalizados)habitaciones.get(i)).agregarCama(numeroCama, especialidad, rutPaciente);
     					return (((Hospitalizados)habitaciones.get(i)).agregarCama(numeroCama, especialidad, rutPaciente));
     				}
     			}
@@ -230,7 +229,6 @@ public class ListaHabitacion
     		{
     			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Hospitalizados))
     			{
-    				((Hospitalizados)habitaciones.get(i)).ocuparCama(numeroCama, rutPaciente);
     				return(((Hospitalizados)habitaciones.get(i)).ocuparCama(numeroCama, rutPaciente));
     			}
     		}
@@ -264,7 +262,6 @@ public class ListaHabitacion
     		{
     			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Hospitalizados))
     			{
-    				((Hospitalizados)habitaciones.get(i)).eliminarCama(numeroCama);
     				return(((Hospitalizados)habitaciones.get(i)).eliminarCama(numeroCama));
     			}
     		}
@@ -312,7 +309,6 @@ public class ListaHabitacion
     		{
     			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Consulta)&&(habitaciones.get(i).getId().equalsIgnoreCase(idHabitacion)))
     			{
-    				((Consulta)habitaciones.get(i)).ocuparCamilla(rutPaciente);
     				return(((Consulta)habitaciones.get(i)).ocuparCamilla(rutPaciente));
     			}
     		}

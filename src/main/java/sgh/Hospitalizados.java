@@ -44,7 +44,6 @@ public class Hospitalizados extends Habitacion
 	
 	public boolean darDeAlta(Rut rutPaciente) //Sobreescritura de método abstracto
 	{
-		camas.vaciarCama(rutPaciente);
 		return (camas.vaciarCama(rutPaciente));
 	}
 	
@@ -65,7 +64,6 @@ public class Hospitalizados extends Habitacion
 		{
 			if(camas.existeCama(numeroCama) == false)
 			{
-				camas.agregarCama(numeroCama, rutPaciente, especialidad);
 				return(camas.agregarCama(numeroCama, rutPaciente, especialidad));
 			}
 		}
@@ -80,7 +78,6 @@ public class Hospitalizados extends Habitacion
 	
 	public boolean ocuparCama(int numeroCama, Rut rutPaciente)
 	{
-		camas.ocuparCama(numeroCama, rutPaciente);
 		return (camas.ocuparCama(numeroCama, rutPaciente));
 	}
 	
@@ -96,7 +93,6 @@ public class Hospitalizados extends Habitacion
 	
 	public boolean eliminarCama(int numeroCama)
 	{
-		camas.eliminarCama(numeroCama);
 		return(camas.eliminarCama(numeroCama));
 	}
 	
