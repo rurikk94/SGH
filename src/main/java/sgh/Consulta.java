@@ -30,7 +30,7 @@ public class Consulta extends Habitacion
 	public boolean ocuparCamilla(Rut rutPaciente)
 	{
 		camilla.ocuparCama(rutPaciente);
-        this.setDisponibilidad(false);
+                this.setDisponibilidad(false);
 		return (camilla.ocuparCama(rutPaciente));
 	}
 	
@@ -45,11 +45,12 @@ public class Consulta extends Habitacion
 		return false;
 	}
 	
-	public void modificarCamilla(int numeroCama, boolean disponibilidad, String especialidad)
+	public boolean modificarCamilla(int numeroCama, boolean disponibilidad, String especialidad)
 	{
 		camilla.setNumeroCama(numeroCama);
 		camilla.setCamaDisponible(disponibilidad);
 		camilla.setEspecialidad(especialidad);
+                return true;
 	}
 	
 	public boolean existeCama(int numeroCama)
