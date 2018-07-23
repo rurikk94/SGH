@@ -279,7 +279,7 @@ public class PersonasAgregarModificarFrame extends javax.swing.JFrame {
         jLabel14.setText("Email");
 
         jButton3.setText("Modificar");
-      /*  jButton3.setActionCommand("");
+        jButton3.setActionCommand("");
         jButton3.addActionListener(new java.awt.event.ActionListener() 
         {
             public void actionPerformed(java.awt.event.ActionEvent evt) 
@@ -292,17 +292,18 @@ public class PersonasAgregarModificarFrame extends javax.swing.JFrame {
 							String nombres = jTextField1.getText();
 			            	String apellidos = jTextField2.getText();
 			            	String aux2 = jTextField11.getText();
-			            	char dv = aux2.charAt(0);
-			            	Rut rut = new Rut(Integer.parseInt(jTextField4.getText()),dv);
+			            	//char dv = aux2.charAt(0);
+			            	//Rut rut = new Rut(Integer.parseInt(jTextField4.getText()),dv);
+			            	int rutNum =Integer.parseInt(jTextField4.getText());
 			            	Date fechaNac = Date.valueOf(jTextField5.getText());
 			            	int telefono = Integer.parseInt(jTextField6.getText());
 			            	String nombreContacto = jTextField7.getText();
 			            	int telefonoContacto = Integer.parseInt(jTextField8.getText());
 			            	String aux = jTextField9.getText();
 			            	char sexo = aux.charAt(0);
-							
+			            //	int rutNum, String nombres, String apellidos, java.sql.Date fechaNac, int fono, String contacto, int fonoContacto, char sexo, String email, String especialidad
 								try {
-									if(hospi.modificarPersona(rut,fechaNac,nombres)==true) //int rutNum, Object atributoModificar, String nombreAtributo
+									if(hospi.modificarPersona(rutNum,nombres,apellidos,fechaNac,telefono,nombreContacto,telefonoContacto,sexo,null,null)==true)
 									{	
 										JOptionPane.showMessageDialog(null, "Se modifico correctamente el paciente.");
 									}
@@ -327,14 +328,15 @@ public class PersonasAgregarModificarFrame extends javax.swing.JFrame {
 							String nombres = jTextField1.getText();
 			            	String apellidos = jTextField2.getText();
 			            	String aux2 = jTextField11.getText();
-			            	char dv = aux2.charAt(0);
-			            	Rut rut = new Rut(Integer.parseInt(jTextField4.getText()),dv);
+			            	//char dv = aux2.charAt(0);
+			            	//Rut rut = new Rut(Integer.parseInt(jTextField4.getText()),dv);
+			            	int rutNum =Integer.parseInt(jTextField4.getText());
 			            	Date fechaNac = Date.valueOf(jTextField5.getText());
 			            	int telefono = Integer.parseInt(jTextField6.getText());
 			            	String email = jTextField10.getText();
-			            	
+			            	//int rutNum, String nombres, String apellidos, java.sql.Date fechaNac, int fono, String contacto, int fonoContacto, char sexo, String email, String especialidad
 								try {
-									if(hospi.modificarPersona()==true)
+									if(hospi.modificarPersona(rutNum,nombres,apellidos,fechaNac,telefono,null,0,'\u0000',email,null)==true)
 									{	
 										JOptionPane.showMessageDialog(null, "Se modifico correctamete el Medico.");
 									}
@@ -361,8 +363,9 @@ public class PersonasAgregarModificarFrame extends javax.swing.JFrame {
 							String nombres = jTextField1.getText();
 			            	String apellidos = jTextField2.getText();
 			            	String aux2 = jTextField11.getText();
-			            	char dv = aux2.charAt(0);
-			            	Rut rut = new Rut(Integer.parseInt(jTextField4.getText()),dv);
+			            	//char dv = aux2.charAt(0);
+			            	//Rut rut = new Rut(Integer.parseInt(jTextField4.getText()),dv);
+			            	int rutNum =Integer.parseInt(jTextField4.getText());
 			            	Date fechaNac = Date.valueOf(jTextField5.getText());
 			            	int telefono = Integer.parseInt(jTextField6.getText());
 			            	String email = jTextField10.getText();
@@ -370,7 +373,7 @@ public class PersonasAgregarModificarFrame extends javax.swing.JFrame {
 							
 								try 
 								{
-									if(hospi.modificarPersona()==true)
+									if(hospi.modificarPersona(rutNum,nombres,apellidos,fechaNac,telefono,null,0,' ',email,null)==true)
 									{	
 										JOptionPane.showMessageDialog(null, "Se modifico correctamete el Enfermero.");
 									}
@@ -389,7 +392,7 @@ public class PersonasAgregarModificarFrame extends javax.swing.JFrame {
 						}
 					}
             }
-        });*/
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

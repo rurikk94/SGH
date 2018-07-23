@@ -138,7 +138,7 @@ public class ListaPersona {
                 return ((Persona) arrayPersonas.get(i)).setFechaNac(fechaNac);    //modifica la fecha
             };
             if (fono != 0) {
-                return ((Persona) arrayPersonas.get(i)).setTelefono(fono);    //modifica el Rut
+                return ((Persona) arrayPersonas.get(i)).setTelefono(fono);    //modifica el fono
             };
             
             if (buscarPersona(rutNum) instanceof Funcionario) {

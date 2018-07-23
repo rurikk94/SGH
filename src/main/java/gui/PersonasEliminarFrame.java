@@ -76,7 +76,7 @@ public class PersonasEliminarFrame extends javax.swing.JFrame {
 							}
 							else{
 							JOptionPane.showMessageDialog(null, "La persona no se puedo eliminar.");
-							jTextField1.setText("");
+						//	jTextField1.setText("");
 							}
 						} catch (HeadlessException e) {
 							// TODO Auto-generated catch block
