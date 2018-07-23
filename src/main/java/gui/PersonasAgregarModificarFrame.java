@@ -15,6 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package main.java.gui;
+import java.awt.HeadlessException;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.Date;
+import main.java.utiles.*;
+
+
+import main.java.sgh.*;
+import main.java.utiles.Rut;
 
 /**
  *
@@ -25,8 +34,11 @@ public class PersonasAgregarModificarFrame extends javax.swing.JFrame {
     /**
      * Creates new form PersonasAgregarModificarFrame
      */
-    public PersonasAgregarModificarFrame() {
+	Hospital hospi;
+    public PersonasAgregarModificarFrame(Hospital hospi) 
+    {
         initComponents();
+        this.hospi = hospi;
     }
 
     /**
@@ -81,13 +93,140 @@ public class PersonasAgregarModificarFrame extends javax.swing.JFrame {
 
         GrupoPersonas.add(jRadioButton2);
         jRadioButton2.setText("Medico");
-
+        
         GrupoPersonas.add(jRadioButton3);
         jRadioButton3.setText("Enfermero");
 
         jButton1.setText("Agregar");
         jButton1.setActionCommand("");
+        jButton1.addActionListener(new java.awt.event.ActionListener() 
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) 
+            {
+            	
+            	/*String nombres = jTextField1.getText();
+            	String apellidos = jTextField2.getText();
+            	String aux2 = jTextField11.getText();
+            	char dv = aux2.charAt(0);
+            	Rut rut = new Rut(Integer.parseInt(jTextField4.getText()),dv);
+            	Date fechaNac = Date.valueOf(jTextField5.getText());
+            	int telefono = Integer.parseInt(jTextField6.getText());
+            	String nombreContacto = jTextField7.getText();
+            	int telefonoContacto = Integer.parseInt(jTextField8.getText());
+            	String email = jTextField10.getText();
+            	String aux = jTextField9.getText();
+            	char sexo = aux.charAt(0);
+            	*/
+            
+					
+					if(jRadioButton2.isSelected() == true)
+					{
+						if(evt.getSource() == jButton1)
+						{
+							String nombres = jTextField1.getText();
+			            	String apellidos = jTextField2.getText();
+			            	String aux2 = jTextField11.getText();
+			            	char dv = aux2.charAt(0);
+			            	Rut rut = new Rut(Integer.parseInt(jTextField4.getText()),dv);
+			            	Date fechaNac = Date.valueOf(jTextField5.getText());
+			            	int telefono = Integer.parseInt(jTextField6.getText());
+			            	String email = jTextField10.getText();
+							Medico nuevoMedico = new Medico(nombres,apellidos,rut,fechaNac,telefono,email,null);
+								try {
+									if(hospi.agregarPersona(nuevoMedico)==true)
+									{	
+										JOptionPane.showMessageDialog(null, "Se agrego correctamete el Medico.");
+									}
+									else
+									{
+										JOptionPane.showMessageDialog(null, "no se agrego el Medico.");
+									}
+								} catch (HeadlessException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						
+						}
+						
+						
+					}
 
+					if(jRadioButton1.isSelected() == true)
+					{
+						if(evt.getSource() == jButton1)
+						{
+							String nombres = jTextField1.getText();
+			            	String apellidos = jTextField2.getText();
+			            	String aux2 = jTextField11.getText();
+			            	char dv = aux2.charAt(0);
+			            	Rut rut = new Rut(Integer.parseInt(jTextField4.getText()),dv);
+			            	Date fechaNac = Date.valueOf(jTextField5.getText());
+			            	int telefono = Integer.parseInt(jTextField6.getText());
+			            	String nombreContacto = jTextField7.getText();
+			            	int telefonoContacto = Integer.parseInt(jTextField8.getText());
+			            	String aux = jTextField9.getText();
+			            	char sexo = aux.charAt(0);
+							Paciente nuevoPaciente = new Paciente(nombres,apellidos,rut,fechaNac,telefono,nombreContacto,telefonoContacto,sexo);
+								try {
+									if(hospi.agregarPersona(nuevoPaciente)==true)
+									{	
+										JOptionPane.showMessageDialog(null, "Se agrego correctamete el paciente.");
+									}
+									else
+									{
+										JOptionPane.showMessageDialog(null, "no se agrego el paciente.");
+									}
+								} catch (HeadlessException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+					
+						}
+					}
+					if(jRadioButton3.isSelected() == true)
+					{
+						if(evt.getSource() == jButton1)
+						{
+							String nombres = jTextField1.getText();
+			            	String apellidos = jTextField2.getText();
+			            	String aux2 = jTextField11.getText();
+			            	char dv = aux2.charAt(0);
+			            	Rut rut = new Rut(Integer.parseInt(jTextField4.getText()),dv);
+			            	Date fechaNac = Date.valueOf(jTextField5.getText());
+			            	int telefono = Integer.parseInt(jTextField6.getText());
+			            	String email = jTextField10.getText();
+			           
+							Enfermero nuevoEnfermero = new Enfermero(nombres,apellidos,rut,fechaNac,telefono,email);
+								try 
+								{
+									if(hospi.agregarPersona(nuevoEnfermero)==true)
+									{	
+										JOptionPane.showMessageDialog(null, "Se agrego correctamete el Enfermero.");
+									}
+									else
+									{
+										JOptionPane.showMessageDialog(null, "no se agrego el Enfermero.");
+									}
+								} catch (HeadlessException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						
+						}
+					}
+            }
+        });
+
+        
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,6 +279,117 @@ public class PersonasAgregarModificarFrame extends javax.swing.JFrame {
         jLabel14.setText("Email");
 
         jButton3.setText("Modificar");
+      /*  jButton3.setActionCommand("");
+        jButton3.addActionListener(new java.awt.event.ActionListener() 
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) 
+            {
+            	
+					if(jRadioButton1.isSelected() == true)
+					{
+						if(evt.getSource() == jButton3)
+						{
+							String nombres = jTextField1.getText();
+			            	String apellidos = jTextField2.getText();
+			            	String aux2 = jTextField11.getText();
+			            	char dv = aux2.charAt(0);
+			            	Rut rut = new Rut(Integer.parseInt(jTextField4.getText()),dv);
+			            	Date fechaNac = Date.valueOf(jTextField5.getText());
+			            	int telefono = Integer.parseInt(jTextField6.getText());
+			            	String nombreContacto = jTextField7.getText();
+			            	int telefonoContacto = Integer.parseInt(jTextField8.getText());
+			            	String aux = jTextField9.getText();
+			            	char sexo = aux.charAt(0);
+							
+								try {
+									if(hospi.modificarPersona(rut,fechaNac,nombres)==true) //int rutNum, Object atributoModificar, String nombreAtributo
+									{	
+										JOptionPane.showMessageDialog(null, "Se modifico correctamente el paciente.");
+									}
+									else
+									{
+										JOptionPane.showMessageDialog(null, "no se modifico el paciente.");
+									}
+								} catch (HeadlessException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+					
+						}
+					}
+					if(jRadioButton2.isSelected() == true)
+					{
+						if(evt.getSource() == jButton3)
+						{
+							String nombres = jTextField1.getText();
+			            	String apellidos = jTextField2.getText();
+			            	String aux2 = jTextField11.getText();
+			            	char dv = aux2.charAt(0);
+			            	Rut rut = new Rut(Integer.parseInt(jTextField4.getText()),dv);
+			            	Date fechaNac = Date.valueOf(jTextField5.getText());
+			            	int telefono = Integer.parseInt(jTextField6.getText());
+			            	String email = jTextField10.getText();
+			            	
+								try {
+									if(hospi.modificarPersona()==true)
+									{	
+										JOptionPane.showMessageDialog(null, "Se modifico correctamete el Medico.");
+									}
+									else
+									{
+										JOptionPane.showMessageDialog(null, "no se modifico el Medico.");
+									}
+								} catch (HeadlessException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						
+						}
+						
+						
+					}
+					if(jRadioButton3.isSelected() == true)
+					{
+						if(evt.getSource() == jButton3)
+						{
+							String nombres = jTextField1.getText();
+			            	String apellidos = jTextField2.getText();
+			            	String aux2 = jTextField11.getText();
+			            	char dv = aux2.charAt(0);
+			            	Rut rut = new Rut(Integer.parseInt(jTextField4.getText()),dv);
+			            	Date fechaNac = Date.valueOf(jTextField5.getText());
+			            	int telefono = Integer.parseInt(jTextField6.getText());
+			            	String email = jTextField10.getText();
+			           
+							
+								try 
+								{
+									if(hospi.modificarPersona()==true)
+									{	
+										JOptionPane.showMessageDialog(null, "Se modifico correctamete el Enfermero.");
+									}
+									else
+									{
+										JOptionPane.showMessageDialog(null, "no se modifico el Enfermero.");
+									}
+								} catch (HeadlessException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (SQLException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						
+						}
+					}
+            }
+        });*/
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -280,7 +530,7 @@ public class PersonasAgregarModificarFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        PersonasListadoFrame personas = new PersonasListadoFrame();
+        PersonasListadoFrame personas = new PersonasListadoFrame(hospi);
         //muestra la ventana de carga
         personas.setVisible(true);
         this.dispose();
@@ -289,7 +539,7 @@ public class PersonasAgregarModificarFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(final Hospital hospi) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -316,7 +566,7 @@ public class PersonasAgregarModificarFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PersonasAgregarModificarFrame().setVisible(true);
+                new PersonasAgregarModificarFrame(hospi).setVisible(true);
             }
         });
     }

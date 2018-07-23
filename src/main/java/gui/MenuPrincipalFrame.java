@@ -116,7 +116,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 
     private void botonPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPacienteActionPerformed
 
-        PersonasListadoFrame personas = new PersonasListadoFrame();
+        PersonasListadoFrame personas = new PersonasListadoFrame(hospi);
         //muestra la ventana de carga
         personas.setVisible(true);
         this.dispose();

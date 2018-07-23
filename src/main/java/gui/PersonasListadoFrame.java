@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package main.java.gui;
+import main.java.sgh.*;
 
 /**
  *
@@ -25,8 +26,12 @@ public class PersonasListadoFrame extends javax.swing.JFrame {
     /**
      * Creates new form PersonasFrame
      */
-    public PersonasListadoFrame() {
+	Hospital hospi;
+	
+    public PersonasListadoFrame(Hospital hospi) 
+    {
         initComponents();
+        this.hospi = hospi;
     }
 
     /**
@@ -165,7 +170,7 @@ public class PersonasListadoFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        PersonasAgregarModificarFrame agregarModificarPersona = new PersonasAgregarModificarFrame();
+        PersonasAgregarModificarFrame agregarModificarPersona = new PersonasAgregarModificarFrame(hospi);
         //muestra la ventana de carga
         agregarModificarPersona.setVisible(true);
         this.dispose();
@@ -174,7 +179,7 @@ public class PersonasListadoFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        PersonasAgregarModificarFrame agregarModificarPersona = new PersonasAgregarModificarFrame();
+        PersonasAgregarModificarFrame agregarModificarPersona = new PersonasAgregarModificarFrame(hospi);
         //muestra la ventana de carga
         agregarModificarPersona.setVisible(true);
         this.dispose();
@@ -183,7 +188,7 @@ public class PersonasListadoFrame extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-        PersonasEliminarFrame eliminarPersona = new PersonasEliminarFrame();
+        PersonasEliminarFrame eliminarPersona = new PersonasEliminarFrame(hospi);
         //muestra la ventana de carga
         eliminarPersona.setVisible(true);
         this.dispose();
@@ -192,7 +197,7 @@ public class PersonasListadoFrame extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         
-        PersonaAsignarPacienteAMedicoFrame asignar = new PersonaAsignarPacienteAMedicoFrame();
+        PersonaAsignarPacienteAMedicoFrame asignar = new PersonaAsignarPacienteAMedicoFrame(hospi);
         //muestra la ventana de carga
         asignar.setVisible(true);
         this.dispose();
@@ -210,7 +215,7 @@ public class PersonasListadoFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(final Hospital hospi) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -238,7 +243,7 @@ public class PersonasListadoFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PersonasListadoFrame().setVisible(true);
+                new PersonasListadoFrame(hospi).setVisible(true);
             }
         });
     }

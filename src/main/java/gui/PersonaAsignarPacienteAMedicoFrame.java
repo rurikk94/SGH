@@ -15,7 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package main.java.gui;
-
+import main.java.sgh.*;
+import javax.swing.AbstractListModel;
+import java.sql.*;
 /**
  *
  * @author Rurikk
@@ -25,8 +27,11 @@ public class PersonaAsignarPacienteAMedicoFrame extends javax.swing.JFrame {
     /**
      * Creates new form PersonaAsignarPacienteAMedico
      */
-    public PersonaAsignarPacienteAMedicoFrame() {
+	Hospital hospi;
+    public PersonaAsignarPacienteAMedicoFrame(Hospital hospi) 
+    {
         initComponents();
+        this.hospi = hospi;
     }
 
     /**
@@ -53,11 +58,17 @@ public class PersonaAsignarPacienteAMedicoFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+       /* String[] medicos = new String[10];
+        hospi.obtenerMedico(medicos);*/
+        
+        jList1.setModel(new AbstractListModel() {
+        	String[] values = new String[] {"Medico 1", "Medico 2", "Medico 3", "Medico 4", "Medico 5"};
+        	public int getSize() {
+        		return values.length;
+        	}
+        	public Object getElementAt(int index) {
+        		return values[index];
+        	}
         });
         jScrollPane1.setViewportView(jList1);
 
@@ -84,6 +95,11 @@ public class PersonaAsignarPacienteAMedicoFrame extends javax.swing.JFrame {
         jButton1.setText("Eliminar");
 
         jButton2.setText("Asignar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+              
+            }
+        });
 
         jButton3.setText("Volver");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +169,7 @@ public class PersonaAsignarPacienteAMedicoFrame extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-        PersonasListadoFrame personas = new PersonasListadoFrame();
+        PersonasListadoFrame personas = new PersonasListadoFrame(hospi);
         //muestra la ventana de carga
         personas.setVisible(true);
         this.dispose();
@@ -162,7 +178,7 @@ public class PersonaAsignarPacienteAMedicoFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(final Hospital hospi) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -190,7 +206,7 @@ public class PersonaAsignarPacienteAMedicoFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PersonaAsignarPacienteAMedicoFrame().setVisible(true);
+                new PersonaAsignarPacienteAMedicoFrame(hospi).setVisible(true);
             }
         });
     }

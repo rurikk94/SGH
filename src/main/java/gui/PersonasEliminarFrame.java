@@ -15,6 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package main.java.gui;
+import java.awt.HeadlessException;
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
+import main.java.sgh.*;
 
 /**
  *
@@ -25,8 +31,11 @@ public class PersonasEliminarFrame extends javax.swing.JFrame {
     /**
      * Creates new form PersonasEliminarFrame
      */
-    public PersonasEliminarFrame() {
+	Hospital hospi;
+    public PersonasEliminarFrame(Hospital hospi) 
+    {
         initComponents();
+        this.hospi = hospi;
     }
 
     /**
@@ -53,7 +62,36 @@ public class PersonasEliminarFrame extends javax.swing.JFrame {
         jTextField1.setText("rut");
 
         jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() 
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) 
+            {
+            	int rutNum = Integer.parseInt(jTextField1.getText());
+				if(evt.getSource() == jButton1)
+				{
+						try {
+							if(hospi.eliminarPersona(rutNum)==true)
+							{
+								JOptionPane.showMessageDialog(null, "Se elimino correctamente la persona.");
+							}
+							else{
+							JOptionPane.showMessageDialog(null, "La persona no se puedo eliminar.");
+							jTextField1.setText("");
+							}
+						} catch (HeadlessException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	
+				}
+				
+            }
+        });
 
+        
         jButton2.setText("Volver");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +139,7 @@ public class PersonasEliminarFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        PersonasListadoFrame personas = new PersonasListadoFrame();
+        PersonasListadoFrame personas = new PersonasListadoFrame(hospi);
         //muestra la ventana de carga
         personas.setVisible(true);
         this.dispose();
@@ -110,7 +148,7 @@ public class PersonasEliminarFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(final Hospital hospi) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -137,7 +175,7 @@ public class PersonasEliminarFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PersonasEliminarFrame().setVisible(true);
+                new PersonasEliminarFrame(hospi).setVisible(true);
             }
         });
     }

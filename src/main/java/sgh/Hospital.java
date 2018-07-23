@@ -702,5 +702,10 @@ public class Hospital {
         } catch (Exception e) {            
         }
         return "";
+    }  
+    
+    public String[] obtenerMedico(String medicos[])
+    {
+    	return listaPersona.obtenerMedico(medicos);
     }
 }

@@ -312,4 +312,26 @@ public class ListaPersona {
         };
         return tabla;
     }
+    public String[] obtenerMedico(String medicos[]) 
+    {
+    	int contador = 0;
+        if (arrayPersonas.isEmpty()) {  //Si el array está vacio: Null
+            return null;
+        } 
+        else 
+        {
+        	for (int i = 0; i < arrayPersonas.size(); i++) 
+        	{
+        		if (arrayPersonas.get(i) instanceof Medico) 
+        		{ 
+        			medicos[contador] = arrayPersonas.get(i).getRut();
+        			contador++;
+                }
+        		
+              
+            }
+        	return medicos;
+         }
+ 
+     }
 }
