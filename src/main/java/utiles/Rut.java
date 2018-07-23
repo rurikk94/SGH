@@ -103,7 +103,7 @@ public class Rut {
 
     public static char generarDV(int número) {
         if (número >= 72000000 || número < 100000) {
-           // throw new IllegalArgumentException("Número de Rut debe estar estar en el intervalo [1.000.000,72.000.000[");
+            throw new IllegalArgumentException("Número de Rut debe estar estar en el intervalo [1.000.000,72.000.000[");
         }
         char dv;
         int suma = 0;
