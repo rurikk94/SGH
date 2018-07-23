@@ -17,10 +17,14 @@
 package main.java.gui;
 
 import main.java.sgh.Hospital;
+import main.java.sgh.Hospitalizados;
+
 import javax.swing.table.DefaultTableModel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -48,14 +52,12 @@ public class HabitacionesDetallesCamasFrame extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextFieldID = new javax.swing.JTextField();
+        jScrollPaneCama = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButtonAgregarCama = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButtonVaciarCama = new javax.swing.JButton();
+        
         jButtonAsignarCama = new javax.swing.JButton();
         jButtonModNumCama = new javax.swing.JButton();
         jButtonEliminarCama = new javax.swing.JButton();
@@ -67,11 +69,7 @@ public class HabitacionesDetallesCamasFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Consulta/Hospitalizados");
 
-        jTextField1.setText("ID");
-
-        jTextField2.setText("Especialidad");
-
-        jTextField3.setText("Rut");
+        jTextFieldID.setText("ID");
 
         jTable1.setModel(new DefaultTableModel(
         	new Object[][] {
@@ -89,8 +87,22 @@ public class HabitacionesDetallesCamasFrame extends javax.swing.JFrame {
         		"numero Cama", "Disponible", "Rut Paciente"
         	}
         ));
-        jScrollPane1.setViewportView(jTable1);
-
+        jScrollPaneCama.setViewportView(jTable1);
+        jButtonMostrar = new javax.swing.JButton();
+        jButtonMostrar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if(hospi.mostrarHabitacionPorId(jTextFieldID.getText()) instanceof Hospitalizados)
+        		{
+        			for(int i=0;i< ((Hospitalizados)(hospi.mostrarHabitacionPorId(jTextFieldID.getText()))).getCapacidad();i++)
+        			{
+        				jTable1.setValueAt(((Hospitalizados)(hospi.mostrarHabitacionPorId(jTextFieldID.getText()))).mostrarCamaPorPosicion(i).getNumeroCama(), i, 0);
+        				jTable1.setValueAt(((Hospitalizados)(hospi.mostrarHabitacionPorId(jTextFieldID.getText()))).mostrarCamaPorPosicion(i).getCamaDisponible(),i,1);
+        				jTable1.setValueAt(((Hospitalizados)(hospi.mostrarHabitacionPorId(jTextFieldID.getText()))).mostrarCamaPorPosicion(i).getRutPaciente(),i,2);
+        			}
+        		}
+        			
+        	}
+        });
         jButtonAgregarCama.setText("Agregar Cama");
         jButtonAgregarCama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +112,7 @@ public class HabitacionesDetallesCamasFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Camas");
 
-        jButtonVaciarCama.setText("Vaciar Cama");
+        jButtonMostrar.setText("Mostrar");
 
         jButtonAsignarCama.setText("Asignar Cama");
         jButtonAsignarCama.addActionListener(new java.awt.event.ActionListener() {
@@ -137,14 +149,9 @@ public class HabitacionesDetallesCamasFrame extends javax.swing.JFrame {
         					.addComponent(jLabel2)
         					.addGap(184))
         				.addGroup(layout.createSequentialGroup()
-        					.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(jTextFieldID, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
         					.addGap(74)
-        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        						.addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(jLabel3))
-        					.addPreferredGap(ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-        					.addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-        					.addGap(71))
+        					.addComponent(jLabel3))
         				.addGroup(layout.createSequentialGroup()
         					.addGroup(layout.createParallelGroup(Alignment.LEADING)
         						.addComponent(jButtonAgregarCama)
@@ -152,12 +159,12 @@ public class HabitacionesDetallesCamasFrame extends javax.swing.JFrame {
         					.addPreferredGap(ComponentPlacement.UNRELATED)
         					.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
         						.addComponent(jButtonVolver, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        						.addComponent(jButtonVaciarCama, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        						.addComponent(jButtonMostrar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         					.addGap(18)
         					.addComponent(jButtonAsignarCama)
         					.addGap(83))
         				.addGroup(layout.createSequentialGroup()
-        					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(jScrollPaneCama, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE)
         					.addContainerGap(71, Short.MAX_VALUE))
         				.addGroup(layout.createSequentialGroup()
         					.addComponent(jButtonModNumCama)
@@ -171,18 +178,15 @@ public class HabitacionesDetallesCamasFrame extends javax.swing.JFrame {
         				.addComponent(jLabel1)
         				.addComponent(jLabel2))
         			.addGap(18)
-        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addComponent(jTextFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(jLabel3)
         			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(jScrollPaneCama, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
         			.addGap(41)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jButtonAgregarCama)
-        				.addComponent(jButtonVaciarCama)
+        				.addComponent(jButtonMostrar)
         				.addComponent(jButtonAsignarCama))
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
@@ -271,7 +275,7 @@ public class HabitacionesDetallesCamasFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgregarCama;
-    private javax.swing.JButton jButtonVaciarCama;
+    private javax.swing.JButton jButtonMostrar;
     private javax.swing.JButton jButtonAsignarCama;
     private javax.swing.JButton jButtonModNumCama;
     private javax.swing.JButton jButtonEliminarCama;
@@ -279,10 +283,8 @@ public class HabitacionesDetallesCamasFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPaneCama;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextFieldID;
     // End of variables declaration//GEN-END:variables
 }

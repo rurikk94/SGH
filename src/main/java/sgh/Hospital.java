@@ -454,7 +454,7 @@ public class Hospital {
     
     public boolean eliminarHabitacion(String id) throws SQLException
     {
-    	if (listaHabitacion.eliminarHabitación(id))
+    	if (listaHabitacion.eliminarHabitacion(id))
             {
                 modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Delete from cama where idHabitacion='"
                         + id+ "'"
@@ -472,16 +472,16 @@ public class Hospital {
                 }
                                
         } 
-    	//return(listaHabitacion.eliminarHabitación(id));
+    	//return(listaHabitacion.eliminarHabitacion(id));
     	return false;
     }
     
-    public Habitacion mostrarHabitacionPorPosicion(int posicion) //Muestra una habitación en la posición de la lista deseada
+    public Habitacion mostrarHabitacionPorPosicion(int posicion) //Muestra una habitacion en la posicion de la lista deseada
     {
     	return listaHabitacion.mostrarHabitacion(posicion);
     }
     
-    public Habitacion mostrarHabitacionPorId(String idHabitacion) //Muestra una habitación por la id indicada
+    public Habitacion mostrarHabitacionPorId(String idHabitacion) //Muestra una habitacion por la id indicada
     {
     	return listaHabitacion.mostrarHabitacion(idHabitacion);
     }

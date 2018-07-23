@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package main.java.gui;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import main.java.sgh.*;
 
 /**
@@ -206,9 +209,14 @@ public class PersonasListadoFrame extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         
-        MenuPrincipalFrame menuPrincipal = new MenuPrincipalFrame();
-        //muestra la ventana de carga
-        menuPrincipal.setVisible(true);
+        MenuPrincipalFrame menuPrincipal;
+            try {
+                menuPrincipal = new MenuPrincipalFrame(hospi);
+            //muestra la ventana de carga
+            menuPrincipal.setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(PersonasListadoFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 

@@ -29,10 +29,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 
 /**
  *
@@ -70,25 +70,24 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
 
         tipoGrupo = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
+        jLabel1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         jLabel2 = new javax.swing.JLabel();
+        jLabel2.setFont(new Font("Tahoma", Font.PLAIN, 15));
         jTextFieldID = new javax.swing.JTextField();
         jTextFieldEspecialidad = new javax.swing.JTextField();
         jRadioButtonConsulta = new javax.swing.JRadioButton();
         jRadioButtonHospitalizados = new javax.swing.JRadioButton();
         jTextFieldCapacidad = new javax.swing.JTextField();
-        jComboBoxRutMedico = new javax.swing.JComboBox<>();
-        jComboBoxRutEnfermero = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Agregar/Modificar");
+        jLabel1.setText("Agregar");
 
-        jLabel2.setText("Habitacion");
+        jLabel2.setText("Datos");
 
         jTextFieldID.setText("ID");
 
@@ -101,10 +100,6 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
         jRadioButtonHospitalizados.setText("Hospitalizados");
 
         jTextFieldCapacidad.setText("Capacidad");
-
-        jComboBoxRutMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rut Medico", "Item 3", "Item 4" }));
-
-        jComboBoxRutEnfermero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rut Enfermero", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -123,83 +118,87 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
         jLabel3.setText("id");
 
         jLabel4.setText("especialidad");
-
-        jButton3.setText("Modificar");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(7, 7, 7)
-                                        .addComponent(jLabel1))
-                                    .addComponent(jRadioButtonConsulta, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxRutMedico, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(55, 55, 55)
-                                        .addComponent(jLabel2))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton2)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jRadioButtonHospitalizados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jTextFieldCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jComboBoxRutEnfermero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                            .addComponent(jButton3)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextFieldEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(104, Short.MAX_VALUE))
+        
+        txtRut = new JTextField();
+        txtRut.setText("Rut");
+        txtRut.setColumns(10);
+        
+        JLabel lblRutEncargado = new JLabel("Rut Encargado");
+        GroupLayout groupLayout = new GroupLayout(getContentPane());
+        groupLayout.setHorizontalGroup(
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(160)
+        					.addComponent(jLabel1))
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(24)
+        					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(jLabel3)
+        						.addComponent(jLabel2)
+        						.addGroup(groupLayout.createSequentialGroup()
+        							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        								.addComponent(jTextFieldID, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+        								.addComponent(jButton1)
+        								.addComponent(jRadioButtonConsulta)
+        								.addComponent(jTextFieldCapacidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        							.addGap(3)
+        							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        								.addGroup(groupLayout.createSequentialGroup()
+        									.addGap(68)
+        									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        										.addComponent(jTextFieldEspecialidad, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+        										.addComponent(jRadioButtonHospitalizados, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+        										.addComponent(jLabel4)))
+        								.addGroup(groupLayout.createSequentialGroup()
+        									.addGap(88)
+        									.addComponent(jButton2))))
+        						.addGroup(groupLayout.createSequentialGroup()
+        							.addComponent(lblRutEncargado)
+        							.addPreferredGap(ComponentPlacement.RELATED)
+        							.addComponent(txtRut, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        					.addGap(20)))
+        			.addGap(85))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButtonConsulta)
-                    .addComponent(jRadioButtonHospitalizados))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxRutMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxRutEnfermero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addContainerGap(25, Short.MAX_VALUE))
+        groupLayout.setVerticalGroup(
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(13)
+        					.addComponent(jLabel1))
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(30)
+        					.addComponent(jLabel2)))
+        			.addGap(10)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jLabel3)
+        				.addComponent(jLabel4))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jTextFieldID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jTextFieldEspecialidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jRadioButtonConsulta)
+        				.addComponent(jRadioButtonHospitalizados))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(jTextFieldCapacidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(22)
+        					.addComponent(txtRut, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(lblRutEncargado)))
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jButton1)
+        				.addComponent(jButton2))
+        			.addGap(32))
         );
+        getContentPane().setLayout(groupLayout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -216,17 +215,14 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Rut run=null;
-    	MenuPrincipalFrame menu = null;
-            try {
-                menu = new MenuPrincipalFrame(hospi);
-            } catch (IOException ex) {
-                Logger.getLogger(HabitacionesAgregarModificarFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            
+            MenuPrincipalFrame menu=new MenuPrincipalFrame(hospi);
     	MensajeCorrecto msj=new MensajeCorrecto();
     	MensajeFallido msjFail=new MensajeFallido();
     	if(jRadioButtonConsulta.isSelected() && !jRadioButtonHospitalizados.isSelected())                                         
     	{
-    		run=new Rut(jComboBoxRutMedico.getItemAt(jComboBoxRutMedico.getSelectedIndex()));
+    		run=new Rut(txtRut.getText());
             try {
                 if(hospi.agregarHabitacionConsulta(jTextFieldID.getText(), jTextFieldEspecialidad.getText(),run))
                 {
@@ -245,7 +241,7 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
     	}
     	if(!jRadioButtonConsulta.isSelected() && jRadioButtonHospitalizados.isSelected())
     	{
-    		run=new Rut(jComboBoxRutEnfermero.getItemAt(jComboBoxRutEnfermero.getSelectedIndex()));
+    		run=new Rut(txtRut.getText());
             try {
                 if(hospi.agregarHabitacionHospitalizados(jTextFieldID.getText(), jTextFieldEspecialidad.getText(), run, Integer.parseInt((jTextFieldCapacidad.getText()))))
                 {
@@ -262,6 +258,8 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
                 Logger.getLogger(HabitacionesAgregarModificarFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
     	}
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
@@ -301,12 +299,9 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBoxRutEnfermero;
-    private javax.swing.JComboBox<String> jComboBoxRutMedico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -317,5 +312,5 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldEspecialidad;
     private javax.swing.JTextField jTextFieldID;
     private javax.swing.ButtonGroup tipoGrupo;
-    // End of variables declaration//GEN-END:variables
+    private JTextField txtRut;
 }

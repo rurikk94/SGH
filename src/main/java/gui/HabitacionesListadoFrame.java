@@ -16,13 +16,19 @@
  */
 package main.java.gui;
 
+import main.java.sgh.Consulta;
 import main.java.sgh.Hospital;
+import main.java.sgh.Hospitalizados;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import javax.swing.table.DefaultTableModel;
-import net.miginfocom.swing.MigLayout;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+//import net.miginfocom.swing.MigLayout;
 
 /**
  *
@@ -96,11 +102,24 @@ public class HabitacionesListadoFrame extends javax.swing.JFrame {
         		{null, null, null, null, null, null, null},
         		{null, null, null, null, null, null, null},
         		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		
         	},
         	new String[] {
         		"ID", "Disponible", "Especialidad", "Encargado Medico o Enfermero", "Camas Ocupadas", "Camas Total", "Tipo"
         	}
         ));
+        
+        
         jScrollPane1.setViewportView(jTableHabitaciones);
 
         jButtonAgregar.setText("Agregar");
@@ -137,17 +156,40 @@ public class HabitacionesListadoFrame extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
+        
+        btnMostrarDatos = new JButton("Mostrar Datos");
+        btnMostrarDatos.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		for(int i=0;i<hospi.cantidadHabitacionesConsulta()+hospi.cantidadHabitacionesHospitalizados();i++)
+                {
+                	jTableHabitaciones.setValueAt(hospi.mostrarHabitacionPorPosicion(i).getId(),i,0);
+                	jTableHabitaciones.setValueAt(hospi.mostrarHabitacionPorPosicion(i).getDisponibilidad(),i , 1);
+                	if(hospi.mostrarHabitacionPorPosicion(i) instanceof Hospitalizados)
+                	{
+                		jTableHabitaciones.setValueAt(((Hospitalizados)(hospi.mostrarHabitacionPorPosicion(i))).getRutEnfermero(),i, 2);
+                		jTableHabitaciones.setValueAt(((Hospitalizados)(hospi.mostrarHabitacionPorPosicion(i))).camasDisponibles(),i, 3);
+                	    jTableHabitaciones.setValueAt(((Hospitalizados)(hospi.mostrarHabitacionPorPosicion(i))).getCapacidad(),i, 4);
+                	}
+                	if(hospi.mostrarHabitacionPorPosicion(i) instanceof Consulta)
+                	{
+                		jTableHabitaciones.setValueAt(((Consulta)(hospi.mostrarHabitacionPorPosicion(i))).getRutMedico(), i, 2);
+                		jTableHabitaciones.setValueAt(1,i, 3);
+                		jTableHabitaciones.setValueAt(1,i, 4);
+                	}
+                	jTableHabitaciones.setValueAt(hospi.mostrarHabitacionPorPosicion(i).getEspecialidad(),i, 5);
+                }
+        	}
+        });
         GroupLayout groupLayout = new GroupLayout(getContentPane());
         groupLayout.setHorizontalGroup(
-        	groupLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+        	groupLayout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(groupLayout.createSequentialGroup()
         			.addContainerGap(24, Short.MAX_VALUE)
         			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
         				.addGroup(groupLayout.createSequentialGroup()
         					.addComponent(jButtonAgregar)
         					.addPreferredGap(ComponentPlacement.RELATED)
         					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        						.addComponent(jLabelTitulo)
         						.addGroup(groupLayout.createSequentialGroup()
         							.addGap(26)
         							.addComponent(jButtonModificar)
@@ -156,7 +198,12 @@ public class HabitacionesListadoFrame extends javax.swing.JFrame {
         							.addPreferredGap(ComponentPlacement.UNRELATED)
         							.addComponent(jButtonMostrar)
         							.addGap(12)
-        							.addComponent(jButton5, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))))
+        							.addComponent(jButton5, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
+        						.addGroup(groupLayout.createSequentialGroup()
+        							.addComponent(jLabelTitulo)
+        							.addPreferredGap(ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+        							.addComponent(btnMostrarDatos)
+        							.addGap(14))))
         				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 516, GroupLayout.PREFERRED_SIZE))
         			.addGap(84))
         );
@@ -164,8 +211,13 @@ public class HabitacionesListadoFrame extends javax.swing.JFrame {
         	groupLayout.createParallelGroup(Alignment.LEADING)
         		.addGroup(groupLayout.createSequentialGroup()
         			.addGap(26)
-        			.addComponent(jLabelTitulo)
-        			.addGap(18)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addComponent(jLabelTitulo)
+        					.addGap(18))
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addComponent(btnMostrarDatos)
+        					.addPreferredGap(ComponentPlacement.RELATED)))
         			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
         			.addGap(30)
         			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
@@ -201,10 +253,13 @@ public class HabitacionesListadoFrame extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        
-        MenuPrincipalFrame personas = new MenuPrincipalFrame();
+        try {
+            
+        MenuPrincipalFrame personas = new MenuPrincipalFrame(hospi);
         //muestra la ventana de carga
         personas.setVisible(true);
+        } catch (Exception e) {
+        }
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -257,7 +312,7 @@ public class HabitacionesListadoFrame extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton jButtonAgregar;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonEliminar;
@@ -267,5 +322,5 @@ public class HabitacionesListadoFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableHabitaciones;
     private javax.swing.ButtonGroup tipoHabitacion;
-    // End of variables declaration//GEN-END:variables
+    private JButton btnMostrarDatos;
 }

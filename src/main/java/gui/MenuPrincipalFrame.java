@@ -2,23 +2,21 @@ package main.java.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import main.java.sgh.Hospital;
+import javax.swing.JLabel;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import java.awt.Font;
+import java.io.IOException;
 
 public class MenuPrincipalFrame extends javax.swing.JFrame {
 
     private Hospital hospi;
 
-    public MenuPrincipalFrame() {
+    public MenuPrincipalFrame(Hospital hospi) throws IOException{
+    	setTitle("Menu");        
         initComponents();
-    }
-
-    public MenuPrincipalFrame(ActionEvent evt, Hospital hospi) {
-        initComponents();
-        setHospital(hospi);
-    }
-
-    public MenuPrincipalFrame(Hospital hospi) throws IOException {
+        this.hospi=hospi;
         
         System.out.println(hospi.personasToString());   //muestra los datos por consola
         System.out.println(hospi.habitacionesToString());   //muestra los datos por consola
@@ -26,9 +24,20 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         hospi.informePacientes();
         hospi.informeEnfermeros();
         
+    }
+
+    /**
+     * @wbp.parser.constructor
+     */
+    public MenuPrincipalFrame(ActionEvent evt, Hospital hospi) {
         initComponents();
         setHospital(hospi);
     }
+
+    //public MenuPrincipalFrame(Hospital hospi) {
+      //  initComponents();
+        //setHospital(hospi);
+    //}
 
     public void setHospital(Hospital hospi) {
         this.hospi = hospi;
@@ -40,6 +49,14 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 
         botonPaciente = new javax.swing.JButton();
         botonSala = new javax.swing.JButton();
+        botonSala.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		HabitacionesListadoFrame hab=new HabitacionesListadoFrame(hospi);
+        		hab.setVisible(true);
+        		hide();
+        		
+        	}
+        });
         botonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,11 +78,11 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         botonSala.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         botonSala.setForeground(new java.awt.Color(0, 51, 255));
         botonSala.setText("Habitaciones");
-        botonSala.addActionListener(new java.awt.event.ActionListener() {
+        /*botonSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonSalaActionPerformed(evt);
             }
-        });
+        });*/
 
         botonSalir.setBackground(new java.awt.Color(0, 0, 0));
         botonSalir.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -86,30 +103,39 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
                 botonSalirKeyPressed(evt);
             }
         });
+        
+        JLabel lblSgh = new JLabel("SGH");
+        lblSgh.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(botonSala, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(100, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(100)
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
+        				.addComponent(botonSala, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(botonPaciente, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        				.addComponent(botonSalir, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        			.addContainerGap(100, Short.MAX_VALUE))
+        		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        			.addContainerGap(148, Short.MAX_VALUE)
+        			.addComponent(lblSgh)
+        			.addGap(145))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(botonPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(botonSala, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                .addGap(27, 27, 27)
-                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(lblSgh)
+        			.addGap(24)
+        			.addComponent(botonPaciente, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+        			.addGap(34)
+        			.addComponent(botonSala, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+        			.addGap(27)
+        			.addComponent(botonSalir, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+        			.addGap(32))
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -155,12 +181,13 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_botonSalirKeyPressed
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException{
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+    	Hospital hospi=null;
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -197,16 +224,18 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
-            public void run() {
-                new MenuPrincipalFrame().setVisible(true);
+            public void run(){
+                try {                    
+                    new MenuPrincipalFrame(hospi).setVisible(true);
+                } catch (Exception e) {
+                }
             }
         });
     }
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton botonPaciente;
     private javax.swing.JButton botonSala;
     private javax.swing.JButton botonSalir;
-    // End of variables declaration//GEN-END:variables
 }

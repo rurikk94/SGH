@@ -160,11 +160,11 @@ public class HabitacionesEliminarFrame extends javax.swing.JFrame {
 		MensajeFallido msjFail=new MensajeFallido();
 		MensajeCorrecto msj=new MensajeCorrecto();
 		MenuPrincipalFrame menu = null;
-            try {
+                try {
+            
                 menu = new MenuPrincipalFrame(hospi);
-            } catch (IOException ex) {
-                Logger.getLogger(HabitacionesEliminarFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        } catch (Exception e) {
+        }
 		if(jTextFieldIDHabitacion.getText()!=null)
 		{
                     try {

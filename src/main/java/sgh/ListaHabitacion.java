@@ -60,7 +60,7 @@ public class ListaHabitacion
     }
     
     
-    public boolean eliminarHabitación(String id)
+    public boolean eliminarHabitacion(String id)
     {
     	for(int i=0; i<habitaciones.size(); i++)
     	{
@@ -390,6 +390,12 @@ public class ListaHabitacion
     	}
     	
     	return retorno;
+    }
+    public Cama mostrarCamaPorPosicion(int posicion,String id) //Muestra una habitación en la posición de la lista deseada
+    {
+    	if(mostrarHabitacion(id) instanceof Hospitalizados)
+    		return ((Hospitalizados)(mostrarHabitacion(id))).mostrarCamaPorPosicion(posicion);
+    	return null;
     }
     
     

@@ -233,4 +233,15 @@ public class ListaCama {
          }
          return r;
     }
+    public Cama mostrarCama(int indicador) //Metodo que retorna el objeto Habitacion en la posicion del indicador en la lista
+    {
+    	if(!(arrayCama.isEmpty()))
+    	{
+    		if(arrayCama.get(indicador) != null)
+    		{
+    			return (Cama)arrayCama.get(indicador);
+}
+    	}    	
+    	return null;
+    }
 }

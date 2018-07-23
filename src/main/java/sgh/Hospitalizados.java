@@ -137,5 +137,9 @@ public class Hospitalizados extends Habitacion
 		
 		return false;
 	}
+	public Cama mostrarCamaPorPosicion(int posicion) //Muestra una habitación en la posición de la lista deseada
+    {
+            return camas.mostrarCama(posicion);
+    }
 
 }

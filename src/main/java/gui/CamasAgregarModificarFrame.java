@@ -26,10 +26,10 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Checkbox;
-import java.io.IOException;
 
 /**
  *
@@ -58,7 +58,7 @@ public class CamasAgregarModificarFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(){
 
         jLabel1 = new javax.swing.JLabel();
         jLabel1.setFont(new Font("Times New Roman", Font.PLAIN, 25));
@@ -70,9 +70,18 @@ public class CamasAgregarModificarFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButtonAgregar = new javax.swing.JButton();
-        jButtonAgregar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
+        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
+        	public void actionPerformed(java.awt.event.ActionEvent e) {
         		
+					try {
+						actionPerformedbuttonAgregar(e);
+					} catch (NumberFormatException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
         	}
         });
         jButton3 = new javax.swing.JButton();
@@ -184,33 +193,43 @@ public class CamasAgregarModificarFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void actionPerformed(ActionEvent e) throws NumberFormatException, SQLException, IOException {
+    public void actionPerformedbuttonAgregar(java.awt.event.ActionEvent e) throws NumberFormatException, IOException {
 		MenuPrincipalFrame menu=new MenuPrincipalFrame(hospi);
 		MensajeCorrecto msj=new MensajeCorrecto();
 		MensajeFallido msjFail=new MensajeFallido();
 		if(!Consulta.getState() && Hospitalizados.getState())
 		{
-			if(hospi.agregarCamaHospitalizados(jTextFieldIDHabitacion.getText(), Integer.parseInt(jTextFieldNumCama.getText()), jTextFieldEspecialidad.getText(), null))
-			{
-				msj.setVisible(true);
-				menu.setVisible(true);
-				this.dispose();
-			}
-			else
-			{
-				msjFail.setVisible(true);
+			try {
+				if(hospi.agregarCamaHospitalizados(jTextFieldIDHabitacion.getText(), Integer.parseInt(jTextFieldNumCama.getText()), jTextFieldEspecialidad.getText(), null))
+				{
+					msj.setVisible(true);
+					menu.setVisible(true);
+					this.dispose();
+				}
+				else
+				{
+					msjFail.setVisible(true);
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		}
 		if(Consulta.getState() && !Hospitalizados.getState())
 		{
-			if(hospi.modificarCamillaConsulta(jTextFieldIDHabitacion.getText(), Integer.parseInt(jTextFieldNumCama.getText()), true, jTextFieldEspecialidad.getText()))
-			{
-				msj.setVisible(true);
-				menu.setVisible(true);
-				this.dispose();
+			try {
+				if(hospi.modificarCamillaConsulta(jTextFieldIDHabitacion.getText(), Integer.parseInt(jTextFieldNumCama.getText()), true, jTextFieldEspecialidad.getText()))
+				{
+					msj.setVisible(true);
+					menu.setVisible(true);
+					this.dispose();
+				}
+				else
+					msjFail.setVisible(true);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			else
-				msjFail.setVisible(true);
 		}
 	}
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
