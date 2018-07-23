@@ -334,4 +334,33 @@ public class ListaPersona {
          }
  
      }
+    public int contarPersonas()
+    {
+    	int contador = 0;
+    	
+    	if(!(arrayPersonas.isEmpty()))
+    	{
+    		for(int i=0; i<arrayPersonas.size(); i++)
+    		{
+    			if(arrayPersonas.get(i) != null)
+    			{
+    					contador ++;	
+    			}
+    		}
+    	}
+    	
+    	return contador;
+    }
+    public Persona mostrarPersona(int indicador)
+    {
+    	if(!(arrayPersonas.isEmpty()))
+    	{
+    		if(arrayPersonas.get(indicador) != null)
+    		{
+    			return (Persona)arrayPersonas.get(indicador);
+    		}
+    	}
+    	
+    	return null;
+    }
 }

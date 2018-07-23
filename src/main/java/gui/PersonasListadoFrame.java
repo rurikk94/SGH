@@ -19,6 +19,12 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.java.sgh.*;
+import javax.swing.JButton;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -49,8 +55,6 @@ public class PersonasListadoFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -63,20 +67,38 @@ public class PersonasListadoFrame extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+            	{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
+        		{null, null, null, null, null, null, null},
             },
             new String [] {
                 "Rut", "Nombre", "Apellidos", "Tipo"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-
-        jLabel2.setText("Cantidad de Personas");
-
-        jLabel3.setText("cant_perso");
 
         jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -112,60 +134,89 @@ public class PersonasListadoFrame extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
+        
+        btnMostrarDatos = new JButton();
+        btnMostrarDatos.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) 
+        	{
+        		for(int i=0;i<hospi.cantidadPersonas();i++)
+                {
+        			if(hospi.mostrarPersona(i) instanceof Medico)
+        			{
+        				jTable1.setValueAt(hospi.mostrarPersona(i).getRut(),i,0);
+        				jTable1.setValueAt(hospi.mostrarPersona(i).getNombres(),i , 1);
+        				jTable1.setValueAt(hospi.mostrarPersona(i).getApellidos(),i, 2);
+        				jTable1.setValueAt("Medico", i, 3);
+        			}
+        			if(hospi.mostrarPersona(i) instanceof Paciente)
+        			{
+        				jTable1.setValueAt(hospi.mostrarPersona(i).getRut(),i,0);
+        				jTable1.setValueAt(hospi.mostrarPersona(i).getNombres(),i , 1);
+        				jTable1.setValueAt(hospi.mostrarPersona(i).getApellidos(),i, 2);
+        				jTable1.setValueAt("Paciente", i, 3);
+        			}
+        			if(hospi.mostrarPersona(i) instanceof Enfermero)
+        			{
+        				jTable1.setValueAt(hospi.mostrarPersona(i).getRut(),i,0);
+        				jTable1.setValueAt(hospi.mostrarPersona(i).getNombres(),i , 1);
+        				jTable1.setValueAt(hospi.mostrarPersona(i).getApellidos(),i, 2);
+        				jTable1.setValueAt("Enfermero", i, 3);
+        			}
+        		}	
+        	}
+        });
+        btnMostrarDatos.setText("Mostrar datos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(264, 264, 264)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton5))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(79, 79, 79)
-                                .addComponent(jButton2)
-                                .addGap(94, 94, 94)
-                                .addComponent(jButton3)))))
-                .addContainerGap(104, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(264)
+        					.addComponent(jLabel1))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(32)
+        					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 681, GroupLayout.PREFERRED_SIZE)))
+        			.addContainerGap(36, GroupLayout.PREFERRED_SIZE))
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(130)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(jButton4)
+        					.addGap(72)
+        					.addComponent(btnMostrarDatos)
+        					.addPreferredGap(ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+        					.addComponent(jButton5)
+        					.addGap(105))
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(jButton1)
+        					.addGap(79)
+        					.addComponent(jButton2)
+        					.addGap(94)
+        					.addComponent(jButton3)
+        					.addContainerGap(195, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3)))
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addContainerGap(102, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(23)
+        			.addComponent(jLabel1)
+        			.addGap(33)
+        			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
+        			.addGap(65)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jButton1)
+        				.addComponent(jButton2)
+        				.addComponent(jButton3))
+        			.addGap(18)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jButton4)
+        				.addComponent(jButton5)
+        				.addComponent(btnMostrarDatos))
+        			.addContainerGap(102, Short.MAX_VALUE))
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -263,9 +314,7 @@ public class PersonasListadoFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    // End of variables declaration//GEN-END:variables
+    private JButton btnMostrarDatos;
 }

@@ -295,7 +295,7 @@ public class Hospital {
                         + ");");
             }
             if (p instanceof Enfermero) {
-                return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Insert into pacientes values ("
+                return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Insert into enfermeros values ("
                         + p.getRutNum() + ",'"
                         + p.getDV() + "','"
                         + p.getNombres() + "','"
@@ -306,7 +306,7 @@ public class Hospital {
                         + ");");
             }
             if (p instanceof Medico) {
-                return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Insert into pacientes  values ("
+                return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Insert into medicos  values ("
                         + p.getRutNum() + ",'"
                         + p.getDV() + "','"
                         + p.getNombres() + "','"
@@ -484,6 +484,10 @@ public class Hospital {
     public Habitacion mostrarHabitacionPorId(String idHabitacion) //Muestra una habitacion por la id indicada
     {
     	return listaHabitacion.mostrarHabitacion(idHabitacion);
+    }
+    public Persona mostrarPersona(int posicion) 
+    {
+    	return listaPersona.mostrarPersona(posicion);
     }
     
     public int cantidadHabitacionesHospitalizados()
@@ -708,4 +712,9 @@ public class Hospital {
     {
     	return listaPersona.obtenerMedico(medicos);
     }
+    public int cantidadPersonas()
+    {
+    	return listaPersona.contarPersonas();
+    }
+    
 }
