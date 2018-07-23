@@ -46,6 +46,8 @@ public class CamasAgregarModificarFrame extends javax.swing.JFrame {
      */
 	private Hospital hospi;
     public CamasAgregarModificarFrame(Hospital hospi) {
+    	Hospitalizados.setState(true);
+    	Consulta.setState(true);
     	setTitle("Agregar cama");
         initComponents();
         this.hospi=hospi;
@@ -72,16 +74,12 @@ public class CamasAgregarModificarFrame extends javax.swing.JFrame {
         jButtonAgregar = new javax.swing.JButton();
         jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
         	public void actionPerformed(java.awt.event.ActionEvent e) {
-        		
-					try {
-						actionPerformedbuttonAgregar(e);
-					} catch (NumberFormatException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+						try {
+							actionPerformedbuttonAgregar(e);
+						} catch (NumberFormatException | IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
         	}
         });
         jButton3 = new javax.swing.JButton();

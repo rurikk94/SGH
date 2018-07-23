@@ -166,17 +166,19 @@ public class HabitacionesListadoFrame extends javax.swing.JFrame {
                 	jTableHabitaciones.setValueAt(hospi.mostrarHabitacionPorPosicion(i).getDisponibilidad(),i , 1);
                 	if(hospi.mostrarHabitacionPorPosicion(i) instanceof Hospitalizados)
                 	{
-                		jTableHabitaciones.setValueAt(((Hospitalizados)(hospi.mostrarHabitacionPorPosicion(i))).getRutEnfermero(),i, 2);
-                		jTableHabitaciones.setValueAt(((Hospitalizados)(hospi.mostrarHabitacionPorPosicion(i))).camasDisponibles(),i, 3);
-                	    jTableHabitaciones.setValueAt(((Hospitalizados)(hospi.mostrarHabitacionPorPosicion(i))).getCapacidad(),i, 4);
+                		jTableHabitaciones.setValueAt(((Hospitalizados)(hospi.mostrarHabitacionPorPosicion(i))).getRutEnfermero(),i, 3);
+                		jTableHabitaciones.setValueAt(((Hospitalizados)(hospi.mostrarHabitacionPorPosicion(i))).camasDisponibles(),i, 4);
+                	    jTableHabitaciones.setValueAt(((Hospitalizados)(hospi.mostrarHabitacionPorPosicion(i))).getCapacidad(),i, 5);
+                	    jTableHabitaciones.setValueAt("Hospitalizados",i, 6);
                 	}
                 	if(hospi.mostrarHabitacionPorPosicion(i) instanceof Consulta)
                 	{
-                		jTableHabitaciones.setValueAt(((Consulta)(hospi.mostrarHabitacionPorPosicion(i))).getRutMedico(), i, 2);
-                		jTableHabitaciones.setValueAt(1,i, 3);
+                		jTableHabitaciones.setValueAt(((Consulta)(hospi.mostrarHabitacionPorPosicion(i))).getRutMedico(), i, 3);
                 		jTableHabitaciones.setValueAt(1,i, 4);
+                		jTableHabitaciones.setValueAt(1,i, 5);
+                		jTableHabitaciones.setValueAt("Consulta",i, 6);
                 	}
-                	jTableHabitaciones.setValueAt(hospi.mostrarHabitacionPorPosicion(i).getEspecialidad(),i, 5);
+                	jTableHabitaciones.setValueAt(hospi.mostrarHabitacionPorPosicion(i).getEspecialidad(),i, 2);
                 }
         	}
         });

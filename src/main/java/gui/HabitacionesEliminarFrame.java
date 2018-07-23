@@ -66,7 +66,7 @@ public class HabitacionesEliminarFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Consulta/Hospitalizados");
 
-        jTextFieldIDHabitacion.setText("jTextField1");
+        jTextFieldIDHabitacion.setText("IDHabitacion");
 
         jLabel3.setText("ID");
 
