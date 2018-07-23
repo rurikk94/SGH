@@ -30,7 +30,7 @@ public class Consulta extends Habitacion
 	public boolean ocuparCamilla(Rut rutPaciente)
 	{
 		camilla.ocuparCama(rutPaciente);
-                this.setDisponibilidad(false);
+        this.setDisponibilidad(false);
 		return (camilla.ocuparCama(rutPaciente));
 	}
 	
@@ -45,12 +45,11 @@ public class Consulta extends Habitacion
 		return false;
 	}
 	
-	public boolean modificarCamilla(int numeroCama, boolean disponibilidad, String especialidad)
+	public void modificarCamilla(int numeroCama, boolean disponibilidad, String especialidad)
 	{
 		camilla.setNumeroCama(numeroCama);
 		camilla.setCamaDisponible(disponibilidad);
 		camilla.setEspecialidad(especialidad);
-                return true;
 	}
 	
 	public boolean existeCama(int numeroCama)
@@ -60,6 +59,18 @@ public class Consulta extends Habitacion
 		
 		else
 			return false;
+	}
+	
+	public boolean eliminarMedico(Rut rutMedico)
+	{
+		if(this.rutMedico.esIgual(rutMedico))
+		{
+			this.rutMedico.setNum(0);
+			this.rutMedico.setDv(' ');
+			return true;
+		}
+		
+		return false;
 	}
 
         @Override

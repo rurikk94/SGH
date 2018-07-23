@@ -120,6 +120,18 @@ public class Hospitalizados extends Habitacion
 		
 		return false;
 	}
+	
+	public boolean eliminarEnfermero(Rut rutEnfermero)
+	{
+		if(this.rutEnfermero.esIgual(rutEnfermero))
+		{
+			this.rutEnfermero.setNum(0);
+			this.rutEnfermero.setDv(' ');
+			return true;
+		}
+		
+		return false;
+	}
         
         public String toString(){
             return "Hospitalizado: " + getId() + " " + getDisponibilidad()+ " " + getEspecialidad() + "Medico: " + rutEnfermero.toString() + "\n Camas: " + camas.toString();
