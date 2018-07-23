@@ -592,4 +592,15 @@ public class Hospital {
         return false;
 //    	return(listaHabitacion.ocuparCamillaConsulta(idHabitacion, rutPaciente));
     }
+	
+	
+    public boolean eliminarMedicoConsulta(Rut rutMedico)
+    {
+    	return (listaHabitacion.eliminarMedicoConsulta(rutMedico));
+    }
+    
+    public boolean eliminarEnfermeroHospitalizados(Rut rutEnfermero)
+    {
+    	return(listaHabitacion.eliminarEnfermeroHospitalizados(rutEnfermero));
+    }
 }

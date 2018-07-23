@@ -66,4 +66,17 @@ public class Consulta extends Habitacion
         public String toString(){
             return ("Consulta: " + getId() + " " + getDisponibilidad()+ " " + getEspecialidad() + "Medico: " + rutMedico.toString() + "Camilla: " + camilla.toString());
         }
+		
+		
+	public boolean eliminarMedico(Rut rutMedico)
+	{
+		if(this.rutMedico.esIgual(rutMedico))
+		{
+			this.rutMedico.setNum(0);
+			this.rutMedico.setDv(' ');
+			return true;
+		}
+		
+		return false;
+	}
 }
