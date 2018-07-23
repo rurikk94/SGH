@@ -35,7 +35,7 @@ public class LoginFrame extends javax.swing.JFrame {
     public LoginFrame(Hospital hospi) throws SQLException {
         initComponents();
         this.hospi = hospi;
-        jPanel4.hide();        
+        jPanel4.setVisible(false);        
         txt_url.setText("localhost");
         txt_bd.setText("rurikkcl_SGH");
         txt_user.setText("root");

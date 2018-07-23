@@ -50,7 +50,9 @@ public class Consulta extends Habitacion
 		camilla.setNumeroCama(numeroCama);
 		camilla.setCamaDisponible(disponibilidad);
 		camilla.setEspecialidad(especialidad);
-                return true;
+		if(camilla.getNumeroCama()==numeroCama)
+                    return true;
+                return false;
 	}
 	
 	public boolean existeCama(int numeroCama)

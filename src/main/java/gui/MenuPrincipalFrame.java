@@ -131,7 +131,7 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
 
     private void botonSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalaActionPerformed
 
-        HabitacionesListadoFrame habitaciones = new HabitacionesListadoFrame();
+        HabitacionesListadoFrame habitaciones = new HabitacionesListadoFrame(hospi);
         //muestra la ventana de carga
         habitaciones.setVisible(true);
         this.dispose();

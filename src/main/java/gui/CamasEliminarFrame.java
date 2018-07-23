@@ -15,6 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package main.java.gui;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+import main.java.sgh.Hospital;
+
+import java.awt.Font;
+import javax.swing.JLabel;
+import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 /**
  *
@@ -23,10 +33,17 @@ package main.java.gui;
 public class CamasEliminarFrame extends javax.swing.JFrame {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * Creates new form CamasEliminarFrame
      */
-    public CamasEliminarFrame() {
+	private Hospital hospi;
+    public CamasEliminarFrame(Hospital hospi) {
+    	setTitle("Eliminar Cama");
         initComponents();
+        this.hospi=hospi;
     }
 
     /**
@@ -39,15 +56,17 @@ public class CamasEliminarFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jLabel1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        jTextFieldIdCama = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Eliminar Cama");
 
-        jTextField1.setText("numeroCama");
+        jTextFieldIdCama.setText("IDCama");
 
         jButton1.setText("Eliminar");
 
@@ -57,43 +76,57 @@ public class CamasEliminarFrame extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton2))
-                .addContainerGap(189, Short.MAX_VALUE))
+        
+        lblIdCama = new JLabel("Id Cama:");
+        GroupLayout groupLayout = new GroupLayout(getContentPane());
+        groupLayout.setHorizontalGroup(
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addContainerGap()
+        					.addComponent(jButton2)
+        					.addGap(45)
+        					.addComponent(jButton1))
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(28)
+        					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(jLabel1)
+        						.addGroup(groupLayout.createSequentialGroup()
+        							.addComponent(lblIdCama)
+        							.addPreferredGap(ComponentPlacement.RELATED)
+        							.addComponent(jTextFieldIdCama, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
+        			.addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(33, 33, 33)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addContainerGap(113, Short.MAX_VALUE))
+        groupLayout.setVerticalGroup(
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addGap(24)
+        			.addComponent(jLabel1)
+        			.addGap(32)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jTextFieldIdCama, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblIdCama))
+        			.addGap(49)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jButton2)
+        				.addComponent(jButton1))
+        			.addContainerGap())
         );
+        getContentPane().setLayout(groupLayout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void actionPerformed(ActionEvent e) throws SQLException {
+    	if(jTextFieldIdCama.getText()!=null)
+    	{
+    		hospi.eliminarCamaHospitalizados(Integer.parseInt(jTextFieldIdCama.getText()));
+    	}
+	}
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        HabitacionesDetallesCamasFrame personas = new HabitacionesDetallesCamasFrame();
+        HabitacionesDetallesCamasFrame personas = new HabitacionesDetallesCamasFrame(hospi);
         //muestra la ventana de carga
         personas.setVisible(true);
         this.dispose();
@@ -108,6 +141,7 @@ public class CamasEliminarFrame extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+    	Hospital hospi=null;
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -129,7 +163,7 @@ public class CamasEliminarFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CamasEliminarFrame().setVisible(true);
+                new CamasEliminarFrame(hospi).setVisible(true);
             }
         });
     }
@@ -138,6 +172,7 @@ public class CamasEliminarFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldIdCama;
+    private JLabel lblIdCama;
     // End of variables declaration//GEN-END:variables
 }

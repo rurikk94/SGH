@@ -16,6 +16,23 @@
  */
 package main.java.gui;
 
+import main.java.sgh.Hospital;
+import main.java.utiles.Rut;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Rurikk
@@ -23,10 +40,22 @@ package main.java.gui;
 public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * Creates new form HabitacionesAgregarModificarFrame
      */
-    public HabitacionesAgregarModificarFrame() {
+	private Hospital hospi;
+    public HabitacionesAgregarModificarFrame(Hospital hospi) {
         initComponents();
+        this.hospi=hospi;
+    }
+    public HabitacionesAgregarModificarFrame()
+    {
+    	setTitle("Datos");
+    	initComponents();
+    	this.hospi=null;
     }
 
     /**
@@ -41,13 +70,13 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
         tipoGrupo = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jTextField3 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jTextFieldID = new javax.swing.JTextField();
+        jTextFieldEspecialidad = new javax.swing.JTextField();
+        jRadioButtonConsulta = new javax.swing.JRadioButton();
+        jRadioButtonHospitalizados = new javax.swing.JRadioButton();
+        jTextFieldCapacidad = new javax.swing.JTextField();
+        jComboBoxRutMedico = new javax.swing.JComboBox<>();
+        jComboBoxRutEnfermero = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -60,21 +89,21 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Habitacion");
 
-        jTextField1.setText("ID");
+        jTextFieldID.setText("ID");
 
-        jTextField2.setText("Especialidad");
+        jTextFieldEspecialidad.setText("Especialidad");
 
-        tipoGrupo.add(jRadioButton1);
-        jRadioButton1.setText("Consulta");
+        tipoGrupo.add(jRadioButtonConsulta);
+        jRadioButtonConsulta.setText("Consulta");
 
-        tipoGrupo.add(jRadioButton2);
-        jRadioButton2.setText("Hospitalizados");
+        tipoGrupo.add(jRadioButtonHospitalizados);
+        jRadioButtonHospitalizados.setText("Hospitalizados");
 
-        jTextField3.setText("Capacidad");
+        jTextFieldCapacidad.setText("Capacidad");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rut Medico", "Item 3", "Item 4" }));
+        jComboBoxRutMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rut Medico", "Item 3", "Item 4" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rut Enfermero", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxRutEnfermero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rut Enfermero", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -111,8 +140,8 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(7, 7, 7)
                                         .addComponent(jLabel1))
-                                    .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jRadioButtonConsulta, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxRutMedico, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(55, 55, 55)
@@ -122,19 +151,19 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jButton2)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                                .addComponent(jRadioButtonHospitalizados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jTextFieldCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jComboBoxRutEnfermero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                             .addComponent(jButton3)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextFieldEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(104, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -150,18 +179,18 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jRadioButtonConsulta)
+                    .addComponent(jRadioButtonHospitalizados))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxRutMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxRutEnfermero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -177,7 +206,7 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        HabitacionesListadoFrame personas = new HabitacionesListadoFrame();
+        HabitacionesListadoFrame personas = new HabitacionesListadoFrame(hospi);
         //muestra la ventana de carga
         personas.setVisible(true);
         this.dispose();
@@ -185,7 +214,51 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Rut run=null;
+    	MenuPrincipalFrame menu=new MenuPrincipalFrame(hospi);
+    	MensajeCorrecto msj=new MensajeCorrecto();
+    	MensajeFallido msjFail=new MensajeFallido();
+    	if(jRadioButtonConsulta.isSelected() && !jRadioButtonHospitalizados.isSelected())                                         
+    	{
+    		run=new Rut(jComboBoxRutMedico.getItemAt(jComboBoxRutMedico.getSelectedIndex()));
+            try {
+                if(hospi.agregarHabitacionConsulta(jTextFieldID.getText(), jTextFieldEspecialidad.getText(),run))
+                {
+                    msj.setVisible(true);
+                    menu.setVisible(true);
+                    this.dispose();
+                }
+                else
+                {
+                    msjFail.setVisible(true);
+                    this.dispose();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(HabitacionesAgregarModificarFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    	}
+    	if(!jRadioButtonConsulta.isSelected() && jRadioButtonHospitalizados.isSelected())
+    	{
+    		run=new Rut(jComboBoxRutEnfermero.getItemAt(jComboBoxRutEnfermero.getSelectedIndex()));
+            try {
+                if(hospi.agregarHabitacionHospitalizados(jTextFieldID.getText(), jTextFieldEspecialidad.getText(), run, Integer.parseInt((jTextFieldCapacidad.getText()))))
+                {
+                    msj.setVisible(true);
+                    menu.setVisible(true);
+                    this.dispose();
+                }
+                else
+                {
+                    msjFail.setVisible(true);
+                    this.dispose();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(HabitacionesAgregarModificarFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    	}
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    
 
     /**
      * @param args the command line arguments
@@ -226,17 +299,17 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBoxRutEnfermero;
+    private javax.swing.JComboBox<String> jComboBoxRutMedico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JRadioButton jRadioButtonConsulta;
+    private javax.swing.JRadioButton jRadioButtonHospitalizados;
+    private javax.swing.JTextField jTextFieldCapacidad;
+    private javax.swing.JTextField jTextFieldEspecialidad;
+    private javax.swing.JTextField jTextFieldID;
     private javax.swing.ButtonGroup tipoGrupo;
     // End of variables declaration//GEN-END:variables
 }

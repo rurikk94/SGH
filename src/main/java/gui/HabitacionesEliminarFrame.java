@@ -15,6 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package main.java.gui;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+import main.java.sgh.Hospital;
+
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 /**
  *
@@ -25,8 +35,10 @@ public class HabitacionesEliminarFrame extends javax.swing.JFrame {
     /**
      * Creates new form HabitacionesEliminarFrame
      */
-    public HabitacionesEliminarFrame() {
+	private Hospital hospi;
+    public HabitacionesEliminarFrame(Hospital hospi) {
         initComponents();
+        this.hospi=hospi;
     }
 
     /**
@@ -37,82 +49,90 @@ public class HabitacionesEliminarFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jLabelTitulo = new javax.swing.JLabel();
+        jLabelTitulo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        jTextFieldIDHabitacion = new javax.swing.JTextField();
+        jLabelID = new javax.swing.JLabel();
+        jButtonEliminar = new javax.swing.JButton();
+        	
+        jButtonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Eliminar");
+        jLabelTitulo.setText("Consulta/Hospitalizados");
 
-        jLabel2.setText("Consulta/Hospitalizados");
+        jTextFieldIDHabitacion.setText("IDHabitacion");
 
-        jTextField1.setText("jTextField1");
+        jLabelID.setText("ID:");
 
-        jLabel3.setText("ID");
+        jButtonEliminar.setText("Eliminar");
 
-        jButton1.setText("Eliminar");
-
-        jButton2.setText("Volver");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addComponent(jLabel3))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(jButton2)))))
-                .addContainerGap(148, Short.MAX_VALUE))
+        GroupLayout groupLayout = new GroupLayout(getContentPane());
+        groupLayout.setHorizontalGroup(
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+        					.addContainerGap()
+        					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(jLabelID)
+        						.addComponent(jButtonVolver))
+        					.addPreferredGap(ComponentPlacement.UNRELATED)
+        					.addComponent(jTextFieldIDHabitacion, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
+        				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+        					.addGap(44)
+        					.addComponent(jLabelTitulo)))
+        			.addGap(1)
+        			.addComponent(jButtonEliminar)
+        			.addGap(22))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(122, Short.MAX_VALUE))
+        groupLayout.setVerticalGroup(
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addGap(24)
+        			.addComponent(jLabelTitulo)
+        			.addGap(41)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jLabelID)
+        				.addComponent(jTextFieldIDHabitacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jButtonVolver)
+        				.addComponent(jButtonEliminar))
+        			.addContainerGap())
         );
+        getContentPane().setLayout(groupLayout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void actionPerformed(ActionEvent e) throws SQLException {
+		MensajeFallido msjFail=new MensajeFallido();
+		MensajeCorrecto msj=new MensajeCorrecto();
+		MenuPrincipalFrame menu=new MenuPrincipalFrame(hospi);
+		if(jTextFieldIDHabitacion.getText()!=null)
+		{
+			if(hospi.eliminarHabitacion(jTextFieldIDHabitacion.getText()))
+			{
+				msj.setVisible(true);
+				menu.setVisible(true);
+				this.dispose();		
+			}
+			else
+			{
+				msjFail.setVisible(true);
+			}
+		}
+	}
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        HabitacionesListadoFrame personas = new HabitacionesListadoFrame();
+        HabitacionesListadoFrame personas = new HabitacionesListadoFrame(hospi);
         //muestra la ventana de carga
         personas.setVisible(true);
         this.dispose();
@@ -127,6 +147,7 @@ public class HabitacionesEliminarFrame extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+    	Hospital hospi=null;
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -148,17 +169,16 @@ public class HabitacionesEliminarFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HabitacionesEliminarFrame().setVisible(true);
+                new HabitacionesEliminarFrame(hospi).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jButtonEliminar;
+    private javax.swing.JButton jButtonVolver;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JLabel jLabelID;
+    private javax.swing.JTextField jTextFieldIDHabitacion;
     // End of variables declaration//GEN-END:variables
 }

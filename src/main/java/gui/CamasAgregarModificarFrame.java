@@ -16,6 +16,20 @@
  */
 package main.java.gui;
 
+import main.java.sgh.Hospital;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JSeparator;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+import java.awt.Checkbox;
+
 /**
  *
  * @author Rurikk
@@ -23,10 +37,17 @@ package main.java.gui;
 public class CamasAgregarModificarFrame extends javax.swing.JFrame {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * Creates new form CamasAgregarModificarFrame
      */
-    public CamasAgregarModificarFrame() {
+	private Hospital hospi;
+    public CamasAgregarModificarFrame(Hospital hospi) {
+    	setTitle("Agregar cama");
         initComponents();
+        this.hospi=hospi;
     }
 
     /**
@@ -39,32 +60,37 @@ public class CamasAgregarModificarFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel1.setFont(new Font("Times New Roman", Font.PLAIN, 25));
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jLabel2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        jTextFieldNumCama = new javax.swing.JTextField();
+        jTextFieldNumCama.setHorizontalAlignment(SwingConstants.RIGHT);
+        jTextFieldEspecialidad = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonAgregar = new javax.swing.JButton();
+        jButtonAgregar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        	}
+        });
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Agregar/Modificar");
+        jLabel1.setText("Agregar Cama");
 
-        jLabel2.setText("Camas");
+        jLabel2.setText("Datos");
 
-        jTextField1.setText("Numero Cama");
+        jTextFieldNumCama.setText("Numero Cama");
 
-        jTextField2.setText("Especialidad");
+        jTextFieldEspecialidad.setText("Especialidad");
 
         jLabel3.setText("Numero Cama");
 
         jLabel4.setText("Especialidad");
 
-        jButton1.setText("Agregar");
-
-        jButton2.setText("Modificar");
+        jButtonAgregar.setText("Agregar");
 
         jButton3.setText("Volver");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -72,71 +98,124 @@ public class CamasAgregarModificarFrame extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        
+        lblIdHabitacion = new JLabel("Id Habitacion");
+        
+        jTextFieldIDHabitacion = new JTextField();
+        jTextFieldIDHabitacion.setText("Habitacion");
+        jTextFieldIDHabitacion.setColumns(10);
+        
+        lblIdCama = new JLabel("Id Cama");
+        
+        jTextFieldCama = new JTextField();
+        jTextFieldCama.setText("Cama");
+        jTextFieldCama.setColumns(10);
+        
+        JSeparator separator = new JSeparator();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2)
-                                    .addComponent(jButton1))))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(144, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(21)
+        			.addComponent(jButton3)
+        			.addPreferredGap(ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
+        			.addComponent(jButtonAgregar)
+        			.addGap(25))
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(150)
+        			.addComponent(jLabel1)
+        			.addContainerGap(163, Short.MAX_VALUE))
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(89)
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        					.addGroup(layout.createSequentialGroup()
+        						.addComponent(jLabel2)
+        						.addPreferredGap(ComponentPlacement.RELATED)
+        						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE))
+        					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(lblIdCama)
+        						.addComponent(jLabel3)))
+        				.addComponent(lblIdHabitacion)
+        				.addComponent(jLabel4))
+        			.addGap(18)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+        				.addComponent(jTextFieldCama, 0, 0, Short.MAX_VALUE)
+        				.addComponent(jTextFieldIDHabitacion, 0, 0, Short.MAX_VALUE)
+        				.addComponent(jTextFieldNumCama, 0, 0, Short.MAX_VALUE)
+        				.addComponent(jTextFieldEspecialidad))
+        			.addContainerGap(193, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jButton3)))
-                .addContainerGap(50, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(jLabel1)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(jLabel2))
+        				.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(18)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblIdCama)
+        				.addComponent(jTextFieldCama, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(6)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jLabel3)
+        				.addComponent(jTextFieldNumCama, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jTextFieldEspecialidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jLabel4))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addComponent(lblIdHabitacion)
+        				.addComponent(jTextFieldIDHabitacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(79)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jButton3)
+        				.addComponent(jButtonAgregar))
+        			.addContainerGap())
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void actionPerformed(ActionEvent e) throws NumberFormatException, SQLException {
+		MenuPrincipalFrame menu=new MenuPrincipalFrame(hospi);
+		MensajeCorrecto msj=new MensajeCorrecto();
+		MensajeFallido msjFail=new MensajeFallido();
+		if(!Consulta.getState() && Hospitalizados.getState())
+		{
+			if(hospi.agregarCamaHospitalizados(jTextFieldIDHabitacion.getText(), Integer.parseInt(jTextFieldNumCama.getText()), jTextFieldEspecialidad.getText(), null))
+			{
+				msj.setVisible(true);
+				menu.setVisible(true);
+				this.dispose();
+			}
+			else
+			{
+				msjFail.setVisible(true);
+			}
+		}
+		if(Consulta.getState() && !Hospitalizados.getState())
+		{
+			if(hospi.modificarCamillaConsulta(jTextFieldIDHabitacion.getText(), Integer.parseInt(jTextFieldNumCama.getText()), true, jTextFieldEspecialidad.getText()))
+			{
+				msj.setVisible(true);
+				menu.setVisible(true);
+				this.dispose();
+			}
+			else
+				msjFail.setVisible(true);
+		}
+	}
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-        HabitacionesListadoFrame personas = new HabitacionesListadoFrame();
+        HabitacionesListadoFrame personas = new HabitacionesListadoFrame(hospi);
         //muestra la ventana de carga
         personas.setVisible(true);
         this.dispose();
@@ -151,6 +230,7 @@ public class CamasAgregarModificarFrame extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+    	Hospital hospi=null;
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -172,20 +252,30 @@ public class CamasAgregarModificarFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CamasAgregarModificarFrame().setVisible(true);
+                new CamasAgregarModificarFrame(hospi).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonAgregar;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    // End of variables declaration//GEN-END:variables
+    private javax.swing.JTextField jTextFieldNumCama;
+    private javax.swing.JTextField jTextFieldEspecialidad;
+    private JLabel lblIdHabitacion;
+    private JTextField jTextFieldIDHabitacion;
+    private JLabel lblIdCama;
+    private JTextField jTextFieldCama;
+    /**
+     * @wbp.nonvisual location=131,274
+     */
+    private final Checkbox Consulta = new Checkbox("Consulta");
+    /**
+     * @wbp.nonvisual location=221,274
+     */
+    private final Checkbox Hospitalizados = new Checkbox("Hospitalizados");
 }
