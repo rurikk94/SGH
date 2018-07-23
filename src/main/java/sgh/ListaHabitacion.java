@@ -304,7 +304,7 @@ public class ListaHabitacion
     	return null;
     }
     
-    public void modificarCamillaConsulta(String idHabitacion,int numeroCama, boolean disponibilidad, String especialidad)
+    public boolean modificarCamillaConsulta(String idHabitacion,int numeroCama, boolean disponibilidad, String especialidad)
     {
     	if(!(habitaciones.isEmpty()))
     	{
@@ -312,10 +312,11 @@ public class ListaHabitacion
     		{
     			if((habitaciones.get(i) != null)&&(habitaciones.get(i) instanceof Consulta)&&(habitaciones.get(i).getId().equalsIgnoreCase(idHabitacion)))
     			{
-    				((Consulta)habitaciones.get(i)).modificarCamilla(numeroCama, disponibilidad, especialidad);
+    				return ((Consulta)habitaciones.get(i)).modificarCamilla(numeroCama, disponibilidad, especialidad);
     			}
     		}
     	}
+        return false;
     	
     }
     
@@ -350,42 +351,6 @@ public class ListaHabitacion
     	}
     	
     	return false;
-    }
-    
-    public boolean eliminarMedicoConsulta(Rut rutMedico)
-    {
-    	boolean retorno = false;
-    	
-    	if(!(habitaciones.isEmpty()))
-    	{
-    		for(int i=0; i<habitaciones.size(); i++)
-    		{
-    			if((habitaciones.get(i) != null) && (habitaciones.get(i) instanceof Consulta))
-    			{
-    				retorno = (((Consulta)habitaciones.get(i)).eliminarMedico(rutMedico));
-    			}
-    		}
-    	}
-    	
-    	return retorno;
-    }
-    
-    public boolean eliminarEnfermeroHospitalizados(Rut rutEnfermero)
-    {
-    	boolean retorno = false;
-    	
-    	if(!(habitaciones.isEmpty()))
-    	{
-    		for(int i=0; i<habitaciones.size(); i++)
-    		{
-    			if((habitaciones.get(i) != null) && (habitaciones.get(i) instanceof Hospitalizados))
-    			{
-    				retorno = ((Hospitalizados)habitaciones.get(i)).eliminarEnfermero(rutEnfermero);
-    			}
-    		}
-    	}
-    	
-    	return retorno;
     }
         
 }

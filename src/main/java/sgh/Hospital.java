@@ -46,7 +46,6 @@ public class Hospital {
 //        cargarDatosBD("","", "", "", "");        //carga los datos desde BD
 //        
 //        //System.out.println(hospi.PersonasToString());   //muestra los datos por consola
-//        Rut r = new Rut("1234545");
 //        Rut r2 = new Rut("1000100");
 //        agregarHabitacionConsulta("consulta1", "especialidadUno", r);//String id, String especialidad, String rutMedico
 //        agregarHabitacionHospitalizados("hospitalizado1", "especialidadDos", r2, 3);//String id,  especialidad,  rutEnfermero, int capacidad
@@ -54,6 +53,8 @@ public class Hospital {
 //        System.out.println("cant Consultas: "+ cantidadHabitacionesConsulta());
 //        System.out.println("cant hospiatales: "+ cantidadHabitacionesHospitalizados());
 //        System.out.println(" hospiatales: "+ mostrarHabitacionPorId("consulta1").toString());
+
+//        Rut r = new Rut("1234545");
 //        agregarHabitacionConsulta("consulta1", "especialidadUno", r);//String id, String especialidad, String rutMedico
 //
 //        System.out.println(PersonasToString());
@@ -61,10 +62,21 @@ public class Hospital {
 //        System.out.println("cant Hospitalizados: "+ cantidadHabitacionesHospitalizados());
 //        System.out.println(mostrarHabitacionPorId("C1").toString());
 //        System.out.println(mostrarHabitacionPorId("C2").toString());
+//        System.out.println(mostrarHabitacionPorId("consulta1").toString());
+        
 //        String s = mostrarHabitacionPorId("H1").toString();
 //        System.out.println(s);
-//        System.out.println("cant hospiatales: "+ cantidadHabitacionesHospitalizados());
-
+//        
+//         s = mostrarHabitacionPorId("hospitalizado1").toString();
+//        System.out.println(s);
+//        System.out.println("cant hospitalizados: "+ cantidadHabitacionesHospitalizados());
+//        System.out.println("cant consultas: "+ cantidadHabitacionesConsulta());
+//        
+//        eliminarHabitacion("H1");
+        
+        
+//        System.out.println("cant hospitalizados: "+ cantidadHabitacionesHospitalizados());
+//        System.out.println("cant consultas: "+ cantidadHabitacionesConsulta());    
     }
 
     /**
@@ -381,19 +393,63 @@ public class Hospital {
      * 
      */
     
-    public boolean agregarHabitacionConsulta(String id, String especialidad, Rut rutMedico)
+    public boolean agregarHabitacionConsulta(String id, String especialidad, Rut rutMedico) throws SQLException
     {
-    	return (listaHabitacion.agregarHabitacionConsulta(id, especialidad, rutMedico));
+    	if (listaHabitacion.agregarHabitacionConsulta(id, especialidad, rutMedico))
+            {
+                return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Insert into consulta values ('"
+                        + id+ "',"
+                        + 1 + ",'"
+                        + especialidad + "',"
+                        + null + ","
+                        + rutMedico.getNum() + ",'"
+                        + rutMedico.getDv()+ "'"
+                        + ");");
+            }
+        
+    	//return (listaHabitacion.agregarHabitacionConsulta(id, especialidad, rutMedico));
+        return false;
     }
     
-    public boolean agregarHabitacionHospitalizados(String id, String especialidad, Rut rutEnfermero, int capacidad)
+    public boolean agregarHabitacionHospitalizados(String id, String especialidad, Rut rutEnfermero, int capacidad) throws SQLException
     {
-    	return(listaHabitacion.agregarHabitacionHospitalizados(id, especialidad, rutEnfermero, capacidad));
+    	if (listaHabitacion.agregarHabitacionHospitalizados(id, especialidad, rutEnfermero, capacidad))
+        {
+                return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Insert into consulta values ('"
+                        + id+ "',"
+                        + 1 + ",'"
+                        + especialidad + "',"
+                        + capacidad + ","
+                        + rutEnfermero.getNum() + ",'"
+                        + rutEnfermero.getDv()+ "'"
+                        + ");");
+        }        
+//    	return(listaHabitacion.agregarHabitacionHospitalizados(id, especialidad, rutEnfermero, capacidad));
+        return false;
     }
     
-    public boolean eliminarHabitacion(String id)
+    public boolean eliminarHabitacion(String id) throws SQLException
     {
-    	return(listaHabitacion.eliminarHabitación(id));
+    	if (listaHabitacion.eliminarHabitación(id))
+            {
+                modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Delete from cama where idHabitacion='"
+                        + id+ "'"
+                        + ";");
+                if (modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Delete from consulta where idConsulta='"
+                        + id+ "'"
+                        + ";")
+                    )
+                {
+                    return true;
+                }else{
+                    return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Delete from hospitalizados where idHospitalizados='"
+                        + id+ "'"
+                        + ";");
+                }
+                               
+        } 
+    	//return(listaHabitacion.eliminarHabitación(id));
+    	return false;
     }
     
     public Habitacion mostrarHabitacionPorPosicion(int posicion) //Muestra una habitación en la posición de la lista deseada
@@ -416,32 +472,47 @@ public class Hospital {
     	return listaHabitacion.contarHabitacionesConsulta();
     }
     
-    public boolean darDeAltaPaciente(Rut rutPaciente)
+    public boolean darDeAltaPaciente(Rut rutPaciente) throws SQLException
     {
-    	return (listaHabitacion.darDeAlta(rutPaciente));
-    }
-    
-    public boolean darDeAltaCama(int numeroCama)
-    {
-    	return (listaHabitacion.darDeAlta(numeroCama));
-    }
-    
-    public boolean agregarCamaHospitalizados(String idHabitacion, int numeroCama, String especialidad, Rut rutPaciente)
-    {
-    	if (listaHabitacion.existeCama(numeroCama) == false)
-    	{
-    		return(listaHabitacion.agregarCamaHospitalizados(idHabitacion, numeroCama, especialidad, rutPaciente));
-    	}
-    	
+    	if(listaHabitacion.darDeAlta(rutPaciente))            
+           {
+               return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Update cama set camaDisponible=1, rutPaciente=null"
+                       +", dv=null"
+                       +" where rutPaciente="+ rutPaciente.getNum()
+                        + ";");
+           }
     	return false;
+//    	return (listaHabitacion.darDeAlta(rutPaciente));
     }
     
-    public void modificarCamaHospitalizados(String idHabitacion, int numeroCamaActual, int numeroCamaNuevo, boolean disponibilidad, String especialidad)
+    public boolean darDeAltaCama(int numeroCama) throws SQLException
     {
-    	if(listaHabitacion.existeCama(numeroCamaNuevo) == false)
-    	{
-    		listaHabitacion.modificarCamaHospitalizados(idHabitacion, numeroCamaActual, numeroCamaNuevo, disponibilidad, especialidad);
-    	}
+    	if(listaHabitacion.darDeAlta(numeroCama))            
+           {
+               return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Update cama set camaDisponible=1, rutPaciente=null"
+                       +", dv=null"
+                       +" where numeroCama="+ numeroCama
+                        + ";");
+           }
+    	return false;
+//    	return (listaHabitacion.darDeAlta(numeroCama));
+    }
+    
+    public boolean agregarCamaHospitalizados(String idHabitacion, int numeroCama, String especialidad, Rut rutPaciente) throws SQLException
+    {
+    	if (listaHabitacion.agregarCamaHospitalizados(idHabitacion, numeroCama, especialidad, rutPaciente))
+        {
+            return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Insert into cama values ("
+                        + numeroCama + ",'"
+                        + idHabitacion + "',"
+                        + 1 + ",'"
+                        + especialidad + "',"
+                        + rutPaciente.getNum() + ","
+                        + rutPaciente.getDv()
+                        + ");");
+        }
+//    	return(listaHabitacion.agregarCamaHospitalizados(idHabitacion, numeroCama, especialidad, rutPaciente));
+    	return false;
     }
     
     public Cama buscarCamaEspecifica(int numeroCama)
@@ -454,41 +525,71 @@ public class Hospital {
     	return(listaHabitacion.buscarCamaDisponible());
     }
     
-    public boolean ocuparCama(int numeroCama, Rut rutPaciente)
+    public boolean ocuparCama(int numeroCama, Rut rutPaciente) throws SQLException
     {
-    	return(listaHabitacion.ocuparCama(numeroCama, rutPaciente));
+    	if(listaHabitacion.ocuparCama(numeroCama, rutPaciente))            
+           {
+               return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Update cama set camaDisponible=0, rutPaciente="+rutPaciente.getNum()
+                       +", dv='"+rutPaciente.getDv()
+                       +"' where numeroCama="+ numeroCama
+                        + ";");
+           }
+    	return false;
+//    	return(listaHabitacion.ocuparCama(numeroCama, rutPaciente));
     }
     
-    public boolean eliminarCamaHospitalizados(int numeroCama)
+    public boolean eliminarCamaHospitalizados(int numeroCama) throws SQLException
     {
-    	return(listaHabitacion.eliminarCamaHospitalizados(numeroCama));
+    	if (listaHabitacion.eliminarCamaHospitalizados(numeroCama))
+           {
+               return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Delete from cama where numeroCama="
+                        + numeroCama
+                        + ";");
+           }
+//    	return(listaHabitacion.eliminarCamaHospitalizados(numeroCama));
+    	return false;
     }
     
-    public Cama eliminarObjetoCamaHospitalizados(int numeroCama)
+    public Cama eliminarObjetoCamaHospitalizados(int numeroCama) throws SQLException
     {
-    	return(listaHabitacion.eliminarObjetocamaHospitalizados(numeroCama));
+        Cama c = listaHabitacion.eliminarObjetocamaHospitalizados(numeroCama);
+    	if(c!=null)
+           {
+               modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Delete from cama where numeroCama="
+                        + numeroCama
+                        + ";");
+               return c;
+           }
+//    	return(listaHabitacion.eliminarObjetocamaHospitalizados(numeroCama));
+    	return null;
     }
     
-    public void modificarCamillaConsulta(String idHabitacion,int numeroCama, boolean disponibilidad, String especialidad)
+    public boolean modificarCamillaConsulta(String idHabitacion,int numeroCama, boolean disponibilidad, String especialidad) throws SQLException
     {
-    	if(listaHabitacion.existeCama(numeroCama) == false)
-    	{
-    		listaHabitacion.modificarCamillaConsulta(idHabitacion,numeroCama, disponibilidad, especialidad);
-    	}
+        int dispo = 1;
+        if (disponibilidad!=true)
+            dispo = 0;
+    	if (listaHabitacion.modificarCamillaConsulta(idHabitacion,numeroCama, disponibilidad, especialidad))            
+           {
+               return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Update cama set camaDisponible="+dispo+", numeroCama="+numeroCama
+                       +", especialidad='"+especialidad+"'"
+                       +" where idHabitacion="+ idHabitacion
+                        + ";");
+           }
+    	return false;
+//    	listaHabitacion.modificarCamillaConsulta(idHabitacion,numeroCama, disponibilidad, especialidad);
     }
     
-    public boolean ocuparCamillaConsulta(String idHabitacion, Rut rutPaciente)
+    public boolean ocuparCamillaConsulta(String idHabitacion, Rut rutPaciente) throws SQLException
     {
-    	return(listaHabitacion.ocuparCamillaConsulta(idHabitacion, rutPaciente));
-    }
-    
-    public boolean eliminarMedicoConsulta(Rut rutMedico)
-    {
-    	return (listaHabitacion.eliminarMedicoConsulta(rutMedico));
-    }
-    
-    public boolean eliminarEnfermeroHospitalizados(Rut rutEnfermero)
-    {
-    	return(listaHabitacion.eliminarEnfermeroHospitalizados(rutEnfermero));
+    	if(listaHabitacion.ocuparCamillaConsulta(idHabitacion, rutPaciente))            
+           {
+               return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Update cama set camaDisponible=0, rutPaciente="+rutPaciente.getNum()
+                       +", dv='"+rutPaciente.getDv()+"'"
+                       +" where idHabitacion="+ idHabitacion
+                        + ";");
+           }
+        return false;
+//    	return(listaHabitacion.ocuparCamillaConsulta(idHabitacion, rutPaciente));
     }
 }
