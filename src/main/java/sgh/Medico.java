@@ -69,4 +69,16 @@ public class Medico extends Funcionario
     public boolean agregarAListaPacientes(Paciente paciente) {
         return listapacientes.agregarPaciente(paciente);
     }
+    
+    public String buscarPaciente (Rut rut){
+        return listapacientes.buscarPaciente(rut);
+    }
+    
+    public boolean remplazarPaciente (Paciente pacienteNuevo, Rut pacienteARemplazar){
+        return listapacientes.remplazarPaciente(pacienteNuevo, pacienteARemplazar);
+    }
+    
+    public boolean eliminarPaciente(Rut rut){
+        return listapacientes.eliminarPaciente(rut);
+    }
 }

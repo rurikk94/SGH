@@ -204,4 +204,28 @@ public class ListaPersona {
     public int cantidadPersonas(){
         return arrayPersonas.size();
     }
+    
+    public boolean eliminarPacienteaMedico(Rut rutPaciente, int rutMedico) {
+        if (buscarPersona(rutMedico) != null) //Si existe el Paciente, y tambien existe el Medico
+        {
+            return ((Medico) buscarPersona(rutMedico)).eliminarPaciente(rutPaciente);    //agregara el Paciente a la listaPacientes del Madico
+        };
+        return false;
+    }
+    
+    public String buscarPacienteMedico(Rut rutPaciente, int rutMedico) {
+        if (buscarPersona(rutMedico) != null) //Si existe el Paciente, y tambien existe el Medico
+        {
+            return ((Medico) buscarPersona(rutMedico)).buscarPaciente(rutPaciente);    //agregara el Paciente a la listaPacientes del Madico
+        };
+        return "No existe el medico";
+    }
+    
+    public boolean remplazarPacienteMedico(int rutMedico,Paciente pacienteNuevo, Rut pacienteARemplazar) {
+        if (buscarPersona(rutMedico) != null) //Si existe el Paciente, y tambien existe el Medico
+        {
+            return ((Medico) buscarPersona(rutMedico)).remplazarPaciente(pacienteNuevo,pacienteARemplazar);    //agregara el Paciente a la listaPacientes del Madico
+        };
+        return false;
+    }
 }

@@ -363,16 +363,20 @@ public class Hospital {
     public boolean eliminarPersona(int rutNum) throws SQLException {
         Persona n = listaPersona.buscarPersona(rutNum);
         if (listaPersona.eliminarPersona(rutNum)) {
+            Rut rut = new Rut(rutNum);
 
             if (n instanceof Enfermero) {
+                eliminarEnfermeroHospitalizados(rut);
                 return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Delete from enfermeros where rut=" + rutNum);
             }
 
             if (n instanceof Paciente) {
+                darDeAltaPaciente(rut);
                 return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Delete from pacientes where rut=" + rutNum);
             }
 
             if (n instanceof Medico) {
+                eliminarMedicoConsulta(rut);
                 return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Delete from medicos where rut=" + rutNum);
             }
         }
@@ -594,13 +598,27 @@ public class Hospital {
     }
 	
 	
-    public boolean eliminarMedicoConsulta(Rut rutMedico)
+    public boolean eliminarMedicoConsulta(Rut rutMedico) throws SQLException
     {
-    	return (listaHabitacion.eliminarMedicoConsulta(rutMedico));
+    	if (listaHabitacion.eliminarMedicoConsulta(rutMedico))            
+           {
+               return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Update cama set rutMedico=null, dv=null"
+                       +" where rutMedico="+ rutMedico.getNum()
+                        + ";");
+           }
+    	return false;
+//    	return (listaHabitacion.eliminarMedicoConsulta(rutMedico));
     }
     
-    public boolean eliminarEnfermeroHospitalizados(Rut rutEnfermero)
+    public boolean eliminarEnfermeroHospitalizados(Rut rutEnfermero) throws SQLException
     {
-    	return(listaHabitacion.eliminarEnfermeroHospitalizados(rutEnfermero));
+    	if(listaHabitacion.eliminarEnfermeroHospitalizados(rutEnfermero))            
+           {
+               return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Update cama set rutEnfermero=null, dv=null"
+                       +" where rutEnfermero="+ rutEnfermero.getNum()
+                        + ";");
+           }
+    	return false;
+//    	return(listaHabitacion.eliminarEnfermeroHospitalizados(rutEnfermero));
     }
 }
