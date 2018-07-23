@@ -24,7 +24,10 @@ import main.java.sgh.Hospital;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -49,69 +52,83 @@ public class HabitacionesEliminarFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        jLabelTitulo = new javax.swing.JLabel();
-        jLabelTitulo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jTextFieldIDHabitacion = new javax.swing.JTextField();
-        jLabelID = new javax.swing.JLabel();
-        jButtonEliminar = new javax.swing.JButton();
-        	
-        jButtonVolver = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelTitulo.setText("Consulta/Hospitalizados");
+        jLabel1.setText("Eliminar");
 
-        jTextFieldIDHabitacion.setText("IDHabitacion");
+        jLabel2.setText("Consulta/Hospitalizados");
 
-        jLabelID.setText("ID:");
+        jTextFieldIDHabitacion.setText("jTextField1");
 
-        jButtonEliminar.setText("Eliminar");
+        jLabel3.setText("ID");
 
-        jButtonVolver.setText("Volver");
-        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        GroupLayout groupLayout = new GroupLayout(getContentPane());
-        groupLayout.setHorizontalGroup(
-        	groupLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(groupLayout.createSequentialGroup()
-        			.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-        					.addContainerGap()
-        					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-        						.addComponent(jLabelID)
-        						.addComponent(jButtonVolver))
-        					.addPreferredGap(ComponentPlacement.UNRELATED)
-        					.addComponent(jTextFieldIDHabitacion, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
-        				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-        					.addGap(44)
-        					.addComponent(jLabelTitulo)))
-        			.addGap(1)
-        			.addComponent(jButtonEliminar)
-        			.addGap(22))
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addComponent(jLabel3))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldIDHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(jButton2)))))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
-        groupLayout.setVerticalGroup(
-        	groupLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(groupLayout.createSequentialGroup()
-        			.addGap(24)
-        			.addComponent(jLabelTitulo)
-        			.addGap(41)
-        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jLabelID)
-        				.addComponent(jTextFieldIDHabitacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addPreferredGap(ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(jButtonVolver)
-        				.addComponent(jButtonEliminar))
-        			.addContainerGap())
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldIDHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
-        getContentPane().setLayout(groupLayout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void actionPerformed(ActionEvent e) throws SQLException {
+    public void actionPerformed(ActionEvent e) throws SQLException, IOException {
 		MensajeFallido msjFail=new MensajeFallido();
 		MensajeCorrecto msj=new MensajeCorrecto();
 		MenuPrincipalFrame menu=new MenuPrincipalFrame(hospi);
@@ -137,6 +154,35 @@ public class HabitacionesEliminarFrame extends javax.swing.JFrame {
         personas.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here: throws SQLException {
+		MensajeFallido msjFail=new MensajeFallido();
+		MensajeCorrecto msj=new MensajeCorrecto();
+		MenuPrincipalFrame menu = null;
+            try {
+                menu = new MenuPrincipalFrame(hospi);
+            } catch (IOException ex) {
+                Logger.getLogger(HabitacionesEliminarFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+		if(jTextFieldIDHabitacion.getText()!=null)
+		{
+                    try {
+                        if(hospi.eliminarHabitacion(jTextFieldIDHabitacion.getText()))
+                        {
+                            msj.setVisible(true);
+                            menu.setVisible(true);
+                            this.dispose();
+                        }
+                        else
+                        {
+                            msjFail.setVisible(true);
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(HabitacionesEliminarFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+		}
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,10 +221,11 @@ public class HabitacionesEliminarFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonEliminar;
-    private javax.swing.JButton jButtonVolver;
-    private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JLabel jLabelID;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextFieldIDHabitacion;
     // End of variables declaration//GEN-END:variables
 }

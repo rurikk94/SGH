@@ -122,7 +122,7 @@ public class Hospitalizados extends Habitacion
 	}
         
         public String toString(){
-            return "Hospitalizado: " + getId() + " " + getDisponibilidad()+ " " + getEspecialidad() + "Medico: " + rutEnfermero.toString() + "\n Camas: " + camas.toString();
+            return "Hospitalizado: " + getId() + " " + getDisponibilidad()+ " " + getEspecialidad() + "Medico: " + rutEnfermero.toString() + " Camas: " + camas.toString();
         }
 		
 		

@@ -2,6 +2,7 @@ package main.java.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import main.java.sgh.Hospital;
 
 public class MenuPrincipalFrame extends javax.swing.JFrame {
@@ -17,7 +18,14 @@ public class MenuPrincipalFrame extends javax.swing.JFrame {
         setHospital(hospi);
     }
 
-    public MenuPrincipalFrame(Hospital hospi) {
+    public MenuPrincipalFrame(Hospital hospi) throws IOException {
+        
+        System.out.println(hospi.personasToString());   //muestra los datos por consola
+        System.out.println(hospi.habitacionesToString());   //muestra los datos por consola
+        hospi.informeMedicos();
+        hospi.informePacientes();
+        hospi.informeEnfermeros();
+        
         initComponents();
         setHospital(hospi);
     }

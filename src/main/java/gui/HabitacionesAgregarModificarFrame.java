@@ -29,6 +29,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -215,7 +216,12 @@ public class HabitacionesAgregarModificarFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Rut run=null;
-    	MenuPrincipalFrame menu=new MenuPrincipalFrame(hospi);
+    	MenuPrincipalFrame menu = null;
+            try {
+                menu = new MenuPrincipalFrame(hospi);
+            } catch (IOException ex) {
+                Logger.getLogger(HabitacionesAgregarModificarFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
     	MensajeCorrecto msj=new MensajeCorrecto();
     	MensajeFallido msjFail=new MensajeFallido();
     	if(jRadioButtonConsulta.isSelected() && !jRadioButtonHospitalizados.isSelected())                                         

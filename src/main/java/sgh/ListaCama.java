@@ -227,7 +227,7 @@ public class ListaCama {
     }
     
     public String toString(){
-        String r = "totalCamas: "+ getTotalCama() + " ";
+        String r = " totalCamas: "+ getTotalCama() + " ";
          for (int i = 0; i < arrayCama.size(); i++) {
              r+= "\n" + arrayCama.get(i).toString();
          }

@@ -391,4 +391,18 @@ public class ListaHabitacion
     	
     	return retorno;
     }
+    
+    
+    public String toString(){
+        String string="";
+        if (!habitaciones.isEmpty()) {  //Si el array no está vacio
+            for (int i = 0; i < habitaciones.size(); i++) {    //Recorre Array                
+                string += habitaciones.get(i).toString() + "\n";                
+            }
+        }
+        else{
+            string+="No hay habitaciones";
+        }
+        return string;
+    }
 }

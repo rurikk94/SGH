@@ -29,6 +29,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Checkbox;
+import java.io.IOException;
 
 /**
  *
@@ -183,7 +184,7 @@ public class CamasAgregarModificarFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void actionPerformed(ActionEvent e) throws NumberFormatException, SQLException {
+    public void actionPerformed(ActionEvent e) throws NumberFormatException, SQLException, IOException {
 		MenuPrincipalFrame menu=new MenuPrincipalFrame(hospi);
 		MensajeCorrecto msj=new MensajeCorrecto();
 		MensajeFallido msjFail=new MensajeFallido();
@@ -257,7 +258,7 @@ public class CamasAgregarModificarFrame extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton jButtonAgregar;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;

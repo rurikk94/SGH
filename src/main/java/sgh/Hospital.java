@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import main.java.utiles.Rut;
+import main.java.utiles.Informe;
 import java.util.*;
 
 /**
@@ -323,33 +324,48 @@ public class Hospital {
     /**
      * Modifica la Persona y realiza el cambio en la BD
      *
-     * @param rutNum int parte numerica del rut de la persona a modificar
-     * @param atributoAModificar Object, cualquier tipo de objeto que se debe
-     * modificar
-     * @param nombreAtributo String, si se modifica Nombres o Apellidos, enviar
-     * "Nombres" o "Apellidos"
      * @return boolean
      *
      */
-    public boolean modificarPersona(int rutNum, Object atributoAModificar, String nombreAtributo) throws SQLException {
+    public boolean modificarPersona(int rutNum, String nombres, String apellidos, java.sql.Date fechaNac, int fono, String contacto, int fonoContacto, char sexo, String email, String especialidad) throws SQLException {
 
-        if (listaPersona.modificarPersona(rutNum, atributoAModificar, nombreAtributo)) {
+        if (listaPersona.modificarPersona(rutNum, nombres, apellidos, fechaNac, fono, contacto, fonoContacto, sexo, email, especialidad)) {
 
-            if (atributoAModificar instanceof String) {
-                atributoAModificar = "'" + atributoAModificar + "'";
-            }
-
+            String coma="";
+            String query = "Update ";
+            
             if (listaPersona.buscarPersona(rutNum) instanceof Enfermero) {
-                return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Update enfermeros  SET " + nombreAtributo + "= " + atributoAModificar + " where rut=" + rutNum);
+                query+= "enfermeros  SET ";
             }
 
             if (listaPersona.buscarPersona(rutNum) instanceof Paciente) {
-                return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Update pacientes  SET " + nombreAtributo + "= " + atributoAModificar + " where rut=" + rutNum);
+                query+= "pacientes  SET ";
             }
 
             if (listaPersona.buscarPersona(rutNum) instanceof Medico) {
-                return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", "Update medicos  SET " + nombreAtributo + "= " + atributoAModificar + " where rut=" + rutNum);
+                query+= "medicos  SET ";
             }
+            if (nombres != null){
+                query+= " nombres = '" + nombres + "'"; coma=",";}
+            if (apellidos != null){
+                query+= coma+" apellidos = '" + apellidos + "'"; coma=",";}
+            if (fechaNac != null){
+                query+= coma+" fechaNac = '" + fechaNac + "'"; coma=",";}
+            if (fono != 0){
+                query+= coma+" telefono = " + fono; coma=",";}
+            if (email != null){
+                query+= coma+" email = '" + email + "'"; coma=",";}
+            if (especialidad != null){
+                query+= coma+" especialidad = '" + especialidad + "'"; coma=",";}
+            if (contacto != null){
+                query+= coma+" nombreContacto = '" + contacto + "'"; coma=",";}
+            if (fonoContacto != 0){
+                query+= coma+" telefonoContacto = " + fonoContacto; coma=",";}
+            if (sexo !='\u0000') {
+                query+= coma+" sexo = '" + sexo+"'"; coma=",";}
+            
+            query+=" where rut=" + rutNum;
+            return modificarBD("localhost", "3306", "rurikkcl_SGH", "root", "", query);
         }
         return false;
     }
@@ -388,8 +404,12 @@ public class Hospital {
      *
      * @author Rurikk
      */
-    public String PersonasToString() {
-        return listaPersona.toString();
+    public String personasToString() {
+        try {
+            return listaPersona.toString();            
+        } catch (Exception e) {
+            return "";
+        }
     }
     
     /*
@@ -620,5 +640,67 @@ public class Hospital {
            }
     	return false;
 //    	return(listaHabitacion.eliminarEnfermeroHospitalizados(rutEnfermero));
+    }
+    
+    public boolean informeMedicos() throws IOException{
+        //planillas;
+        String[] encabezados = new String[]{
+            "RUT",
+            "NOMBRES",
+            "APELLIDOS",
+            "FECHA NAC",
+            "TELEFONO",
+            "EMAIL",
+            "ESPECIALIDAD"
+        };
+        Object[][] tabla= listaPersona.tablaMedicos(encabezados.length);
+        //return informeExcel(String nombreHoja,String nombreArchivo,String tituloPlanilla,String[] encabezados,Object[][] tabla);
+        Informe excel = new Informe("Lista Medicos", "ListaMedicos", "Medicos", encabezados, tabla);
+        
+        return excel.informeExcel();
+    }
+    
+    public boolean informePacientes() throws IOException{
+        //planillas;
+        String[] encabezados = new String[]{
+            "RUT",
+            "NOMBRES",
+            "APELLIDOS",
+            "FECHA NAC",
+            "TELEFONO",
+            "CONTACTO",
+            "FONO CONTACTO",
+            "SEXO"
+        };
+        Object[][] tabla= listaPersona.tablaPacientes(encabezados.length);
+        //return informeExcel(String nombreHoja,String nombreArchivo,String tituloPlanilla,String[] encabezados,Object[][] tabla);
+        Informe excel = new Informe("Lista Pacientes", "ListaPacientes", "Pacientes", encabezados, tabla);
+        
+        return excel.informeExcel();
+    }
+    
+    public boolean informeEnfermeros() throws IOException{
+        //planillas;
+        String[] encabezados = new String[]{
+            "RUT",
+            "NOMBRES",
+            "APELLIDOS",
+            "FECHA NAC",
+            "TELEFONO",
+            "EMAIL"
+        };
+        Object[][] tabla= listaPersona.tablaEnfermeros(encabezados.length);
+        //return informeExcel(String nombreHoja,String nombreArchivo,String tituloPlanilla,String[] encabezados,Object[][] tabla);
+        Informe excel = new Informe("Lista Enfermeros", "ListaEnfermeros", "Enfermeros", encabezados, tabla);
+        
+        return excel.informeExcel();
+    }
+    
+    public String habitacionesToString() {
+        try {
+            return listaHabitacion.toString();            
+        } catch (Exception e) {            
+        }
+        return "";
     }
 }

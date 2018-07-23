@@ -120,55 +120,50 @@ public class ListaPersona {
     /**
      * Modifica la Persona
      * @author Rurikk
-     * @param rutNum int parte numerica del rut de la persona a modificar
-     * @param atributoModificar Object, cualquier tipo de objeto que se debe modificar
-     * @param nombreAtributo String, si se modifica Nombres o Apellidos, enviar "Nombres" o "Apellidos"
      * @return boolean
      * @version 1.0x.xxx 2018-05-26
      * 
      */
-    @SuppressWarnings("nombreAtributo")
-    public boolean modificarPersona(int rutNum, Object atributoModificar, String nombreAtributo) {
+    public boolean modificarPersona(int rutNum, String nombres, String apellidos, java.sql.Date fechaNac, int fono, String contacto, int fonoContacto, char sexo, String email, String especialidad) {
         int i = arrayPersonas.indexOf(buscarPersona(rutNum));   //indice de la Persona en el arrayList
         if (i != -1) //Si existe la persona segun Rut
         {
-            if ("Nombres".equals(nombreAtributo)) { //Si ingresa Nombre
-                return ((Persona) arrayPersonas.get(i)).setNombres((String) atributoModificar);    //modifica el nombre
+            if (nombres!=null) { //Si ingresa Nombre
+                return ((Persona) arrayPersonas.get(i)).setNombres(nombres);    //modifica el nombre
             };
-            if ("Apellidos".equals(nombreAtributo)) {   //Si ingresa Apellido
-                return ((Persona) arrayPersonas.get(i)).setApellidos((String) atributoModificar);    //modifica el apellidos
+            if (apellidos!=null) {   //Si ingresa Apellido
+                return ((Persona) arrayPersonas.get(i)).setApellidos(apellidos);    //modifica el apellidos
             };
-            if (atributoModificar instanceof Date) {
-                return ((Persona) arrayPersonas.get(i)).setFechaNac((Date) atributoModificar);    //modifica la fecha
+            if (fechaNac!=null) {
+                return ((Persona) arrayPersonas.get(i)).setFechaNac(fechaNac);    //modifica la fecha
             };
-            if (atributoModificar instanceof Rut) {
-                return ((Persona) arrayPersonas.get(i)).setRut((Rut) atributoModificar);    //modifica el Rut
+            if (fono != 0) {
+                return ((Persona) arrayPersonas.get(i)).setTelefono(fono);    //modifica el Rut
             };
-            if (atributoModificar instanceof Integer) {
-                return ((Persona) arrayPersonas.get(i)).setTelefono((Integer) atributoModificar);    //modifica el telefono
-            };
+            
             if (buscarPersona(rutNum) instanceof Funcionario) {
-                return ((Funcionario) arrayPersonas.get(i)).setEmail((String) atributoModificar);    //modifica el Email
+                return ((Funcionario) arrayPersonas.get(i)).setEmail(email);    //modifica el Email
             };
+            
             if (buscarPersona(rutNum) instanceof Paciente) { //si la persona es Paciente
-                if (atributoModificar instanceof Integer) {
-                    return ((Paciente) arrayPersonas.get(i)).setTelefonoContacto((Integer) atributoModificar); //modifica el telefono
+                
+                if (fonoContacto != 0) {
+                    return ((Paciente) arrayPersonas.get(i)).setTelefonoContacto(fonoContacto); //modifica el telefono
+                }
+                if (contacto != null) {
+                    return ((Paciente) arrayPersonas.get(i)).setNombreContacto(contacto);//modifica el nombreContacto
                 };
-                if (atributoModificar instanceof String) {
-                    return ((Paciente) arrayPersonas.get(i)).setNombreContacto((String) atributoModificar);//modifica el nombreContacto
-                };
-                if (atributoModificar instanceof char[]) {
-                    return ((Paciente) arrayPersonas.get(i)).setSexo((char) atributoModificar);//modifica el sexo
+                if (sexo != '\u0000') {
+                    return ((Paciente) arrayPersonas.get(i)).setSexo(sexo);//modifica el sexo
                 };
             }
             if (buscarPersona(rutNum) instanceof Medico) {   //si la persona  es Medico
-                if (atributoModificar instanceof String) {
-                    return ((Medico) arrayPersonas.get(i)).setEspecialidad((String) atributoModificar);//modifica la especialidad
+                if (especialidad != null) {
+                    return ((Medico) arrayPersonas.get(i)).setEspecialidad(especialidad);//modifica la especialidad
+                };                
+                if (email !="") {
+                    return ((Medico) arrayPersonas.get(i)).setEmail(email);    //modifica el Email
                 };
-            }
-            if (buscarPersona(rutNum) instanceof Enfermero) {   //si la persona  es Enfermero
-
-                //return ((Medico)arrayPersonas.get(i)).setEspecialidad((String)atributoModificar);//modifica el algo
             }
         };
         return false;
@@ -227,5 +222,94 @@ public class ListaPersona {
             return ((Medico) buscarPersona(rutMedico)).remplazarPaciente(pacienteNuevo,pacienteARemplazar);    //agregara el Paciente a la listaPacientes del Madico
         };
         return false;
+    }
+    
+    public Persona retornaPersona(int pos){
+        return arrayPersonas.get(pos);
+    }
+    
+    public int cantidadMedicos(){
+        int cant=0;
+        for (int i = 0; i < arrayPersonas.size(); i++) {    //Recorre Array                
+                if (arrayPersonas.get(i) instanceof Medico)
+                    cant++;
+        }
+        return cant;
+    }
+    
+    
+    public int cantidadEnfermeros(){
+        int cant=0;
+        for (int i = 0; i < arrayPersonas.size(); i++) {    //Recorre Array                
+                if (arrayPersonas.get(i) instanceof Enfermero)
+                    cant++;
+        }
+        return cant;
+    }
+    
+    public int cantidadPacientes(){
+        int cant=0;
+        for (int i = 0; i < arrayPersonas.size(); i++) {    //Recorre Array                
+                if (arrayPersonas.get(i) instanceof Paciente)
+                    cant++;
+        }
+        return cant;
+    }
+    
+    public Object[][] tablaMedicos(int encabezados){
+        Object[][] tabla= new Object[cantidadMedicos()][encabezados];
+        int cont=0;
+        for (int j = 0; j < cantidadPersonas(); j++) {
+            if ((retornaPersona(j)!=null)&&(retornaPersona(j) instanceof Medico)){
+
+                tabla[cont][0]=retornaPersona(j).getRut();
+                tabla[cont][1]=retornaPersona(j).getNombres();
+                tabla[cont][2]=retornaPersona(j).getApellidos();
+                tabla[cont][3]=retornaPersona(j).getFechaNac();
+                tabla[cont][4]=retornaPersona(j).getTelefono();
+                tabla[cont][5]=((Medico)retornaPersona(j)).getEmail();
+                tabla[cont][6]=((Medico)retornaPersona(j)).getEspecialidad();
+                cont++;
+            }
+        };
+        return tabla;
+    }
+    
+    public Object[][] tablaEnfermeros(int encabezados){
+        Object[][] tabla= new Object[cantidadEnfermeros()][encabezados];
+        int cont=0;
+        for (int j = 0; j < cantidadPersonas(); j++) {
+            if ((retornaPersona(j)!=null)&&(retornaPersona(j) instanceof Enfermero)){
+
+                tabla[cont][0]=retornaPersona(j).getRut();
+                tabla[cont][1]=retornaPersona(j).getNombres();
+                tabla[cont][2]=retornaPersona(j).getApellidos();
+                tabla[cont][3]=retornaPersona(j).getFechaNac();
+                tabla[cont][4]=retornaPersona(j).getTelefono();
+                tabla[cont][5]=((Enfermero)retornaPersona(j)).getEmail();
+                cont++;
+            }
+        };
+        return tabla;
+    }
+
+    Object[][] tablaPacientes(int length) {
+        Object[][] tabla= new Object[cantidadPacientes()][length];
+        int cont=0;
+        for (int j = 0; j < cantidadPersonas(); j++) {
+            if ((retornaPersona(j)!=null)&&(retornaPersona(j) instanceof Paciente)){
+
+                tabla[cont][0]=retornaPersona(j).getRut();
+                tabla[cont][1]=retornaPersona(j).getNombres();
+                tabla[cont][2]=retornaPersona(j).getApellidos();
+                tabla[cont][3]=retornaPersona(j).getFechaNac();
+                tabla[cont][4]=retornaPersona(j).getTelefono();
+                tabla[cont][5]=((Paciente)retornaPersona(j)).getNombreContacto();
+                tabla[cont][6]=((Paciente)retornaPersona(j)).getTelefonoContacto();
+                tabla[cont][7]=((Paciente)retornaPersona(j)).getSexo();
+                cont++;
+            }
+        };
+        return tabla;
     }
 }

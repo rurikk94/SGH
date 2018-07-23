@@ -17,6 +17,7 @@
 
 package main.java.gui;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,12 +32,11 @@ public class CargandoFrame extends javax.swing.JFrame {
 
     /** Creates new form CargandoFrame */
     Hospital hospi;
-    public CargandoFrame(Hospital hospi,String url,String puerto, String bd, String user, String pass) throws SQLException {
+    public CargandoFrame(Hospital hospi,String url,String puerto, String bd, String user, String pass) throws SQLException, IOException {
         initComponents();
         this.hospi = hospi;
         hospi.cargarDatosBD(url,puerto, bd, user, pass);        //carga los datos desde BD
         
-        System.out.println(hospi.PersonasToString());   //muestra los datos por consola
         
         MenuPrincipalFrame vm = new MenuPrincipalFrame(hospi);        //abre ventanaPrincipal
         vm.setVisible(true);
@@ -143,6 +143,8 @@ public class CargandoFrame extends javax.swing.JFrame {
                     new CargandoFrame(hospi,tipoBD, url, bd, user, pass).setVisible(true);                   
                     
                 } catch (SQLException ex) {
+                    Logger.getLogger(CargandoFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
                     Logger.getLogger(CargandoFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
