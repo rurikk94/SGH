@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="src/main/resources/libs/mysql-connector-java-5.1.45-bin.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/libs/poi-3.17.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/libs/sqlite-jdbc-3.21.0.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
